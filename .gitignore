@@ -1,5 +1,4 @@
 /.phpunit.cache
-.env.backup
 .env.production
 .phpunit.result.cache
 /.fleet
