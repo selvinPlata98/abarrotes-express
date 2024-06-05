@@ -9,6 +9,6 @@ class Categoria extends Model
 {
     use HasFactory;
     public function productos() {
-        return $this->hasmany(Producto::class);
+        return $this->hasmany(Producto::class,'categoria_id');
      }
 }
