@@ -22,7 +22,8 @@ class ProductoResource extends Resource
 {
     protected static ?string $model = Producto::class;
 
-    protected static ?string $navigationIcon = 'heroicon-s-shopping-cart';
+    protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
+    protected static ?string $activeNavigationIcon = 'heroicon-s-shopping-cart';
     protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form

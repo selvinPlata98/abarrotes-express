@@ -31,7 +31,8 @@ class UsuariosResource extends Resource
     protected static ?string $slug = 'usuarios';
     protected static ?int $navigationSort = 1;
 
-    protected static ?string $navigationIcon = 'heroicon-s-users';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static ?string $activeNavigationIcon = 'heroicon-s-users';
     protected static ?string $pluralModelLabel = 'Usuarios';
 
     public static function form(Form $form): Form
