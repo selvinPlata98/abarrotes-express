@@ -6,8 +6,10 @@ use App\Filament\Resources\CategoriaResource\Pages;
 use App\Filament\Resources\CategoriaResource\RelationManagers;
 use App\Models\Categoria;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -27,8 +29,8 @@ class CategoriaResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                
+            ->schema(components: [
+
                 TextInput::make('nombre')
                 ->required()
                 ->label('Nombre de la Categoria')
@@ -37,16 +39,20 @@ class CategoriaResource extends Resource
                     ->validationMessages([
                         'maxLenght' => 'El nombre no debe contener más de 80 carácteres.',
                        'required' => 'Debe introducir el nombre de la Categoria.',
-                        'regex' => 'El nombre solo debe contener letras y espacios.'
+                        'regex' => 'La categoria solo debe contener letras y espacios.'
                     ]),
+
                 TextInput::make('enlace')
                 ->required(),
-                TextInput::make('imagen'),
+
+                FileUpload ::make('imagen'),
+
                 Select::make('disponible')
                     ->options([
-                        1=>'true',
-                        0=>'false'
-                    ])->required(),
+                        1=>'Disponible',
+                        0=>'No Disponible'
+                    ])->required()
+                    ->label('Estado'),
 
             ]);
     }
@@ -60,18 +66,21 @@ class CategoriaResource extends Resource
                     ->sortable()
                     ->label('Categoria'),
 
-                    
+
                         TextColumn::make('imagen')
                         ->searchable()
                             ->sortable()
-                            ->label('foto'),
-                
+                            ->label('Imagen'),
+
             ])
             ->filters([
                 //
             ])
             ->actions([
+                ActionGroup::make([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+                ])
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
