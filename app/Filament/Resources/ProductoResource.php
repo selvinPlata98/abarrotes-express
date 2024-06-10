@@ -34,8 +34,13 @@ class ProductoResource extends Resource
                     Section::make([
                         Forms\Components\TextInput::make('nombre')
                             ->required()
-                            ->label('Nombre')
-                            ->maxLength(255)
+                            ->label('Nombre del Producto')
+                            ->maxLength(80)
+                            ->validationMessages([
+                                'maxLenght' => 'El nombre debe  contener un maximo de 80 carácteres.',
+                                'required' => 'Debe introducir un nombre del producto',
+                                'regex' => 'El nombre solo debe contener letras y espacios.'
+                            ])
                             ->afterStateUpdated(fn(string $operation, $state, Set $set) => $operation
                             === 'create' ? $set('enlace', Str::slug($state)) : null)
                             ->reactive()
@@ -53,18 +58,34 @@ class ProductoResource extends Resource
                             ->label('Imágenes')
                             ->multiple()
                             ->image()
+                            ->validationMessages([
+                                'maxFiles' => 'Se permite un máximo de 5 imágenes.',
+                                'required' => 'Debe seleccionar al menos una imagen.',
+                                'image' => 'El archivo debe ser una imagen válida.',
+                            ])
                             ->maxFiles(5)
                             ->columnSpan(2),
 
                         Forms\Components\Textarea::make('descripcion')
                             ->required()
                             ->label('Descripción')
+                            ->maxlength(300)
+                            ->validationMessages([
+                                'required' => 'La descripción es obligatoria.',
+                                'maxlength' => 'La descripción no puede exceder los 300 caracteres.'
+                            ])
                             ->columnSpan(2),
 
                         Forms\Components\TextInput::make('precio')
                             ->required()
                             ->numeric()
+                            ->regex('^(\d{1,8})(\.\d{1,2})?$')
                             ->label('Precio')
+                            ->validationMessages([
+                                'required' => 'El precio es obligatorio.',
+                                'numeric' => 'El precio debe ser un valor numérico.',
+                                'regex' => 'El precio debe tener hasta 10 dígitos y 2 decimales.'
+                            ])
                             ->step('0.01'),
 
                         Forms\Components\TextInput::make('cantidad_disponible')
@@ -92,6 +113,11 @@ class ProductoResource extends Resource
                             ->step('0.01')
                             ->maxValue(100)
                             ->regex('/^\d{1,3}(\.\d{1,2})?$/')
+                            ->validationMessages([
+                                'numeric' => 'El porcentaje de oferta debe ser un valor numérico.',
+                                'maxValue' => 'El porcentaje de oferta no puede ser mayor que 100.',
+                                'regex' => 'El porcentaje de oferta debe tener hasta 3 dígitos enteros y hasta 2 decimales.'
+                            ])
                             ->columns(2),
 
                         Forms\Components\BelongsToSelect::make('marca_id')

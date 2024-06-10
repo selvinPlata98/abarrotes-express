@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('enlace');
             $table->longText('imagen');
-            $table->boolean('disponible')->default(true);
+            $table->boolean('disponible');
             $table->timestamps();
         });
     }

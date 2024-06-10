@@ -20,10 +20,10 @@ return new class extends Migration
             $table->longText('imagenes');
             $table->longText('descripcion');
             $table->decimal('precio', 10, 2);
-            $table->boolean('disponible')->default(true);
+            $table->boolean('disponible');
             $table->integer('cantidad_disponible');
-            $table->boolean('en_oferta')->default(true);
-            $table->decimal('porcentaje_oferta', 3, 2)->nullable();
+            $table->boolean('en_oferta');
+            $table->decimal('porcentaje_oferta', 3, 2);
             $table->timestamps();
         });
     }

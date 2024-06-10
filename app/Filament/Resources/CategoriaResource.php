@@ -45,7 +45,17 @@ class CategoriaResource extends Resource
                 TextInput::make('enlace')
                     ->required(),
 
-                FileUpload ::make('imagen'),
+                FileUpload ::make('imagen')
+                    ->required()
+                    ->label('Imagen')
+                    ->image()
+                    ->validationMessages([
+                        'maxFiles' => 'Se permite un máximo de 1 imágenes.',
+                        'required' => 'Debe seleccionar al menos una imagen.',
+                        'image' => 'El archivo debe ser una imagen válida.',
+                    ])
+                    ->maxFiles(1),
+
 
                 Select::make('disponible')
                     ->options([

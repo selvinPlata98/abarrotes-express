@@ -28,8 +28,13 @@ class MarcaResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('nombre')
                     ->required()
-                    ->label('Nombre')
-                    ->maxLength(255)
+                    ->label('Nombre De la Marca')
+                    ->maxLength(80)
+                    ->validationMessages([
+                        'maxLenght' => 'El nombre debe  contener un maximo de 80 carácteres.',
+                        'required' => 'Debe introducir un nombre de la marca',
+                        'regex' => 'El nombre solo debe contener letras y espacios.'
+                    ])
                     ->afterStateUpdated(fn(string $operation, $state, Set $set) => $operation
                     === 'create' ? $set('enlace', Str::slug($state)) : null)
                     ->reactive()
@@ -46,6 +51,11 @@ class MarcaResource extends Resource
                     ->required()
                     ->label('Imagen')
                     ->image()
+                    ->validationMessages([
+                        'maxFiles' => 'Se permite un máximo de 1 imágenes.',
+                        'required' => 'Debe seleccionar al menos una imagen.',
+                        'image' => 'El archivo debe ser una imagen válida.',
+                    ])
                     ->maxFiles(1)
                     ->columnSpan(2),
 
