@@ -2,10 +2,16 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\MarcaResource\Pages;
+use App\Filament\Resources\MarcaResource\RelationManagers;
 use App\Models\Marca;
+use App\Models\Producto;
 use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Str;
@@ -14,9 +20,7 @@ class MarcaResource extends Resource
 {
     protected static ?string $model = Marca::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
-    protected static ?string $activeNavigationIcon = 'heroicon-s-collection';
-    protected static ?int $navigationSort = 3;
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
@@ -25,17 +29,18 @@ class MarcaResource extends Resource
                 Forms\Components\TextInput::make('nombre')
                     ->required()
                     ->label('Nombre')
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->afterStateUpdated(fn(string $operation, $state, Set $set) => $operation
+                    === 'create' ? $set('enlace', Str::slug($state)) : null)
+                    ->reactive()
+                    ->live(onBlur: true),
 
                 Forms\Components\TextInput::make('enlace')
                     ->required()
                     ->label('Enlace')
-                    ->maxLength(255)
-                    ->afterStateUpdated(function (string $operation, $state, Set $set) {
-                        if ($operation === 'create') {
-                            $set('enlace', Str::slug($state));
-                        }
-                    }),
+                    ->disabled()
+                    ->dehydrated()
+                    ->unique(Producto::class, ignoreRecord: true),
 
                 Forms\Components\FileUpload::make('imagen')
                     ->required()
@@ -57,9 +62,7 @@ class MarcaResource extends Resource
                 Tables\Columns\TextColumn::make('nombre')->label('Nombre'),
                 Tables\Columns\TextColumn::make('enlace')->label('Enlace'),
                 Tables\Columns\ImageColumn::make('imagen')->label('Imagen'),
-                Tables\Columns\BooleanColumn::make('disponible')->label('Disponible'),
-                Tables\Columns\TextColumn::make('created_at')->label('Fecha de Creación')->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')->label('Fecha de Actualización')->dateTime(),
+
             ])
             ->filters([
                 //
@@ -84,9 +87,9 @@ class MarcaResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListMarcas::route('/marcas'),
-            'create' => Pages\CreateMarca::route('/marcas/create'),
-            'edit' => Pages\EditMarca::route('/marcas/{record}/edit'),
+            'index' => Pages\ListMarcas::route('/'),
+            'create' => Pages\CreateMarca::route('/create'),
+            'edit' => Pages\EditMarca::route('/{record}/edit'),
         ];
     }
 }
