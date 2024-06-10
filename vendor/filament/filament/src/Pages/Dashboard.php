@@ -30,7 +30,7 @@ class Dashboard extends Page
     {
         return static::$navigationIcon
             ?? FilamentIcon::resolve('panels::pages.dashboard.navigation-item')
-            ?? (Filament::hasTopNavigation() ? 'heroicon-m-home' : 'heroicon-o-home');
+            ?? (Filament::hasTopNavigation() ? 'heroicon-s-home' : 'heroicon-o-home');
     }
 
     public static function getRoutePath(): string
