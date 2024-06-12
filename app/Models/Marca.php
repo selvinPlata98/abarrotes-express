@@ -10,7 +10,14 @@ class Marca extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nombre'];
+    protected $fillable = [
+        'nombre',
+        'enlace',
+        'imagen',
+        'disponible'
+    ];
+
+    protected $table = 'marcas';
 
     public function productos(): HasMany
     {

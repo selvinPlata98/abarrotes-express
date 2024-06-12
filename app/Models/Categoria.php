@@ -15,6 +15,8 @@ class Categoria extends Model
         'disponible'
     ];
 
+    protected $table = 'categorias';
+
 
 
     use HasFactory;

@@ -30,6 +30,7 @@ class MarcaResource extends Resource
                     ->required()
                     ->label('Nombre De la Marca')
                     ->maxLength(80)
+                    ->regex('/^[A-Za-z ]+$/')
                     ->validationMessages([
                         'maxLenght' => 'El nombre debe  contener un maximo de 80 carácteres.',
                         'required' => 'Debe introducir un nombre de la marca',
@@ -51,13 +52,15 @@ class MarcaResource extends Resource
                     ->required()
                     ->label('Imagen')
                     ->image()
+                    ->directory('public')
                     ->validationMessages([
                         'maxFiles' => 'Se permite un máximo de 1 imágenes.',
                         'required' => 'Debe seleccionar al menos una imagen.',
                         'image' => 'El archivo debe ser una imagen válida.',
                     ])
                     ->maxFiles(1)
-                    ->columnSpan(2),
+                    ->columnSpan(2)
+                    ->preserveFilenames(),
 
                 Forms\Components\Toggle::make('disponible')
                     ->label('Disponible')
@@ -71,7 +74,8 @@ class MarcaResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('nombre')->label('Nombre'),
                 Tables\Columns\TextColumn::make('enlace')->label('Enlace'),
-                Tables\Columns\ImageColumn::make('imagen')->label('Imagen'),
+                Tables\Columns\ImageColumn::make('imagen')->label('Imagen')
+
 
             ])
             ->filters([

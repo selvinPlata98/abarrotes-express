@@ -36,8 +36,9 @@ class ProductoResource extends Resource
                             ->required()
                             ->label('Nombre del Producto')
                             ->maxLength(80)
+                            ->regex('/^[A-Za-z ]+$/')
                             ->validationMessages([
-                                'maxLenght' => 'El nombre debe  contener un maximo de 80 carácteres.',
+                                'maxLength' => 'El nombre debe  contener un maximo de 80 carácteres.',
                                 'required' => 'Debe introducir un nombre del producto',
                                 'regex' => 'El nombre solo debe contener letras y espacios.'
                             ])
@@ -58,13 +59,15 @@ class ProductoResource extends Resource
                             ->label('Imágenes')
                             ->multiple()
                             ->image()
+                            ->directory('public')
                             ->validationMessages([
                                 'maxFiles' => 'Se permite un máximo de 5 imágenes.',
                                 'required' => 'Debe seleccionar al menos una imagen.',
                                 'image' => 'El archivo debe ser una imagen válida.',
                             ])
                             ->maxFiles(5)
-                            ->columnSpan(2),
+                            ->columnSpan(2)
+                            ->preserveFilenames(),
 
                         Forms\Components\Textarea::make('descripcion')
                             ->required()
@@ -79,7 +82,7 @@ class ProductoResource extends Resource
                         Forms\Components\TextInput::make('precio')
                             ->required()
                             ->numeric()
-                            ->regex('^(\d{1,8})(\.\d{1,2})?$')
+                            ->regex('/^(\d{1,8})(\.\d{1,2})?$/')
                             ->label('Precio')
                             ->validationMessages([
                                 'required' => 'El precio es obligatorio.',
@@ -107,15 +110,14 @@ class ProductoResource extends Resource
                             ->default(false),
 
                         Forms\Components\TextInput::make('porcentaje_oferta')
+                            ->required()
                             ->numeric()
                             ->label('Porcentaje de Oferta')
                             ->nullable()
                             ->step('0.01')
-                            ->maxValue(100)
                             ->regex('/^\d{1,3}(\.\d{1,2})?$/')
                             ->validationMessages([
-                                'numeric' => 'El porcentaje de oferta debe ser un valor numérico.',
-                                'maxValue' => 'El porcentaje de oferta no puede ser mayor que 100.',
+                                'required' => 'El porcentaje de oferta debe ser un valor numérico.',
                                 'regex' => 'El porcentaje de oferta debe tener hasta 3 dígitos enteros y hasta 2 decimales.'
                             ])
                             ->columns(2),
@@ -140,17 +142,12 @@ class ProductoResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('nombre')->label('Nombre'),
                 Tables\Columns\TextColumn::make('enlace')->label('Enlace'),
-                Tables\Columns\TextColumn::make('imagenes')->label('Imágenes')->limit(50),
-                Tables\Columns\TextColumn::make('descripcion')->label('Descripción')->limit(50),
-                Tables\Columns\TextColumn::make('precio')->label('Precio')->money('usd', true),
-                Tables\Columns\BooleanColumn::make('disponible')->label('Disponible'),
+                Tables\Columns\ImageColumn::make('imagenes')->label('Imagen')->limit(1),
+                Tables\Columns\TextColumn::make('precio')->label('Precio')->money('lps', true),
                 Tables\Columns\TextColumn::make('cantidad_disponible')->label('Cantidad Disponible'),
-                Tables\Columns\BooleanColumn::make('en_oferta')->label('En Oferta'),
-                Tables\Columns\TextColumn::make('porcentaje_oferta')->label('Porcentaje de Oferta'),
-                Tables\Columns\TextColumn::make('marca.nombre')->label('Marca'), // Aquí se asume que la relación se llama "marca"
+                Tables\Columns\TextColumn::make('marca.nombre')->label('Marca'),
                 Tables\Columns\TextColumn::make('categoria.nombre')->label('Categoría'),
-                Tables\Columns\TextColumn::make('created_at')->label('Fecha de Creación')->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')->label('Fecha de Actualización')->dateTime(),
+
             ])
             ->filters([
                 //

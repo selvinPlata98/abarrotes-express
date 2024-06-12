@@ -5,9 +5,11 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\CategoriaResource\Pages;
 use App\Filament\Resources\CategoriaResource\RelationManagers;
 use App\Models\Categoria;
+use App\Models\Producto;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables;
@@ -17,6 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\Select;
+use Illuminate\Support\Str;
 
 class CategoriaResource extends Resource
 {
@@ -31,38 +34,45 @@ class CategoriaResource extends Resource
         return $form
             ->schema(components: [
 
-                TextInput::make('nombre')
+                Forms\Components\TextInput::make('nombre')
                     ->required()
-                    ->label('Nombre de la Categoria')
+                    ->label('Nombre De la Categoria')
                     ->maxLength(80)
                     ->regex('/^[A-Za-z ]+$/')
                     ->validationMessages([
-                        'maxLenght' => 'El nombre no debe contener más de 80 carácteres.',
-                        'required' => 'Debe introducir el nombre de la Categoria.',
-                        'regex' => 'La categoria solo debe contener letras y espacios.'
-                    ]),
+                        'maxLenght' => 'El nombre debe  contener un maximo de 80 carácteres.',
+                        'required' => 'Debe introducir un nombre de la marca',
+                        'regex' => 'El nombre solo debe contener letras y espacios.'
+                    ])
+                    ->afterStateUpdated(fn(string $operation, $state, Set $set) => $operation
+                    === 'create' ? $set('enlace', Str::slug($state)) : null)
+                    ->reactive()
+                    ->live(onBlur: true),
 
-                TextInput::make('enlace')
-                    ->required(),
+                Forms\Components\TextInput::make('enlace')
+                    ->required()
+                    ->label('Enlace')
+                    ->disabled()
+                    ->dehydrated()
+                    ->unique(Producto::class, ignoreRecord: true),
 
-                FileUpload ::make('imagen')
+                Forms\Components\FileUpload::make('imagen')
                     ->required()
                     ->label('Imagen')
                     ->image()
+                    ->directory('public')
                     ->validationMessages([
                         'maxFiles' => 'Se permite un máximo de 1 imágenes.',
                         'required' => 'Debe seleccionar al menos una imagen.',
                         'image' => 'El archivo debe ser una imagen válida.',
                     ])
-                    ->maxFiles(1),
+                    ->maxFiles(1)
+                    ->columnSpan(2)
+                    ->preserveFilenames(),
 
-
-                Select::make('disponible')
-                    ->options([
-                        1=>'Disponible',
-                        0=>'No Disponible'
-                    ])->required()
-                    ->label('Estado'),
+                Forms\Components\Toggle::make('disponible')
+                    ->label('Disponible')
+                    ->default(true),
 
             ]);
     }
@@ -71,16 +81,10 @@ class CategoriaResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('nombre')
-                    ->searchable()
-                    ->sortable()
-                    ->label('Categoria'),
+                Tables\Columns\TextColumn::make('nombre')->label('Nombre'),
+                Tables\Columns\TextColumn::make('enlace')->label('Enlace'),
+                Tables\Columns\ImageColumn::make('imagen')->label('Imagen')
 
-
-                TextColumn::make('imagen')
-                    ->searchable()
-                    ->sortable()
-                    ->label('Imagen'),
 
             ])
             ->filters([
