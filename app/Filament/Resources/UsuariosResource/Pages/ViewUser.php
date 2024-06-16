@@ -1,46 +1,29 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\UsuariosResource\Pages;
 
-use App\Filament\Resources\UserResource\Pages\ViewUser;
-use App\Filament\Resources\UsuariosResource\Pages;
+use App\Filament\Resources\UsuariosResource;
 use App\Models\User;
-use Filament\Forms\Components\DatePicker;
+use Filament\Actions;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Filament\Pages\Page;
-use Filament\Resources\Components\Tab;
 use Filament\Resources\Pages\CreateRecord;
-use Filament\Resources\Resource;
-use Filament\Tables\Actions\ActionGroup;
+use Filament\Resources\Pages\ViewRecord;
 use Filament\Tables\Actions\BulkActionGroup;
-use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
-use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Actions\ViewAction;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Filament\Widgets\StatsOverviewWidget\Stat;
-use NunoMaduro\Collision\Adapters\Phpunit\State;
 
-class UsuariosResource extends Resource
+class ViewUser extends ViewRecord
 {
-    protected static ?string $model = User::class;
+    protected static string $resource = UsuariosResource::class;
+    protected ?string $heading = 'Detalles de Usuario';
 
-    protected static ?string $slug = 'usuarios';
-    protected static ?int $navigationSort = 1;
-
-    protected static ?string $navigationIcon = 'heroicon-o-users';
-    protected static ?string $activeNavigationIcon = 'heroicon-s-users';
-    protected static ?string $pluralModelLabel = 'Usuarios';
-
-
-    public static function form(Form $form): Form
+    public static function table(Table $table): Table
     {
-        return $form
-            ->schema([
+        return $table
+            ->columns([
                 TextInput::make('name')
                     ->required()
                     ->label('Nombre de Usuario')
@@ -48,7 +31,7 @@ class UsuariosResource extends Resource
                     ->regex('/^[A-Za-z ]+$/')
                     ->validationMessages([
                         'maxLenght' => 'El nombre no debe contener más de 100 carácteres.',
-                       'required' => 'Debe introducir un nombre de usuario.',
+                        'required' => 'Debe introducir un nombre de usuario.',
                         'regex' => 'El nombre solo debe contener letras y espacios.'
                     ]),
 
@@ -88,18 +71,10 @@ class UsuariosResource extends Resource
             ]);
     }
 
-    public static function getPages(): array
+    protected function getHeaderActions(): array
     {
         return [
-            'index' => Pages\ListUsuarios::route('/'),
-            'create' => Pages\CreateUsuarios::route('/create'),
-            'edit' => Pages\EditUsuarios::route('/{record}/edit'),
-            'view' => Pages\ViewUser::route('/{record}/view')
+            Actions\EditAction::make(),
         ];
-    }
-
-    public static function getGloballySearchableAttributes(): array
-    {
-        return ['name', 'email'];
     }
 }
