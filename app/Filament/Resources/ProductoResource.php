@@ -6,7 +6,6 @@ use App\Filament\Resources\ProductoResource\Pages;
 use App\Filament\Resources\ProductoResource\RelationManagers;
 use App\Models\Producto;
 use Filament\Forms;
-use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
@@ -14,8 +13,8 @@ use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class ProductoResource extends Resource
@@ -54,12 +53,15 @@ class ProductoResource extends Resource
                             ->dehydrated()
                             ->unique(Producto::class, ignoreRecord: true),
 
+
                         Forms\Components\FileUpload::make('imagenes')
                             ->required()
                             ->label('Imágenes')
-                            ->multiple()
+                            ->multiple(true)
                             ->image()
-                            ->directory('public')
+                            ->disk('ftp')
+                            ->directory('productos')
+                            ->visibility('public')
                             ->validationMessages([
                                 'maxFiles' => 'Se permite un máximo de 5 imágenes.',
                                 'required' => 'Debe seleccionar al menos una imagen.',
@@ -67,7 +69,9 @@ class ProductoResource extends Resource
                             ])
                             ->maxFiles(5)
                             ->columnSpan(2)
-                            ->preserveFilenames(),
+                            ->preserveFilenames()
+                            ->reorderable()
+                            ->openable(),
 
                         Forms\Components\Textarea::make('descripcion')
                             ->required()
@@ -84,21 +88,25 @@ class ProductoResource extends Resource
                             ->numeric()
                             ->regex('/^(\d{1,8})(\.\d{1,2})?$/')
                             ->label('Precio')
+                            ->minValue(0)
+                            ->step('10')
+                            ->default(0)
                             ->validationMessages([
                                 'required' => 'El precio es obligatorio.',
                                 'numeric' => 'El precio debe ser un valor numérico.',
                                 'regex' => 'El precio debe tener hasta 10 dígitos y 2 decimales.'
-                            ])
-                            ->step('0.01'),
+                            ]),
 
                         Forms\Components\TextInput::make('cantidad_disponible')
                             ->required()
                             ->numeric()
                             ->label('Cantidad Disponible')
-                            ->step('1'),
+                            ->step('1')
+                            ->default(0)
+                            ->minValue(0),
 
                     ])->columns(2)
-                    ->columnSpan(2), /*Fin de la seccion*/
+                        ->columnSpan(2), /*Fin de la seccion*/
 
                     Section::make([
                         Forms\Components\Toggle::make('disponible')
@@ -115,6 +123,9 @@ class ProductoResource extends Resource
                             ->label('Porcentaje de Oferta')
                             ->nullable()
                             ->step('0.01')
+                            ->default(0)
+                            ->maxValue(1)
+                            ->minValue(0)
                             ->regex('/^\d{1,3}(\.\d{1,2})?$/')
                             ->validationMessages([
                                 'required' => 'El porcentaje de oferta debe ser un valor numérico.',
@@ -122,14 +133,24 @@ class ProductoResource extends Resource
                             ])
                             ->columns(2),
 
+
+
+                        #Se cambió una librería antigua que marcaba como obsoleta.
+
                         Forms\Components\Select::make('marca_id')
                             ->relationship('marca', 'nombre')
                             ->required()
+                            ->searchable()
+                            #Precarga todas las marcas.
+                            ->preload()
                             ->label('Marca'),
+
 
                         Forms\Components\Select::make('categoria_id')
                             ->relationship('categoria', 'nombre')
                             ->required()
+                            ->searchable()
+                            ->preload()
                             ->label('Categoría'),
                     ])->columnSpan(1)
                 ])->columns(3)
@@ -153,7 +174,7 @@ class ProductoResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -177,4 +198,6 @@ class ProductoResource extends Resource
             'edit' => Pages\EditProducto::route('/{record}/edit'),
         ];
     }
+
+
 }

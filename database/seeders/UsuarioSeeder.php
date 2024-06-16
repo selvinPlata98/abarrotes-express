@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Database\Factories\UserFactory;
 use Illuminate\Database\Seeder;
 
 class UsuarioSeeder extends Seeder
@@ -39,5 +40,7 @@ class UsuarioSeeder extends Seeder
             'email' => 's_plata@ae.com',
             'password' => bcrypt('admin'),
         ]);
+
+        User::factory(50)->create();
     }
 }

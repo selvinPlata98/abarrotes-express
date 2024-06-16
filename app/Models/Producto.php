@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Producto extends Model
 {
@@ -25,6 +26,9 @@ class Producto extends Model
 
     protected $table = 'productos';
 
+    #Convertimos las imagenes en arreglos;
+    protected $casts = ['imagenes' => 'array'];
+
 
     public function categoria()
     {
@@ -35,6 +39,22 @@ class Producto extends Model
     public function marca()
     {
         return $this->belongsTo(Marca::class);
+    }
+
+    public function imagenes()
+    {
+        return $this->hasMany(Imagen::class);
+    }
+
+    public function getDecodedImagesAttribute()
+    {
+        return $this->imagenes->map(function ($image) {
+            return [
+                'name' => $image->filename,
+                'mime' => $image->mime_type,
+                'data' => base64_decode($image->image_data),
+            ];
+        });
     }
 
 
