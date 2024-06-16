@@ -81,7 +81,8 @@ class CategoriaResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nombre')->label('Nombre'),
+                Tables\Columns\TextColumn::make('nombre')->label('Nombre')
+                ->searchable(),
                 Tables\Columns\TextColumn::make('enlace')->label('Enlace'),
                 Tables\Columns\ImageColumn::make('imagen')->label('Imagen')
 
