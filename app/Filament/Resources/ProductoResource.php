@@ -122,12 +122,12 @@ class ProductoResource extends Resource
                             ])
                             ->columns(2),
 
-                        Forms\Components\BelongsToSelect::make('marca_id')
+                        Forms\Components\Select::make('marca_id')
                             ->relationship('marca', 'nombre')
                             ->required()
                             ->label('Marca'),
 
-                        Forms\Components\BelongsToSelect::make('categoria_id')
+                        Forms\Components\Select::make('categoria_id')
                             ->relationship('categoria', 'nombre')
                             ->required()
                             ->label('Categoría'),
