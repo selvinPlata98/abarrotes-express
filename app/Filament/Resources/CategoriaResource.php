@@ -60,7 +60,8 @@ class CategoriaResource extends Resource
                     ->required()
                     ->label('Imagen')
                     ->image()
-                    ->directory('public')
+                    ->disk('ftp')
+                    ->directory('categorias')
                     ->validationMessages([
                         'maxFiles' => 'Se permite un máximo de 1 imágenes.',
                         'required' => 'Debe seleccionar al menos una imagen.',

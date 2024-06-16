@@ -19,8 +19,10 @@ use Illuminate\Support\Str;
 class MarcaResource extends Resource
 {
     protected static ?string $model = Marca::class;
+    protected static ?int $navigationSort = 5;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-cube';
+    protected static ?string $activeNavigationIcon = 'heroicon-s-cube';
 
     public static function form(Form $form): Form
     {
@@ -52,7 +54,8 @@ class MarcaResource extends Resource
                     ->required()
                     ->label('Imagen')
                     ->image()
-                    ->directory('public')
+                    ->disk('ftp')
+                    ->directory('marcas')
                     ->validationMessages([
                         'maxFiles' => 'Se permite un máximo de 1 imágenes.',
                         'required' => 'Debe seleccionar al menos una imagen.',
