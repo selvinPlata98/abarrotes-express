@@ -5,16 +5,16 @@ namespace App\Filament\Resources\CategoriaResource\Pages;
 use App\Filament\Resources\CategoriaResource;
 use App\Models\Producto;
 use Filament\Actions;
-use Filament\Forms\Components\Component;
+use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
-use Filament\Resources\Pages\EditRecord;
+use Filament\Resources\Pages\ViewRecord;
 use Illuminate\Support\Str;
 
-class EditCategoria extends EditRecord
+class ViewCategoria extends ViewRecord
 {
     protected static string $resource = CategoriaResource::class;
 
@@ -45,7 +45,6 @@ class EditCategoria extends EditRecord
                     ->dehydrated()
                     ->unique(Producto::class, ignoreRecord: true),
 
-
                 FileUpload::make('imagen')
                     ->required()
                     ->label('Imagen')
@@ -71,7 +70,14 @@ class EditCategoria extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            Actions\EditAction::make(),
         ];
     }
+
+
+
+
+
+
+
 }
