@@ -54,12 +54,11 @@ class ProductoResource extends Resource
                             ->unique(Producto::class, ignoreRecord: true),
 
 
-                        Forms\Components\FileUpload::make('imagenes')
+                        Forms\Components\FileUpload::make('images')
                             ->required()
                             ->label('Imágenes')
                             ->multiple(true)
                             ->image()
-                            ->disk('ftp')
                             ->directory('productos')
                             ->visibility('public')
                             ->validationMessages([
