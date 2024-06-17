@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\ProductoResource\Pages;
 
 use App\Filament\Resources\ProductoResource\Pages;
+use App\Filament\Resources\ProductoResource;
+use Filament\Actions;
+use Filament\Resources\Pages\ViewRecord;
 use App\Filament\Resources\ProductoResource\RelationManagers;
 use App\Models\Producto;
 use Filament\Forms;
@@ -17,16 +20,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class ProductoResource extends Resource
+class ViewProductos extends ViewRecord
 {
-    protected static ?string $model = Producto::class;
+    protected static string $resource = ProductoResource::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
-    protected static ?string $activeNavigationIcon = 'heroicon-s-shopping-cart';
-    protected static ?int $navigationSort = 2;
-
-
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form
             ->schema([
@@ -90,6 +88,8 @@ class ProductoResource extends Resource
                             ->regex('/^(\d{1,8})(\.\d{1,2})?$/')
                             ->label('Precio')
                             ->minValue(0)
+                            ->step('10')
+                            ->default(0)
                             ->validationMessages([
                                 'required' => 'El precio es obligatorio.',
                                 'numeric' => 'El precio debe ser un valor numérico.',
@@ -101,6 +101,7 @@ class ProductoResource extends Resource
                             ->numeric()
                             ->label('Cantidad Disponible')
                             ->step('1')
+                            ->default(0)
                             ->minValue(0),
 
                     ])->columns(2)
@@ -121,6 +122,7 @@ class ProductoResource extends Resource
                             ->label('Porcentaje de Oferta')
                             ->nullable()
                             ->step('0.01')
+                            ->default(0)
                             ->maxValue(1)
                             ->minValue(0)
                             ->regex('/^\d{1,3}(\.\d{1,2})?$/')
@@ -153,22 +155,11 @@ class ProductoResource extends Resource
                 ])->columns(3)
             ])->columns(1);
     }
-    public static function getRelations(): array
+
+    protected function getHeaderActions(): array
     {
         return [
-            //
+            Actions\EditAction::make(),
         ];
     }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListProductos::route('/'),
-            'create' => Pages\CreateProducto::route('/create'),
-            'edit' => Pages\EditProducto::route('/{record}/edit'),
-            'view' =>ProductoResource\Pages\ViewProductos::route('/{record}/view')
-        ];
-    }
-
-
 }
