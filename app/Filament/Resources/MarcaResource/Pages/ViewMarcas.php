@@ -1,29 +1,29 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\MarcaResource\Pages;
+
+use App\Filament\Resources\MarcaResource\Pages;
+use App\Filament\Resources\MarcaResource;
+use Filament\Actions;
+use Filament\Resources\Pages\ViewRecord;
+use App\Filament\Resources\MarcaResource\RelationManagers;
 use App\Models\Marca;
 use Filament\Forms;
+use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Filament\Forms\Components\TextInput;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Forms\Components\Select;
-use Filament\Tables\Actions\ActionGroup;
-use Filament\Forms\Components\FileUpload;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-class MarcaResource extends Resource
+class ViewMarcas extends ViewRecord
 {
-    protected static ?string $model = Marca::class;
+    protected static string $resource = MarcaResource::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
-    protected static ?string $activeNavigationIcon = 'heroicon-s-collection';
-    protected static ?int $navigationSort = 3;
-
-    public static function form(Form $form): Form
+    public  function form(Form $form): Form
 
     {
         return $form
@@ -54,24 +54,5 @@ class MarcaResource extends Resource
                     ->label('Disponible')
                     ->default(true),
             ]);
-    }
-
-    
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListMarcas::route('/'),
-            'create' => Pages\CreateMarca::route('/create'),
-            'edit' => Pages\EditMarca::route('/{record}/edit'), 
-            'view' =>MarcaResource\Pages\ViewMarcas::route('/{record}/view')
-        ];
     }
 }
