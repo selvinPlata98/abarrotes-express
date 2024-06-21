@@ -56,7 +56,7 @@ class MarcaResource extends Resource
             ]);
     }
 
-    
+
 
     public static function getRelations(): array
     {
@@ -70,7 +70,7 @@ class MarcaResource extends Resource
         return [
             'index' => Pages\ListMarcas::route('/'),
             'create' => Pages\CreateMarca::route('/create'),
-            'edit' => Pages\EditMarca::route('/{record}/edit'), 
+            'edit' => Pages\EditMarca::route('/{record}/edit'),
             'view' =>MarcaResource\Pages\ViewMarcas::route('/{record}/view')
         ];
     }
