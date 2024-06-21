@@ -25,6 +25,7 @@ class ProductoResource extends Resource
     protected static ?string $activeNavigationIcon = 'heroicon-s-shopping-cart';
     protected static ?int $navigationSort = 2;
 
+
     public static function form(Form $form): Form
     {
         return $form
@@ -88,8 +89,6 @@ class ProductoResource extends Resource
                             ->regex('/^(\d{1,8})(\.\d{1,2})?$/')
                             ->label('Precio')
                             ->minValue(0)
-                            ->step('10')
-                            ->default(0)
                             ->validationMessages([
                                 'required' => 'El precio es obligatorio.',
                                 'numeric' => 'El precio debe ser un valor numérico.',
@@ -101,7 +100,6 @@ class ProductoResource extends Resource
                             ->numeric()
                             ->label('Cantidad Disponible')
                             ->step('1')
-                            ->default(0)
                             ->minValue(0),
 
                     ])->columns(2)
@@ -122,7 +120,6 @@ class ProductoResource extends Resource
                             ->label('Porcentaje de Oferta')
                             ->nullable()
                             ->step('0.01')
-                            ->default(0)
                             ->maxValue(1)
                             ->minValue(0)
                             ->regex('/^\d{1,3}(\.\d{1,2})?$/')
@@ -132,7 +129,10 @@ class ProductoResource extends Resource
                             ])
                             ->columns(2),
 
+
+
                         #Se cambió una librería antigua que marcaba como obsoleta.
+
                         Forms\Components\Select::make('marca_id')
                             ->relationship('marca', 'nombre')
                             ->required()
@@ -152,33 +152,6 @@ class ProductoResource extends Resource
                 ])->columns(3)
             ])->columns(1);
     }
-
-    public static function table(Table $table): Table
-    {
-        return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('nombre')->label('Nombre'),
-                Tables\Columns\TextColumn::make('enlace')->label('Enlace'),
-                Tables\Columns\ImageColumn::make('imagenes')->label('Imagen')->limit(1),
-                Tables\Columns\TextColumn::make('precio')->label('Precio')->money('lps', true),
-                Tables\Columns\TextColumn::make('cantidad_disponible')->label('Cantidad Disponible'),
-                Tables\Columns\TextColumn::make('marca.nombre')->label('Marca'),
-                Tables\Columns\TextColumn::make('categoria.nombre')->label('Categoría'),
-
-            ])
-            ->filters([
-                //
-            ])
-            ->actions([
-                Tables\Actions\ViewAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
-    }
-
     public static function getRelations(): array
     {
         return [
@@ -192,6 +165,7 @@ class ProductoResource extends Resource
             'index' => Pages\ListProductos::route('/'),
             'create' => Pages\CreateProducto::route('/create'),
             'edit' => Pages\EditProducto::route('/{record}/edit'),
+            'view' =>ProductoResource\Pages\ViewProductos::route('/{record}/view')
         ];
     }
 
