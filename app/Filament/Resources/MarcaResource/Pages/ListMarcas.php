@@ -22,9 +22,6 @@ class ListMarcas extends ListRecords
                 Tables\Columns\BooleanColumn::make('disponible')->label('Disponible'),
             ])
             ->paginated([10, 25, 50, 100,])
-            ->filters([
-                // Aquí puedes añadir filtros si es necesario
-            ])
             ->actions([
                 Tables\Actions\ViewAction::make()->hiddenLabel(),
             ])
