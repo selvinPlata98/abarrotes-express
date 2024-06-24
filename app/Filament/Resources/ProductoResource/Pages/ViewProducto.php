@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class ViewProductos extends ViewRecord
+class ViewProducto extends ViewRecord
 {
     protected static string $resource = ProductoResource::class;
 
@@ -132,7 +132,8 @@ class ViewProductos extends ViewRecord
                                 'required' => 'El porcentaje de oferta debe ser un valor numérico.',
                                 'regex' => 'El porcentaje de oferta debe tener hasta 3 dígitos enteros y hasta 2 decimales.'
                             ])
-                            ->columns(2),
+                            ->columns(2)
+                            ->visible(fn(\Filament\Forms\Get $get):bool => $get('en_oferta')),
 
 
 

@@ -1,41 +1,35 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\CategoriaResource\Pages;
 
-use App\Filament\Resources\CategoriaResource\Pages;
-use App\Filament\Resources\CategoriaResource\RelationManagers;
-use App\Models\Categoria;
+use App\Filament\Resources\CategoriaResource;
 use App\Models\Producto;
-use Filament\Forms;
+use Filament\Actions;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
-use Filament\Resources\Resource;
-use Filament\Tables\Actions\ActionGroup;
-use Filament\Tables;
-use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Filament\Forms\Components\TextInput;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Forms\Components\Select;
+use Filament\Resources\Pages\ViewRecord;
 use Illuminate\Support\Str;
 
-class CategoriaResource extends Resource
+class ViewCategoria extends ViewRecord
 {
-    protected static ?string $model = Categoria::class;
-    protected static ?string $navigationGroup = 'Productos';
+    protected static string $resource = CategoriaResource::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-queue-list';
-    protected static ?string $activeNavigationIcon = 'heroicon-s-queue-list';
-    protected static ?int $navigationSort = 4;
+    protected function getHeaderActions(): array
+    {
+        return [
+          Actions\EditAction::make()
+        ];
+    }
 
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form
             ->schema(components: [
 
-                Forms\Components\TextInput::make('nombre')
+                TextInput::make('nombre')
                     ->required()
                     ->label('Nombre De la Categoria')
                     ->maxLength(80)
@@ -50,14 +44,14 @@ class CategoriaResource extends Resource
                     ->reactive()
                     ->live(onBlur: true),
 
-                Forms\Components\TextInput::make('enlace')
+                TextInput::make('enlace')
                     ->required()
                     ->label('Enlace')
                     ->disabled()
                     ->dehydrated()
                     ->unique(Producto::class, ignoreRecord: true),
 
-                Forms\Components\FileUpload::make('imagen')
+                FileUpload::make('imagen')
                     ->required()
                     ->label('Imagen')
                     ->image()
@@ -72,33 +66,10 @@ class CategoriaResource extends Resource
                     ->columnSpan(2)
                     ->preserveFilenames(),
 
-                Forms\Components\Toggle::make('disponible')
+                Toggle::make('disponible')
                     ->label('Disponible')
                     ->default(true),
 
             ]);
-    }
-
-
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListCategorias::route('/'),
-            'create' => Pages\CreateCategoria::route('/create'),
-            'edit' => Pages\EditCategoria::route('/{record}/edit'),
-            'view' =>Pages\ViewCategoria::route('/{record}/view')
-        ];
-    }
-    public static function getGloballySearchableAttributes(): array
-    {
-        return ['nombre', 'imagen'];
     }
 }

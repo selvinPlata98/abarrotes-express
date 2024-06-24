@@ -26,6 +26,7 @@ class ListProductos extends ListRecords
                 Tables\Columns\TextColumn::make('categoria.nombre')->label('Categoría'),
 
             ])
+            ->paginated([10, 25, 50, 100,])
             ->filters([
                 //
             ])

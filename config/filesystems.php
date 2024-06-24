@@ -54,7 +54,7 @@ return [
             // 'passive' => true,
             // 'ssl' => true,
             // 'timeout' => 30,
-            //'url' => env('FTP_URL'),
+            'url' => env('FTP_URL'),
             'visibility' => 'public',
 
         ],

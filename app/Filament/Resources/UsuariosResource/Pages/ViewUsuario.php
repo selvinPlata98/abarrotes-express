@@ -15,7 +15,7 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Table;
 
-class ViewUser extends ViewRecord
+class ViewUsuario extends ViewRecord
 {
     protected static string $resource = UsuariosResource::class;
     protected ?string $heading = 'Detalles de Usuario';

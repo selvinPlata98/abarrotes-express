@@ -20,7 +20,7 @@ use Illuminate\Support\Str;
 class ProductoResource extends Resource
 {
     protected static ?string $model = Producto::class;
-
+    protected static ?string $navigationGroup = 'Productos';
     protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
     protected static ?string $activeNavigationIcon = 'heroicon-s-shopping-cart';
     protected static ?int $navigationSort = 2;
@@ -55,7 +55,7 @@ class ProductoResource extends Resource
                             ->unique(Producto::class, ignoreRecord: true),
 
 
-                        Forms\Components\FileUpload::make('images')
+                        Forms\Components\FileUpload::make('imagenes')
                             ->required()
                             ->label('Imágenes')
                             ->multiple(true)
@@ -73,9 +73,11 @@ class ProductoResource extends Resource
                             ->reorderable()
                             ->openable(),
 
-                        Forms\Components\Textarea::make('descripcion')
+                        Forms\Components\MarkdownEditor::make('descripcion')
                             ->required()
                             ->label('Descripción')
+                            ->fileAttachmentsDisk('ftp')
+                            ->fileAttachmentsDirectory('/productos/imagenes')
                             ->maxlength(300)
                             ->validationMessages([
                                 'required' => 'La descripción es obligatoria.',
@@ -110,9 +112,11 @@ class ProductoResource extends Resource
                             ->label('Disponible')
                             ->default(false),
 
+
                         Forms\Components\Toggle::make('en_oferta')
                             ->label('En Oferta')
-                            ->default(false),
+                            ->default(false)
+                            ->live(),
 
                         Forms\Components\TextInput::make('porcentaje_oferta')
                             ->required()
@@ -127,6 +131,7 @@ class ProductoResource extends Resource
                                 'required' => 'El porcentaje de oferta debe ser un valor numérico.',
                                 'regex' => 'El porcentaje de oferta debe tener hasta 3 dígitos enteros y hasta 2 decimales.'
                             ])
+                            ->visible(fn(\Filament\Forms\Get $get):bool => $get('en_oferta'))
                             ->columns(2),
 
 
@@ -165,7 +170,7 @@ class ProductoResource extends Resource
             'index' => Pages\ListProductos::route('/'),
             'create' => Pages\CreateProducto::route('/create'),
             'edit' => Pages\EditProducto::route('/{record}/edit'),
-            'view' =>ProductoResource\Pages\ViewProductos::route('/{record}/view')
+            'view' =>ProductoResource\Pages\ViewProducto::route('/{record}/view')
         ];
     }
 

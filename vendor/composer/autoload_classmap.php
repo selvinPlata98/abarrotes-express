@@ -22,16 +22,26 @@ return array(
     'App\\Filament\\Resources\\MarcaResource\\Pages\\CreateMarca' => $baseDir . '/app/Filament/Resources/MarcaResource/Pages/CreateMarca.php',
     'App\\Filament\\Resources\\MarcaResource\\Pages\\EditMarca' => $baseDir . '/app/Filament/Resources/MarcaResource/Pages/EditMarca.php',
     'App\\Filament\\Resources\\MarcaResource\\Pages\\ListMarcas' => $baseDir . '/app/Filament/Resources/MarcaResource/Pages/ListMarcas.php',
+<<<<<<< HEAD
+=======
+    'App\\Filament\\Resources\\MarcaResource\\Pages\\ViewMarcas' => $baseDir . '/app/Filament/Resources/MarcaResource/Pages/ViewMarcas.php',
+>>>>>>> c_gonzalez
     'App\\Filament\\Resources\\ProductoResource' => $baseDir . '/app/Filament/Resources/ProductoResource.php',
     'App\\Filament\\Resources\\ProductoResource\\Pages\\CreateProducto' => $baseDir . '/app/Filament/Resources/ProductoResource/Pages/CreateProducto.php',
     'App\\Filament\\Resources\\ProductoResource\\Pages\\EditProducto' => $baseDir . '/app/Filament/Resources/ProductoResource/Pages/EditProducto.php',
     'App\\Filament\\Resources\\ProductoResource\\Pages\\ListProductos' => $baseDir . '/app/Filament/Resources/ProductoResource/Pages/ListProductos.php',
+<<<<<<< HEAD
     'App\\Filament\\Resources\\ProductoResource\\Pages\\ViewProductos' => $baseDir . '/app/Filament/Resources/ProductoResource/Pages/ViewProductos.php',
+=======
+>>>>>>> c_gonzalez
     'App\\Filament\\Resources\\UsuariosResource' => $baseDir . '/app/Filament/Resources/UsuariosResource.php',
     'App\\Filament\\Resources\\UsuariosResource\\Pages\\CreateUsuarios' => $baseDir . '/app/Filament/Resources/UsuariosResource/Pages/CreateUsuarios.php',
     'App\\Filament\\Resources\\UsuariosResource\\Pages\\EditUsuarios' => $baseDir . '/app/Filament/Resources/UsuariosResource/Pages/EditUsuarios.php',
     'App\\Filament\\Resources\\UsuariosResource\\Pages\\ListUsuarios' => $baseDir . '/app/Filament/Resources/UsuariosResource/Pages/ListUsuarios.php',
+<<<<<<< HEAD
     'App\\Filament\\Resources\\UsuariosResource\\Pages\\ViewUser' => $baseDir . '/app/Filament/Resources/UsuariosResource/Pages/ViewUser.php',
+=======
+>>>>>>> c_gonzalez
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
@@ -44,7 +54,10 @@ return array(
     'App\\Http\\Middleware\\ValidateSignature' => $baseDir . '/app/Http/Middleware/ValidateSignature.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Models\\Categoria' => $baseDir . '/app/Models/Categoria.php',
+<<<<<<< HEAD
     'App\\Models\\Imagen' => $baseDir . '/app/Models/Imagen.php',
+=======
+>>>>>>> c_gonzalez
     'App\\Models\\Marca' => $baseDir . '/app/Models/Marca.php',
     'App\\Models\\Producto' => $baseDir . '/app/Models/Producto.php',
     'App\\Models\\Rol' => $baseDir . '/app/Models/Rol.php',

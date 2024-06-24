@@ -15,11 +15,4 @@ class CreateUsuarios extends CreateRecord
 
         return $url;
     }
-
-    protected function getHeaderActions(): array
-    {
-        return [
-
-        ];
-    }
 }

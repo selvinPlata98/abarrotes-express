@@ -18,12 +18,12 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('enlace');
             $table->json('imagenes')->nullable();
-            $table->longText('descripcion');
+            $table->longText('descripcion')->nullable();
             $table->decimal('precio', 10, 2);
-            $table->boolean('disponible');
+            $table->boolean('disponible')->default(false);
             $table->integer('cantidad_disponible');
-            $table->boolean('en_oferta');
-            $table->decimal('porcentaje_oferta', 3, 2);
+            $table->boolean('en_oferta')->default(false);
+            $table->decimal('porcentaje_oferta', 3, 2)->default(0);
             $table->timestamps();
         });
     }

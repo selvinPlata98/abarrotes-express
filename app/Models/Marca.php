@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Marca extends Model
 {
-    use HasFactory;
+
+
+use HasFactory;
+
+protected $table = 'marcas';
 
     protected $fillable = [
         'nombre',
@@ -16,8 +20,6 @@ class Marca extends Model
         'imagen',
         'disponible'
     ];
-
-    protected $table = 'marcas';
 
     public function productos(): HasMany
     {

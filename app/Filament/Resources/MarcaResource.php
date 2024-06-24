@@ -1,28 +1,32 @@
 <?php
 
 namespace App\Filament\Resources;
-
-use App\Filament\Resources\MarcaResource\Pages;
-use App\Filament\Resources\MarcaResource\RelationManagers;
+use App\Filament\Resources\MarcaResource\Pages\CreateMarca;
+use App\Filament\Resources\MarcaResource\Pages\EditMarca;
+use App\Filament\Resources\MarcaResource\Pages\ListMarcas;
+use App\Filament\Resources\MarcaResource\Pages\ViewMarca;
 use App\Models\Marca;
-use App\Models\Producto;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\Select;
+use Filament\Tables\Actions\ActionGroup;
+use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Str;
-
 class MarcaResource extends Resource
 {
     protected static ?string $model = Marca::class;
-    protected static ?int $navigationSort = 5;
-
+    protected static ?string $navigationGroup = 'Productos';
     protected static ?string $navigationIcon = 'heroicon-o-cube';
     protected static ?string $activeNavigationIcon = 'heroicon-s-cube';
+    protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
     {
@@ -41,14 +45,19 @@ class MarcaResource extends Resource
                     ->afterStateUpdated(fn(string $operation, $state, Set $set) => $operation
                     === 'create' ? $set('enlace', Str::slug($state)) : null)
                     ->reactive()
-                    ->live(onBlur: true),
+                    ->live(onBlur: true)
+                    ->label('Nombre')
+                    ->maxLength(255),
 
                 Forms\Components\TextInput::make('enlace')
                     ->required()
                     ->label('Enlace')
-                    ->disabled()
-                    ->dehydrated()
-                    ->unique(Producto::class, ignoreRecord: true),
+                    ->maxLength(255)
+                    ->afterStateUpdated(function (string $operation, $state, Set $set) {
+                        if ($operation === 'create') {
+                            $set('enlace', Str::slug($state));
+                        }
+                    }),
 
                 Forms\Components\FileUpload::make('imagen')
                     ->required()
@@ -63,7 +72,9 @@ class MarcaResource extends Resource
                     ])
                     ->maxFiles(1)
                     ->columnSpan(2)
-                    ->preserveFilenames(),
+                    ->preserveFilenames()
+                    ->maxFiles(1)
+                    ->columnSpan(2),
 
                 Forms\Components\Toggle::make('disponible')
                     ->label('Disponible')
@@ -71,28 +82,8 @@ class MarcaResource extends Resource
             ]);
     }
 
-    public static function table(Table $table): Table
-    {
-        return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('nombre')->label('Nombre'),
-                Tables\Columns\TextColumn::make('enlace')->label('Enlace'),
-                Tables\Columns\ImageColumn::make('imagen')->label('Imagen')
 
 
-            ])
-            ->filters([
-                //
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
-    }
 
     public static function getRelations(): array
     {
@@ -104,9 +95,10 @@ class MarcaResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListMarcas::route('/'),
-            'create' => Pages\CreateMarca::route('/create'),
-            'edit' => Pages\EditMarca::route('/{record}/edit'),
+            'index' => ListMarcas::route('/'),
+            'create' => CreateMarca::route('/create'),
+            'edit' => EditMarca::route('/{record}/edit'),
+            'view' => ViewMarca::route('/{record}/view')
         ];
     }
 }
