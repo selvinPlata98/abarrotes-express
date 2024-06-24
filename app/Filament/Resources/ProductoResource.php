@@ -113,7 +113,13 @@ class ProductoResource extends Resource
 
                         Forms\Components\Toggle::make('en_oferta')
                             ->label('En Oferta')
-                            ->default(false),
+                            ->default(false)
+                            ->reactive()
+                            ->afterStateUpdated(function ($state, $set) { #Maneja el comportamiento de el campo de porcentaje oferta
+                                if (!$state) {
+                                    $set('porcentaje_oferta', null);
+                                }
+                            }),
 
                         Forms\Components\TextInput::make('porcentaje_oferta')
                             ->required()
@@ -128,6 +134,7 @@ class ProductoResource extends Resource
                                 'required' => 'El porcentaje de oferta debe ser un valor numérico.',
                                 'regex' => 'El porcentaje de oferta debe tener hasta 3 dígitos enteros y hasta 2 decimales.'
                             ])
+                            ->disabled(fn($get) => !$get('en_oferta'))
                             ->columns(2),
 
 
