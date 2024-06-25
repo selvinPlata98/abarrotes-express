@@ -36,11 +36,9 @@ class MarcaResource extends Resource
                     ->required()
                     ->label('Nombre De la Marca')
                     ->maxLength(80)
-                    ->regex('/^[A-Za-z ]+$/')
                     ->validationMessages([
                         'maxLenght' => 'El nombre debe  contener un maximo de 80 carácteres.',
                         'required' => 'Debe introducir un nombre de la marca',
-                        'regex' => 'El nombre solo debe contener letras y espacios.'
                     ])
                     ->afterStateUpdated(fn(string $operation, $state, Set $set) => $operation
                     === 'create' ? $set('enlace', Str::slug($state)) : null)
@@ -63,7 +61,6 @@ class MarcaResource extends Resource
                     ->required()
                     ->label('Imagen')
                     ->image()
-                    ->disk('ftp')
                     ->directory('marcas')
                     ->validationMessages([
                         'maxFiles' => 'Se permite un máximo de 1 imágenes.',

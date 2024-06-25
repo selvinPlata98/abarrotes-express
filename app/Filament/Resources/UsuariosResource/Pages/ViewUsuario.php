@@ -39,7 +39,8 @@ class ViewUsuario extends ViewRecord
                     ->required()
                     ->email()
                     ->unique(ignoreRecord: true)
-                    ->maxLength(100)                    ->label('Correo Electrónico')
+                    ->maxLength(100)
+                    ->label('Correo Electrónico')
                     ->validationMessages([
                         'required' => 'Debe introducir un correo electrónico.',
                         'email' => 'Debe introducir un correo electrónico válido.',

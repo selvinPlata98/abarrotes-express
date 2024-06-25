@@ -36,11 +36,9 @@ class ProductoResource extends Resource
                             ->required()
                             ->label('Nombre del Producto')
                             ->maxLength(80)
-                            ->regex('/^[A-Za-z ]+$/')
                             ->validationMessages([
                                 'maxLength' => 'El nombre debe  contener un maximo de 80 carácteres.',
                                 'required' => 'Debe introducir un nombre del producto',
-                                'regex' => 'El nombre solo debe contener letras y espacios.'
                             ])
                             ->afterStateUpdated(fn(string $operation, $state, Set $set) => $operation
                             === 'create' ? $set('enlace', Str::slug($state)) : null)
@@ -73,11 +71,9 @@ class ProductoResource extends Resource
                             ->reorderable()
                             ->openable(),
 
-                        Forms\Components\MarkdownEditor::make('descripcion')
+                        Forms\Components\TextArea::make('descripcion')
                             ->required()
                             ->label('Descripción')
-                            ->fileAttachmentsDisk('ftp')
-                            ->fileAttachmentsDirectory('/productos/imagenes')
                             ->maxlength(300)
                             ->validationMessages([
                                 'required' => 'La descripción es obligatoria.',

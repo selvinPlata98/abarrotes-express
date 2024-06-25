@@ -59,7 +59,6 @@ class ViewProducto extends ViewRecord
                             ->label('Imágenes')
                             ->multiple(true)
                             ->image()
-                            ->disk('ftp')
                             ->directory('productos')
                             ->visibility('public')
                             ->validationMessages([
@@ -75,7 +74,7 @@ class ViewProducto extends ViewRecord
                         Forms\Components\MarkdownEditor::make('descripcion')
                             ->required()
                             ->fileAttachmentsDirectory('/productos/descripciones')
-                            ->fileAttachmentsDisk('ftp')
+                            ->fileAttachmentsDisk('local')
                             ->label('Descripción')
                             ->maxlength(300)
                             ->validationMessages([
