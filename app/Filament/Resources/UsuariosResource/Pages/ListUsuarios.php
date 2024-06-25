@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\UsuariosResource\Pages;
 
 use App\Filament\Resources\UsuariosResource;
+use Filament\Actions\Action;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Tables\Actions\ActionGroup;
@@ -23,7 +24,7 @@ class ListUsuarios extends ListRecords
     {
         return [
             CreateAction::make()
-            ->label('Crear Usuario'),
+            ->label('Crear Usuario')
         ];
     }
 

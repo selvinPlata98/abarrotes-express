@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductoResource\Pages;
-use App\Filament\Resources\ProductoResource\RelationManagers;
 use App\Models\Producto;
 use Filament\Forms;
 use Filament\Forms\Components\Group;
@@ -20,7 +19,7 @@ use Illuminate\Support\Str;
 class ProductoResource extends Resource
 {
     protected static ?string $model = Producto::class;
-
+    protected static ?string $navigationGroup = 'Productos';
     protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
     protected static ?string $activeNavigationIcon = 'heroicon-s-shopping-cart';
     protected static ?int $navigationSort = 2;
@@ -36,12 +35,13 @@ class ProductoResource extends Resource
                             ->required()
                             ->label('Nombre del Producto')
                             ->maxLength(80)
-                            ->regex('/^[A-Za-z ]+$/')
+                            ->regex('/^[A-Za-zÀ-ÿ\s]+$/')
                             ->validationMessages([
-                                'maxLength' => 'El nombre debe  contener un maximo de 80 carácteres.',
+                                'maxLength' => 'El nombre debe contener un máximo de 80 caracteres.',
                                 'required' => 'Debe introducir un nombre del producto',
                                 'regex' => 'El nombre solo debe contener letras y espacios.'
                             ])
+                            ->unique(Producto::class, ignoreRecord: true,)
                             ->afterStateUpdated(fn(string $operation, $state, Set $set) => $operation
                             === 'create' ? $set('enlace', Str::slug($state)) : null)
                             ->reactive()
@@ -60,7 +60,6 @@ class ProductoResource extends Resource
                             ->label('Imágenes')
                             ->multiple(true)
                             ->image()
-                            ->disk('ftp')
                             ->directory('productos')
                             ->visibility('public')
                             ->validationMessages([
@@ -74,15 +73,18 @@ class ProductoResource extends Resource
                             ->reorderable()
                             ->openable(),
 
-                        Forms\Components\Textarea::make('descripcion')
+                        Forms\Components\TextInput::make('descripcion')
                             ->required()
                             ->label('Descripción')
-                            ->maxlength(300)
+                            ->maxLength(800)
+                            ->regex('/^[A-Za-zÀ-ÿ0-9.,!?()"\s-]+$/')
                             ->validationMessages([
                                 'required' => 'La descripción es obligatoria.',
-                                'maxlength' => 'La descripción no puede exceder los 300 caracteres.'
+                                'maxlength' => 'La descripción no puede exceder los 800 caracteres.',
+                                'regex' => 'La descripción solo puede contener letras, números y caracteres de puntuación comunes.'
                             ])
                             ->columnSpan(2),
+
 
                         Forms\Components\TextInput::make('precio')
                             ->required()
@@ -111,15 +113,11 @@ class ProductoResource extends Resource
                             ->label('Disponible')
                             ->default(false),
 
+
                         Forms\Components\Toggle::make('en_oferta')
                             ->label('En Oferta')
                             ->default(false)
-                            ->reactive()
-                            ->afterStateUpdated(function ($state, $set) { #Maneja el comportamiento de el campo de porcentaje oferta
-                                if (!$state) {
-                                    $set('porcentaje_oferta', null);
-                                }
-                            }),
+                            ->live(),
 
                         Forms\Components\TextInput::make('porcentaje_oferta')
                             ->required()
@@ -129,12 +127,12 @@ class ProductoResource extends Resource
                             ->step('0.01')
                             ->maxValue(1)
                             ->minValue(0)
-                            ->regex('/^\d{1,3}(\.\d{1,2})?$/')
+                            ->regex('/^(0\.00|1\.00|0\.[0-9]{1,2}|1\.0{1,2})$/')
                             ->validationMessages([
                                 'required' => 'El porcentaje de oferta debe ser un valor numérico.',
-                                'regex' => 'El porcentaje de oferta debe tener hasta 3 dígitos enteros y hasta 2 decimales.'
+                                'regex' => 'El porcentaje de oferta debe tener hasta 1 dígito enteros y hasta 2 decimales.'
                             ])
-                            ->disabled(fn($get) => !$get('en_oferta'))
+                            ->visible(fn(\Filament\Forms\Get $get):bool => $get('en_oferta'))
                             ->columns(2),
 
 
@@ -173,8 +171,13 @@ class ProductoResource extends Resource
             'index' => Pages\ListProductos::route('/'),
             'create' => Pages\CreateProducto::route('/create'),
             'edit' => Pages\EditProducto::route('/{record}/edit'),
-            'view' =>ProductoResource\Pages\ViewProductos::route('/{record}/view')
+            'view' =>ProductoResource\Pages\ViewProducto::route('/{record}/view')
         ];
+    }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['nombre', 'enlace', 'categoria_id', 'marca_id' ];
     }
 
 
