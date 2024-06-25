@@ -24,6 +24,7 @@ use Illuminate\Support\Str;
 class CategoriaResource extends Resource
 {
     protected static ?string $model = Categoria::class;
+    protected static ?string $navigationGroup = 'Productos';
 
     protected static ?string $navigationIcon = 'heroicon-o-queue-list';
     protected static ?string $activeNavigationIcon = 'heroicon-s-queue-list';
@@ -78,6 +79,31 @@ class CategoriaResource extends Resource
             ]);
     }
 
+    public static function table(Table $table): Table
+    {
+        return $table
+            ->columns([
+                Tables\Columns\TextColumn::make('nombre')->label('Nombre'),
+                Tables\Columns\TextColumn::make('enlace')->label('Enlace'),
+                Tables\Columns\ImageColumn::make('imagen')->label('Imagen')
+
+
+            ])
+            ->filters([
+                //
+            ])
+            ->actions([
+                ActionGroup::make([
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make(),
+                ])
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
+            ]);
+    }
 
     public static function getRelations(): array
     {
@@ -92,7 +118,6 @@ class CategoriaResource extends Resource
             'index' => Pages\ListCategorias::route('/'),
             'create' => Pages\CreateCategoria::route('/create'),
             'edit' => Pages\EditCategoria::route('/{record}/edit'),
-            'view' => Pages\ViewCategoria::route('/{record}/view'),
         ];
     }
     public static function getGloballySearchableAttributes(): array

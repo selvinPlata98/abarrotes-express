@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DISK', 'local'),
+    'default' => env('FILESYSTEM_DISK', 'ftp'),
 
     /*
     |--------------------------------------------------------------------------
@@ -39,7 +39,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL', 'http://127.0.0.1:8000').'/storage',
             'visibility' => 'public',
             'throw' => false,
         ],
@@ -54,7 +54,8 @@ return [
             // 'passive' => true,
             // 'ssl' => true,
             // 'timeout' => 30,
-            // Optional FTP Settings...
+            'url' => env('FTP_URL'),
+            'visibility' => 'public',
 
         ],
 

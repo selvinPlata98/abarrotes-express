@@ -17,13 +17,13 @@ return new class extends Migration
             $table->foreignId('categoria_id')->constrained('categorias')->cascadeOnDelete();
             $table->string('nombre');
             $table->string('enlace');
-            $table->json('images')->nullable();
-            $table->longText('descripcion');
+            $table->json('imagenes')->nullable();
+            $table->longText('descripcion')->nullable();
             $table->decimal('precio', 10, 2);
-            $table->boolean('disponible');
+            $table->boolean('disponible')->default(false);
             $table->integer('cantidad_disponible');
-            $table->boolean('en_oferta');
-            $table->decimal('porcentaje_oferta', 3, 2);
+            $table->boolean('en_oferta')->default(false);
+            $table->decimal('porcentaje_oferta', 3, 2)->default(0);
             $table->timestamps();
         });
     }

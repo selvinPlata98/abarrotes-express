@@ -31,6 +31,7 @@ class UsuariosResource extends Resource
 
     protected static ?string $slug = 'usuarios';
     protected static ?int $navigationSort = 1;
+    protected static ?string $navigationGroup = 'Usuarios';
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
     protected static ?string $activeNavigationIcon = 'heroicon-s-users';
@@ -94,7 +95,7 @@ class UsuariosResource extends Resource
             'index' => Pages\ListUsuarios::route('/'),
             'create' => Pages\CreateUsuarios::route('/create'),
             'edit' => Pages\EditUsuarios::route('/{record}/edit'),
-            'view' => Pages\ViewUser::route('/{record}/view')
+            'view' => Pages\ViewUsuario::route('/{record}/view')
         ];
     }
 
