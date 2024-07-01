@@ -51,8 +51,7 @@ class ViewMarca extends ViewRecord
                     }),
 
                 Forms\Components\FileUpload::make('imagen')
-                    ->disk('ftp')
-                    ->directory('productos')
+                    ->directory('marcas')
                     ->required()
                     ->label('Imagen')
                     ->image()

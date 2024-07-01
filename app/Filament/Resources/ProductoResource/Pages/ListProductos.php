@@ -16,19 +16,20 @@ class ListProductos extends ListRecords
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nombre')->label('Nombre')->searchable(),
-                Tables\Columns\TextColumn::make('enlace')->label('Enlace')->searchable(),
+                Tables\Columns\TextColumn::make('nombre')->label('Nombre'),
+                Tables\Columns\TextColumn::make('enlace')->label('Enlace'),
                 Tables\Columns\ImageColumn::make('imagenes')->label('Imagen')->limit(1),
                 Tables\Columns\TextColumn::make('precio')->label('Precio')->money('lps', true),
                 Tables\Columns\TextColumn::make('cantidad_disponible')->label('Cantidad Disponible')
                 ->alignCenter(),
-                Tables\Columns\BooleanColumn::make('disponible')->label('Disponible'),
-                Tables\Columns\TextColumn::make('marca.nombre')->label('Marca')->searchable(),
-                Tables\Columns\TextColumn::make('categoria.nombre')->label('Categoría')->searchable(),
+                Tables\Columns\TextColumn::make('marca.nombre')->label('Marca'),
+                Tables\Columns\TextColumn::make('categoria.nombre')->label('Categoría'),
 
             ])
             ->paginated([10, 25, 50, 100,])
-
+            ->filters([
+                //
+            ])
             ->actions([
                 Tables\Actions\ViewAction::make()->hiddenLabel(),
 

@@ -50,18 +50,17 @@ class CategoriaResource extends Resource
                     ->reactive()
                     ->live(onBlur: true),
 
-                Forms\Components\TextInput::make('enlace')
+                TextInput::make('enlace')
                     ->required()
                     ->label('Enlace')
                     ->disabled()
                     ->dehydrated()
-                    ->unique(Producto::class, ignoreRecord: true),
+                    ->unique(Categoria::class, ignoreRecord: true),
 
-                Forms\Components\FileUpload::make('imagen')
+                FileUpload::make('imagen')
                     ->required()
                     ->label('Imagen')
                     ->image()
-                    ->disk('ftp')
                     ->directory('categorias')
                     ->validationMessages([
                         'maxFiles' => 'Se permite un máximo de 1 imágenes.',

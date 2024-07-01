@@ -16,13 +16,15 @@ class ListMarcas extends ListRecords
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nombre')->label('Nombre')->searchable(),
-                Tables\Columns\TextColumn::make('enlace')->label('Enlace')->searchable(),
-                Tables\Columns\ImageColumn::make('imagen')->label('Imagen')->limit(1),
-                Tables\Columns\BooleanColumn::make('disponible')->label('Disponible'),
+                Tables\Columns\TextColumn::make('nombre')->label('Nombre'),
+                Tables\Columns\TextColumn::make('enlace')->label('Enlace'),
+                Tables\Columns\ImageColumn::make('imagen')->label('Imagen'),
+                Tables\Columns\IconColumn::make('disponible')
+                    ->label('Disponible')
+                ->boolean()
+                ->alignCenter(),
             ])
             ->paginated([10, 25, 50, 100,])
-
             ->actions([
                 Tables\Actions\ViewAction::make()->hiddenLabel(),
             ])
