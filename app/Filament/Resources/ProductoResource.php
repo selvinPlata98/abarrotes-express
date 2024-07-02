@@ -36,9 +36,11 @@ class ProductoResource extends Resource
                             ->required()
                             ->label('Nombre del Producto')
                             ->maxLength(80)
+                            ->unique(Producto::class, ignoreRecord: true)
                             ->validationMessages([
                                 'maxLength' => 'El nombre debe  contener un maximo de 80 carácteres.',
                                 'required' => 'Debe introducir un nombre del producto',
+                                'unique' => 'Este producto ya existe.'
                             ])
                             ->afterStateUpdated(fn(string $operation, $state, Set $set) => $operation
                             === 'create' ? $set('enlace', Str::slug($state)) : null)
@@ -50,7 +52,10 @@ class ProductoResource extends Resource
                             ->label('Enlace')
                             ->disabled()
                             ->dehydrated()
-                            ->unique(Producto::class, ignoreRecord: true),
+                            ->unique(Producto::class, ignoreRecord: true)
+                            ->validationMessages([
+                                'unique' => 'Este enlace ya existe.'
+                            ]),
 
 
                         Forms\Components\FileUpload::make('imagenes')
@@ -140,7 +145,10 @@ class ProductoResource extends Resource
                             ->searchable()
                             #Precarga todas las marcas.
                             ->preload()
-                            ->label('Marca'),
+                            ->label('Marca')
+                            ->validationMessages([
+                                'required' => 'Debe seleccionar una marca.'
+                            ]),
 
 
                         Forms\Components\Select::make('categoria_id')
@@ -148,7 +156,10 @@ class ProductoResource extends Resource
                             ->required()
                             ->searchable()
                             ->preload()
-                            ->label('Categoría'),
+                            ->label('Categoría')
+                            ->validationMessages([
+                                'required' => 'Debe seleccionar una categoría.'
+                            ]),
                     ])->columnSpan(1)
                 ])->columns(3)
             ])->columns(1);

@@ -43,19 +43,24 @@ class CategoriaResource extends Resource
                     ->validationMessages([
                         'maxLenght' => 'El nombre debe  contener un maximo de 80 carácteres.',
                         'required' => 'Debe introducir un nombre de la marca',
-                        'regex' => 'El nombre solo debe contener letras y espacios.'
+                        'regex' => 'El nombre solo debe contener letras y espacios.',
+                        'unique' => 'Esta categoría ya existe.',
                     ])
                     ->afterStateUpdated(fn(string $operation, $state, Set $set) => $operation
                     === 'create' ? $set('enlace', Str::slug($state)) : null)
                     ->reactive()
-                    ->live(onBlur: true),
+                    ->live(onBlur: true)
+                    ->unique(Categoria::class, ignoreRecord: true),
 
                 TextInput::make('enlace')
                     ->required()
                     ->label('Enlace')
                     ->disabled()
                     ->dehydrated()
-                    ->unique(Categoria::class, ignoreRecord: true),
+                    ->unique(Categoria::class, ignoreRecord: true)
+                    ->validationMessages([
+                        'unique' => 'Este enlace ya existe'
+                    ]),
 
                 FileUpload::make('imagen')
                     ->required()

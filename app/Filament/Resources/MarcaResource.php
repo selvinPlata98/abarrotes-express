@@ -26,7 +26,7 @@ class MarcaResource extends Resource
     protected static ?string $navigationGroup = 'Productos';
     protected static ?string $navigationIcon = 'heroicon-o-cube';
     protected static ?string $activeNavigationIcon = 'heroicon-s-cube';
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 5;
 
     public static function form(Form $form): Form
     {
@@ -36,9 +36,11 @@ class MarcaResource extends Resource
                     ->required()
                     ->label('Nombre De la Marca')
                     ->maxLength(80)
+                    ->unique(Marca::class, ignoreRecord: true)
                     ->validationMessages([
                         'maxLenght' => 'El nombre debe  contener un maximo de 80 carácteres.',
                         'required' => 'Debe introducir un nombre de la marca',
+                        'unique' => 'Esta Marca ya existe'
                     ])
                     ->afterStateUpdated(fn(string $operation, $state, Set $set) => $operation
                     === 'create' ? $set('enlace', Str::slug($state)) : null)
@@ -55,7 +57,10 @@ class MarcaResource extends Resource
                         if ($operation === 'create') {
                             $set('enlace', Str::slug($state));
                         }
-                    }),
+                    })
+                    ->validationMessages([
+                        'unique' => 'Este enlace ya existe'
+                    ]),
 
                 Forms\Components\FileUpload::make('imagen')
                     ->required()
