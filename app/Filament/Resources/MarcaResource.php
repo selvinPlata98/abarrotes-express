@@ -36,6 +36,7 @@ class MarcaResource extends Resource
                     ->required()
                     ->label('Nombre De la Marca')
                     ->maxLength(80)
+                    ->regex('/^[A-Za-z ]+$/')
                     ->unique(Marca::class, ignoreRecord: true)
                     ->validationMessages([
                         'maxLenght' => 'El nombre debe  contener un maximo de 80 carácteres.',
@@ -46,18 +47,15 @@ class MarcaResource extends Resource
                     === 'create' ? $set('enlace', Str::slug($state)) : null)
                     ->reactive()
                     ->live(onBlur: true)
-                    ->label('Nombre')
+                    ->unique(Marca::class, ignoreRecord: true)
                     ->maxLength(255),
 
                 Forms\Components\TextInput::make('enlace')
                     ->required()
                     ->label('Enlace')
+                    ->disabled()
+                    ->dehydrated()
                     ->maxLength(255)
-                    ->afterStateUpdated(function (string $operation, $state, Set $set) {
-                        if ($operation === 'create') {
-                            $set('enlace', Str::slug($state));
-                        }
-                    })
                     ->validationMessages([
                         'unique' => 'Este enlace ya existe'
                     ]),
