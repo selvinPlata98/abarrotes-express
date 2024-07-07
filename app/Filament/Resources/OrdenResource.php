@@ -60,6 +60,9 @@ class OrdenResource extends Resource
                                 ->relationship('user', 'name')
                                 ->label('Usuario')
                                 ->searchable()
+                                ->validationMessages([
+                                    'required' => 'Se debe seleccionar un comprador.'
+                                ])
                                 ->required(),
 
                             Select::make('metodo_pago')
@@ -140,7 +143,7 @@ class OrdenResource extends Resource
                                         $set('porcentaje_oferta', ($producto ? $producto->precio : 0) * $get('porcentaje_oferta'));
                                     })
                                     ->validationMessages([
-                                        'required' => 'Debe seleccionar un metodo de pago',
+                                        'required' => 'Debe seleccionar un producto.',
                                     ])
                                     ->columnSpan(4),
 
