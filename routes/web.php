@@ -21,4 +21,8 @@ Route::get('/login')->name('login');
 
 Route::get('/registro', function () {
     return view('registro');
-});
+})->name('registro');
+
+Route::get('/inicio', function () {
+    return view('inicio');
+})->name('inicio');

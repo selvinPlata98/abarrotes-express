@@ -25,9 +25,9 @@
     <header class="bg-gray-dark sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center py-4">
             <!-- Left section: Logo -->
-            <a href="index.html" class="flex items-center">
+            <a href="{{ route('inicio')}}" class="flex items-center">
               <div>
-                  <img src="/imagen/logo.jpeg" alt="Logo" class="h-18 w-14 mr-7">
+                  <img src="/imagen/l13.jpeg" alt="Logo" class="h-18 w-14 mr-7">
               </div>
             </a>
 
@@ -47,63 +47,17 @@
                   <li><a href="index.html" class="hover:text-secondary font-semibold">Categoria</a></li>
 
                   <!-- Men Dropdown -->
-                  <li class="relative group" x-data="{ open: false }">
-                      <a href="shop.html" @mouseover="open = true" @mouseleave="open = false" href="#" class="hover:text-secondary font-semibold flex items-center">
-                          Men
-                          <i :class="open ? 'fas fa-chevron-up ml-1 text-xs' : 'fas fa-chevron-down ml-1 text-xs'"></i>
-                      </a>
-                      <ul 
-                          x-show="open"
-                          @mouseover="open = true"
-                          @mouseleave="open = false"
-                          class="absolute left-0 bg-white text-black space-y-2 mt-1 p-2 rounded shadow-lg"
-                          x-transition:enter="transition ease-out duration-100"
-                          x-transition:enter-start="opacity-0 scale-90"
-                          x-transition:enter-end="opacity-100 scale-100"
-                          x-transition:leave="transition ease-in duration-100"
-                          x-transition:leave-start="opacity-100 scale-100"
-                          x-transition:leave-end="opacity-0 scale-90"
-                      >
-                          <li><a href="shop.html" class="min-w-40 block px-4 py-2 hover:bg-primary hover:text-white rounded">Men Item 1</a></li>
-                          <li><a href="shop.html" class="min-w-40 block px-4 py-2 hover:bg-primary hover:text-white rounded">Men Item 2</a></li>
-                          <li><a href="shop.html" class="min-w-40 block px-4 py-2 hover:bg-primary hover:text-white rounded">Men Item 3</a></li>
-                      </ul>
-                  </li>
+                  
 
                   <!-- Women Dropdown -->
-                  <li class="relative group" x-data="{ open: false }">
-                      <a href="shop.html" @mouseover="open = true" @mouseleave="open = false" href="#" class="hover:text-secondary font-semibold flex items-center">
-                          Women
-                          <i :class="open ? 'fas fa-chevron-up ml-1 text-xs' : 'fas fa-chevron-down ml-1 text-xs'"></i>
-                      </a>
-                      <ul
-                          x-show="open"
-                          @mouseover="open = true"
-                          @mouseleave="open = false"
-                          class="absolute left-0 bg-white text-black space-y-2 mt-1 p-2 rounded shadow-lg"
-                          x-transition:enter="transition ease-out duration-100"
-                          x-transition:enter-start="opacity-0 scale-90"
-                          x-transition:enter-end="opacity-100 scale-100"
-                          x-transition:leave="transition ease-in duration-100"
-                          x-transition:leave-start="opacity-100 scale-100"
-                          x-transition:leave-end="opacity-0 scale-90"
-                      >
-                          <li><a href="shop.html" class="min-w-40 block px-4 py-2 hover:bg-primary hover:text-white rounded">Women Item 1</a></li>
-                          <li><a href="shop.html" class="min-w-40 block px-4 py-2 hover:bg-primary hover:text-white rounded">Women Item 2</a></li>
-                          <li><a href="shop.html" class="min-w-40 block px-4 py-2 hover:bg-primary hover:text-white rounded">Women Item 3</a></li>
-                      </ul>
-                  </li>
-
-                  <li><a href="shop.html" class="hover:text-secondary font-semibold">Shop</a></li>
-                  <li><a href="single-product-page.html" class="hover:text-secondary font-semibold">Product</a></li>
-                  <li><a href="404.html" class="hover:text-secondary font-semibold">404 page</a></li>
-                  <li><a href="checkout.html" class="hover:text-secondary font-semibold">Checkout</a></li>
+                  
+                  
               </ul>
             </nav>
 
             <!-- Right section: Buttons (for desktop) -->
             <div class="hidden lg:flex items-center space-x-4 relative">
-              <a href="register.html"
+              <a href="{{ route('registro')}}"
                   class="bg-primary border border-primary hover:bg-transparent text-white hover:text-primary font-semibold px-4 py-2 rounded-full inline-block">Registro</a>
               <a href="register.html"
                   class="bg-primary border border-primary hover:bg-transparent text-white hover:text-primary font-semibold px-4 py-2 rounded-full inline-block">login</a>
@@ -287,7 +241,7 @@
             <!-- Contact Information -->
             <div class="w-full sm:w-2/6 px-4 mb-8">
             <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
-            <p><img src="assets/images/template-logo.png" alt="Logo" class="h-[60px] mb-4"></p>
+            <p><img src="/imagen/l13.jpeg" alt="Logo" class="h-[60px] mb-4"></p>
             <p>123 Street Name, Paris, France</p>
             <p class="text-xl font-bold my-4">Phone: (123) 456-7890</p>
             <a href="mailto:info@company.com" class="underline">Email: info@company.com</a>
@@ -300,10 +254,10 @@
         <div class="container mx-auto px-4 flex flex-wrap justify-between items-center">
             <!-- Copyright and Links -->
             <div class="w-full lg:w-3/4 text-center lg:text-left mb-4 lg:mb-0">
-            <p class="mb-2 font-bold">&copy; 2024 Your Company. All rights reserved.</p>
+            <p class="mb-2 font-bold">&copy; 2024 Tu Empresa. Todos los derechos reservados.</p>
             <ul class="flex justify-center lg:justify-start space-x-4 mb-4 lg:mb-0">
-                <li><a href="#" class="hover:text-primary">Privacy Policy</a></li>
-                <li><a href="#" class="hover:text-primary">Terms of Service</a></li>
+                <li><a href="#" class="hover:text-primary">Política de privacidad</a></li>
+                <li><a href="#" class="hover:text-primary">Términos de servicio</a></li>
                 <li><a href="#" class="hover:text-primary">FAQ</a></li>
             </ul>
             <p class="text-sm mt-4">Your shop's description goes here. This is a brief introduction to your shop and what you offer.</p>
