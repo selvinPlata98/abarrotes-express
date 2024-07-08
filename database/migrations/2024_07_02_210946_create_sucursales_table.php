@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sucursales', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('direccion_id')->constrained('direcciones')->cascadeOnDelete();
+            #$table->foreignId('direccion_id')->constrained('direcciones')->cascadeOnDelete();
             $table->integer('nro_sucursal');
             $table->string('departamento');
             $table->longText('direccion_completa');
