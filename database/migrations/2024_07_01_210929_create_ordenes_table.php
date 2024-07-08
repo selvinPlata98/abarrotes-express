@@ -10,12 +10,13 @@ return new class extends Migration {
         Schema::create('ordenes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->decimal('sub_total', 10,2);
+            $table->decimal('sub_total', 10,2)->default(0);
             $table->decimal('total_final', 10,2);
             $table->string('metodo_pago');
                 $table->enum('estado_pago', ['pagado', 'procesando', 'error'])->nullable();
             $table->enum('estado_entrega', ['nuevo', 'procesado', 'enviado', 'entregado', 'cancelado']);
             $table->string('costos_envio');
+            $table->longText('notas');
             $table->timestamps();
         });
     }

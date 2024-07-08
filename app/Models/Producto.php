@@ -46,16 +46,12 @@ class Producto extends Model
         return $this->hasMany(Imagen::class);
     }
 
-    public function getDecodedImagesAttribute()
+    public function elementosOrden(): HasMany
     {
-        return $this->imagenes->map(function ($image) {
-            return [
-                'name' => $image->filename,
-                'mime' => $image->mime_type,
-                'data' => base64_decode($image->image_data),
-            ];
-        });
+        return $this->hasMany(ElementoOrden::class, 'producto_id');
     }
+
+
 
 
 }

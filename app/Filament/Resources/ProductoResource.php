@@ -76,11 +76,20 @@ class ProductoResource extends Resource
                             ->reorderable()
                             ->openable(),
 
-                        Forms\Components\TextArea::make('descripcion')
+                        Forms\Components\MarkdownEditor::make('descripcion')
                             ->required()
                             ->label('Descripción')
+                            ->toolbarButtons(
+                                [
+                                'bold',
+                                'bulletList',
+                                'heading',
+                                'italic',
+                                'link',
+                                'redo',
+                                'undo'],
+                            )
                             ->maxlength(300)
-                            ->rows(5)
                             ->validationMessages([
                                 'required' => 'La descripción es obligatoria.',
                                 'maxlength' => 'La descripción no puede exceder los 300 caracteres.'
@@ -89,9 +98,10 @@ class ProductoResource extends Resource
 
                         Forms\Components\TextInput::make('precio')
                             ->required()
+                            ->inputMode('decimal')
                             ->numeric()
-                            ->regex('/^(\d{1,8})(\.\d{1,2})?$/')
-                            ->label('Precio')->prefix('L.')
+                            ->label('Precio')
+                            ->step(0.01)
                             ->minValue(0)
                             ->validationMessages([
                                 'required' => 'El precio es obligatorio.',
@@ -102,6 +112,7 @@ class ProductoResource extends Resource
                         Forms\Components\TextInput::make('cantidad_disponible')
                             ->required()
                             ->numeric()
+                            ->integer()
                             ->label('Cantidad Disponible')
                             ->step('1')
                             ->minValue(0),
@@ -120,22 +131,27 @@ class ProductoResource extends Resource
                             ->default(false)
                             ->live(),
 
+                        Group::make([
+
+                        ]),
                         Forms\Components\TextInput::make('porcentaje_oferta')
                             ->required()
                             ->numeric()
+                            ->inputMode('decimal')
                             ->label('Porcentaje de Oferta')
                             ->nullable()
                             ->step('0.01')
-                            ->maxValue(1)
+                            ->default(0)
                             ->minValue(0)
-                            ->regex('/^\d{1,3}(\.\d{1,2})?$/')
+                            ->maxValue(1)
                             ->validationMessages([
                                 'required' => 'El porcentaje de oferta debe ser un valor numérico.',
-                                'regex' => 'El porcentaje de oferta debe tener hasta 3 dígitos enteros y hasta 2 decimales.'
+                                'numeric' => 'El porcentaje de oferta debe ser un número.',
+                                'minValue' => 'El porcentaje de oferta debe ser al menos 1.',
+                                'maxValue' => 'El porcentaje de oferta no debe ser mayor a 100.',
                             ])
-                            ->visible(fn(\Filament\Forms\Get $get):bool => $get('en_oferta'))
+                            ->visible(fn(\Filament\Forms\Get $get): bool => $get('en_oferta'))
                             ->columns(2),
-
 
 
                         #Se cambió una librería antigua que marcaba como obsoleta.
@@ -165,6 +181,7 @@ class ProductoResource extends Resource
                 ])->columns(3)
             ])->columns(1);
     }
+
     public static function getRelations(): array
     {
         return [
@@ -178,7 +195,7 @@ class ProductoResource extends Resource
             'index' => Pages\ListProductos::route('/'),
             'create' => Pages\CreateProducto::route('/create'),
             'edit' => Pages\EditProducto::route('/{record}/edit'),
-            'view' =>ProductoResource\Pages\ViewProducto::route('/{record}/view')
+            'view' => ProductoResource\Pages\ViewProducto::route('/{record}/view')
         ];
     }
 

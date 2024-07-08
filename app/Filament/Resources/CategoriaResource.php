@@ -50,7 +50,8 @@ class CategoriaResource extends Resource
                     === 'create' ? $set('enlace', Str::slug($state)) : null)
                     ->reactive()
                     ->live(onBlur: true)
-                    ->unique(Categoria::class, ignoreRecord: true),
+                    ->unique(Categoria::class, ignoreRecord: true)
+                    ->maxLength(255),
 
                 TextInput::make('enlace')
                     ->required()
@@ -66,6 +67,7 @@ class CategoriaResource extends Resource
                     ->required()
                     ->label('Imagen')
                     ->image()
+                    ->disk('public')
                     ->directory('categorias')
                     ->validationMessages([
                         'maxFiles' => 'Se permite un máximo de 1 imágenes.',
