@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,8 +19,6 @@ Route::get('/', function () {
 
 Route::get('/login')->name('login');
 
-
-
-
-
-
+Route::get('/registro', function () {
+    return view('registro');
+});
