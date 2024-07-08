@@ -18,7 +18,6 @@ class ListProductos extends ListRecords
             ->columns([
                 Tables\Columns\TextColumn::make('nombre')->label('Nombre'),
                 Tables\Columns\TextColumn::make('enlace')->label('Enlace'),
-                Tables\Columns\ImageColumn::make('imagenes')->label('Imagen')->limit(1),
                 Tables\Columns\TextColumn::make('precio')->label('Precio')->money('lps', true),
                 Tables\Columns\TextColumn::make('cantidad_disponible')->label('Cantidad Disponible')
                 ->alignCenter(),

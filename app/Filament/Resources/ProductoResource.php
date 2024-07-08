@@ -80,6 +80,7 @@ class ProductoResource extends Resource
                             ->required()
                             ->label('Descripción')
                             ->maxlength(300)
+                            ->rows(5)
                             ->validationMessages([
                                 'required' => 'La descripción es obligatoria.',
                                 'maxlength' => 'La descripción no puede exceder los 300 caracteres.'
@@ -90,7 +91,7 @@ class ProductoResource extends Resource
                             ->required()
                             ->numeric()
                             ->regex('/^(\d{1,8})(\.\d{1,2})?$/')
-                            ->label('Precio')
+                            ->label('Precio')->prefix('L.')
                             ->minValue(0)
                             ->validationMessages([
                                 'required' => 'El precio es obligatorio.',

@@ -162,6 +162,7 @@ class ViewProducto extends ViewRecord
     {
         return [
             Actions\EditAction::make(),
+            Actions\DeleteAction::make(),
         ];
     }
 }

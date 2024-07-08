@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Direccion;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -13,6 +14,7 @@ class Sucursal extends Model
     protected $table = 'sucursales';
 
     protected $fillable = [
+        'direccion_id',
         'nro_sucursal',
         'departamento',
         'direccion_completa',
@@ -22,7 +24,7 @@ class Sucursal extends Model
     ];
 
 
-    public function direcciones(): HasMany
+    public function direccion(): HasMany
     {
         return $this->hasMany(Direccion::class, 'direccion_id');
     }
