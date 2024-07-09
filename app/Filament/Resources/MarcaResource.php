@@ -101,4 +101,9 @@ class MarcaResource extends Resource
             'view' => ViewMarca::route('/{record}/view')
         ];
     }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['nombre', 'enlace'];
+    }
 }
