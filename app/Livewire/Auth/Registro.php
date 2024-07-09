@@ -40,7 +40,7 @@ class Registro extends Component
         $this->validate([
             'name' => 'required|regex:/^[a-zA-Z0-9_ áéíóúñ]+$/',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8',
+            'password' => 'required|min:8|max:18',
         ]);
     
         // Crear un nuevo registro en la base de datosssss
