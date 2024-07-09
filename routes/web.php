@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +18,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', \App\Livewire\Auth\LoginPage::class)->name('login');
+
+Route::get('/login', function (){
+    return view('login');
+});
+
+Route::get('/categoria', function (){
+    return view('mostrar-categoria');
+});
+
+
 
 Route::get('/registro', function () {
     return view('registro');

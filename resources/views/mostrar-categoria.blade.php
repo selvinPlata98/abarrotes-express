@@ -1,9 +1,5 @@
 @extends('components.layouts.app')
-@section('titulo','registro')
+@section('titulo','categorias')
 @section('contenido')
-
-    <livewire:auth.registro>
-
+    <livewire:mostrar-categoria>
 @endsection
-
-

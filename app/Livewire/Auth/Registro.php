@@ -29,11 +29,11 @@ class Registro extends Component
         if (empty($this->name)) {
             $this->addError('name', 'El campo nombre es requerido');
         }
-    
+
         if (empty($this->email)) {
             $this->addError('email', 'El campo correo es requerido');
         }
-    
+
         // Resto de las validaciones..
 
 
@@ -42,7 +42,7 @@ class Registro extends Component
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8',
         ]);
-    
+
         // Crear un nuevo registro en la base de datosssss
         $user = new User();
         $user->name = $this->name;
@@ -52,7 +52,7 @@ class Registro extends Component
         $user->save();
 
         $this->reset();
-    
+
         // Mostrar un mensaje de éxito
         session()->flash('mensaje', '¡Registro exitoso!');
 

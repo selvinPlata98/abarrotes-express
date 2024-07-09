@@ -4,17 +4,26 @@ namespace App\Livewire\Auth;
 
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
-class LoginPage extends Component
+class Login extends Component
 {
     public $email;
     public $password;
 
-    #[Title('Inciciar Sesion')]
+    #[Title('Iniciar Sesion')]
+
+    public function render()
+    {
+        return view('livewire.auth.login');
+    }
+
     public function save()
     {
         $this->validate([
-           'email' => 'required|email|max:255|min:4|exists:users,email',
+            'email' => 'required|email|max:255|min:4|exists:users,email',
             'password' => 'required|min:4|max:300'
         ],
             [
@@ -23,23 +32,18 @@ class LoginPage extends Component
                 'email.max' => 'El correo electrónico no puede tener más de 255 caracteres.',
                 'email.exists' => 'Correo electrónico no encontrado.',
                 'password.required' => 'El campo contraseña es obligatorio.',
-                'password.string' => 'La contraseña debe ser una cadena de texto.',
-                'password.max' => 'La contraseña no puede tener más de 30 caracteres.',
+                'password.max' => 'La contraseña no puede tener más de 300 caracteres.',
                 'password.min' => 'La contraseña no puede tener menos de 4 caracteres.',
             ]
         );
 
-        if (!auth()->attempt(['email'=>$this->email, 'password' => $this->password])){
-            return redirect()->back()->with('error', 'Correo y contraseña no coinciden');
+        if (!Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
+            $this->addError('email', 'Correo y contraseña no coinciden');
+            return;
         }
 
-        return redirect()->intended();
-
+        return Redirect::to('/');
     }
 
 
-    public function render()
-    {
-        return view('livewire.auth.login-page');
-    }
 }

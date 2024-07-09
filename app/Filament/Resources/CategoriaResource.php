@@ -37,7 +37,7 @@ class CategoriaResource extends Resource
 
                 Forms\Components\TextInput::make('nombre')
                     ->required()
-                    ->label('Nombre De la Categoria')
+                    ->label('Nombre De la MostrarCategoria')
                     ->maxLength(80)
                     ->regex('/^[A-Za-z ]+$/')
                     ->validationMessages([
@@ -67,7 +67,7 @@ class CategoriaResource extends Resource
                     ->required()
                     ->label('Imagen')
                     ->image()
-                    ->disk('public')
+                    ->visibility('public')
                     ->directory('categorias')
                     ->validationMessages([
                         'maxFiles' => 'Se permite un máximo de 1 imágenes.',

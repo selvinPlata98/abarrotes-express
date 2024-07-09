@@ -1,9 +1,5 @@
 @extends('components.layouts.app')
-@section('titulo','registro')
+@section('titulo','login')
 @section('contenido')
-
-    <livewire:auth.registro>
-
+    <livewire:auth.login>
 @endsection
-
-

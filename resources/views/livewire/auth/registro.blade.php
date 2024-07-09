@@ -1,9 +1,7 @@
 <div>
-
-
     <div class="flex justify-center items-center h-screen">
        <div class="md:w-1/2 bg-white rounded-lg shadow-md p-4 md:p-10 ">
-                    
+
        <h2 class="text-2xl font-semibold mb-4">Registro</h2>
                     <form method="post" wire:submit.prevent="guardar" >
                     <div class="mb-3">
@@ -21,5 +19,5 @@
                         <button type="submit" class="bg-primary text-red border border-primary hover:bg-transparent hover:text-primary py-2 px-3 rounded-full w-full">Registra</button>
                     </form>
           </div>
-  </div>      
+  </div>
 </div>
