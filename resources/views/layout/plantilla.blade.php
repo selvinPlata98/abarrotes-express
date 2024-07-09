@@ -199,14 +199,22 @@
             </ul>
             </div>
             <!-- Menu 2 -->
-        
+            <div class="w-full sm:w-1/6 px-4 mb-8">
+            <h3 class="text-lg font-semibold mb-4">Servicio al cliente</h3>
+            <ul>
+                <li><a href="#" class="hover:text-primary">Preguntas Frecuentes</a></li>
+                <li><a href="#" class="hover:text-primary">Politicas De Envío</a></li>
+                <li><a href="#" class="hover:text-primary">Politica De Cambio Y Devoluciones</a></li>
+                <li><a href="#" class="hover:text-primary">Preguntas Frecuentes</a></li>
+            </ul>
+            </div>
             <!-- Menu 3 -->
             <div class="w-full sm:w-1/6 px-4 mb-8">
             <h3 class="text-lg font-semibold mb-4">Account</h3>
             <ul>
-                <li><a href="/cart.html" class="hover:text-primary">Cart</a></li>
-                <li><a href="/register.html" class="hover:text-primary">Registration</a></li>
-                <li><a href="/register.html" class="hover:text-primary">Login</a></li>
+                <li><a href="#" class="hover:text-primary">Cart</a></li>
+                <li><a href="#" class="hover:text-primary">Registration</a></li>
+                <li><a href="#" class="hover:text-primary">Login</a></li>
             </ul>
             </div>
             <!-- Social Media -->
@@ -217,7 +225,7 @@
             <p><img src="/imagen/l13.jpeg" alt="Logo" class="h-[60px] mb-4"></p>
             <p>123 Street Name, Paris, France</p>
             <p class="text-xl font-bold my-4">telefono: (+504) 8909-3117</p>
-            <a href="mailto:info@company.com" class="underline">Email: abarrotes-express@company.com</a>
+            <a href="#" class="underline">Email: abarrotes-express@company.com</a>
             </div>
         </div>
         </div>

@@ -26,11 +26,21 @@
  <!-- Traer los productos de la base de datos -->
 <div class="flex flex-wrap -mx-4">
     @foreach ($producto as $productos)
+    @if($productos->en_oferta = 0)
+    <a href="#" class="text-lg font-semibold mb-2">{{$productos->nombre}}</a>
+                <div class="flex items-center mb-4">
+                    <span class="text-sm line-through ml-2">{{$productos->precio}}</span>
+                </div>
+                <button class="bg-primary border border-transparent hover:bg-transparent hover:border-primary text-white hover:text-primary font-semibold py-2 px-4 rounded-full w-full">agregar al carrito</button>
+            </div>
+        </div>
+        @else
         <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 px-4 mb-8">
             <div class="bg-white p-3 rounded-lg shadow-lg">
-                <img src="/storage/productos/" alt="Producto 1" class="w-full object-cover mb-4 rounded-lg">
-                <a href="#" class="text-lg font-semibold mb-2">{{$productos->nombre}}</a>
-                <p class="my-2">{{$productos->descripcion}}</p>
+            @if(isset($productos->imagenes) && count($productos->imagenes) > 0)
+    <img src="{{ url('storage/' . $productos->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg" alt="Producto 1">
+  @endif              
+  <a href="#" class="text-lg font-semibold mb-2">{{$productos->nombre}}</a>
                 <div class="flex items-center mb-4">
                     <span class="text-lg font-bold text-primary">{{$productos->precio - $productos->en_oferta}}</span>
                     <span class="text-sm line-through ml-2">{{$productos->precio}}</span>
@@ -38,7 +48,7 @@
                 <button class="bg-primary border border-transparent hover:bg-transparent hover:border-primary text-white hover:text-primary font-semibold py-2 px-4 rounded-full w-full">agregar al carrito</button>
             </div>
         </div>
-      
+      @endif 
 
     @endforeach
 
@@ -46,25 +56,31 @@
     <section id="brands" class="bg-white py-16 px-4">
         <div class="container mx-auto max-w-screen-xl px-4 testimonials">
           <div class="text-center mb-12 lg:mb-20">
-            <h2 class="text-5xl font-bold mb-4">Descubra Nuestras Categoria</span></h2>
-            <p class="my-7">Explora las principales marcas que presentamos en nuestra tienda</p>
+            <h2 class="text-5xl font-bold mb-4">Descubra <span class="text-primary">Nuestras Categoria</span></h2>
+            <p class="my-7">Descubre las principales categorías que ofrecemos en nuestra tienda y explora todo lo que tenemos para ti.</p>
         </div>
     
     
  <!-- Traer los categoria de la base de datos -->
-    <div class="flex flex-wrap -mx-4">
-    @foreach ($categoria as $categorias)
+ <div class="flex flex-wrap -mx-4">
+    @forelse ($categoria as $categorias)
         <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 px-4 mb-8">
             <div class="bg-white p-3 rounded-lg shadow-lg">
-                <img src="{{ asset('/storage/categoria/' . $categorias -> imagenes)}}" alt="categoria " class="w-full object-cover mb-4 rounded-lg">
-                <a href="#" class="text-lg font-semibold mb-2">{{$categorias -> nombre}}</a>
+                
+            @if(isset($categorias->imagenes) && count($categorias->imagenes) > 1)
+    <img src="{{ url('storage/' . $categorias->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg" alt="{{$categorias->imagenes[0]}}">
+  @endif    
+  <a href="#" class="text-lg font-semibold mb-2">{{$categorias->nombre}}</a>
                 <button class="bg-primary border border-transparent hover:bg-transparent hover:border-primary text-white hover:text-primary font-semibold py-2 px-4 rounded-full w-full">agregar al carrito</button>
             </div>
+            
+
         </div>
+    @empty
+        <p>No se encontraron categorías.</p>
+    @endforelse
+</div>
 
-    @endforeach
-
-       
 
 </div>
 
@@ -75,16 +91,21 @@
             <p class="my-7">Explora las principales marcas que presentamos en nuestra tienda</p>
         </div>
         <div class="flex flex-wrap -mx-4">
-    @foreach ($marca as $marcas)
+        @forelse ($marca as $marcas)
         <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 px-4 mb-8">
             <div class="bg-white p-3 rounded-lg shadow-lg">
-                <img src="{{ asset('/storage/categoria/' . $categorias -> imagenes)}}" alt="categoria " class="w-full object-cover mb-4 rounded-lg">
+
+            <img src="{{ isset($marcas->imagenes) && count($marcas->imagenes) > 0 ? url('storage/' . $marcas->imagenes[0]) : '' }}" class="w-full object-cover mb-4 rounded-lg" alt="Producto 1">
+
                 <a href="#" class="text-lg font-semibold mb-2">{{$marcas -> nombre}}</a>
                 <button class="bg-primary border border-transparent hover:bg-transparent hover:border-primary text-white hover:text-primary font-semibold py-2 px-4 rounded-full w-full">agregar al carrito</button>
             </div>
         </div>
+        @empty
+        <p>No se encontraron categorías.</p>
+    @endforelse
 
-    @endforeach
+   
     </section>
 
 
@@ -106,7 +127,7 @@
               <div class="flex flex-col p-6 bg-white rounded-xl shadow-lg">
                   <h1 class="mb-4 text-2xl font-semibold leading-none tracking-tighter text-gray-dark lg:text-3xl">Recibe tu producto</h1>
                   <p class="flex-grow text-base font-medium leading-relaxed text-gray-txt">Coordina la entrega de tu compra directamente con el vendedor. Tienes la opción de recibirlo cómodamente en tu domicilio, en la oficina o elegir recogerlo personalmente. ¡Tú tienes la libertad de decidir lo que más te convenga!.</p>
-                  <img class="object-cover object-center w-full mb-8 rounded-xl" src="imagen/envio.png" alt="blog">
+                  <img class="object-cover object-center w-full mb-8 rounded-xl" src="imagen/envioo.png" alt="blog">
 
               </div>
           </div>
