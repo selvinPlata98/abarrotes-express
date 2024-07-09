@@ -26,7 +26,7 @@ class MarcaResource extends Resource
     protected static ?string $navigationGroup = 'Productos';
     protected static ?string $navigationIcon = 'heroicon-o-cube';
     protected static ?string $activeNavigationIcon = 'heroicon-s-cube';
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 5;
 
     public static function form(Form $form): Form
     {
@@ -37,33 +37,33 @@ class MarcaResource extends Resource
                     ->label('Nombre De la Marca')
                     ->maxLength(80)
                     ->regex('/^[A-Za-z ]+$/')
+                    ->unique(Marca::class, ignoreRecord: true)
                     ->validationMessages([
                         'maxLenght' => 'El nombre debe  contener un maximo de 80 carácteres.',
                         'required' => 'Debe introducir un nombre de la marca',
-                        'regex' => 'El nombre solo debe contener letras y espacios.'
+                        'unique' => 'Esta Marca ya existe'
                     ])
                     ->afterStateUpdated(fn(string $operation, $state, Set $set) => $operation
                     === 'create' ? $set('enlace', Str::slug($state)) : null)
                     ->reactive()
                     ->live(onBlur: true)
-                    ->label('Nombre')
+                    ->unique(Marca::class, ignoreRecord: true)
                     ->maxLength(255),
 
                 Forms\Components\TextInput::make('enlace')
                     ->required()
                     ->label('Enlace')
+                    ->disabled()
+                    ->dehydrated()
                     ->maxLength(255)
-                    ->afterStateUpdated(function (string $operation, $state, Set $set) {
-                        if ($operation === 'create') {
-                            $set('enlace', Str::slug($state));
-                        }
-                    }),
+                    ->validationMessages([
+                        'unique' => 'Este enlace ya existe'
+                    ]),
 
                 Forms\Components\FileUpload::make('imagen')
                     ->required()
                     ->label('Imagen')
                     ->image()
-                    ->disk('ftp')
                     ->directory('marcas')
                     ->validationMessages([
                         'maxFiles' => 'Se permite un máximo de 1 imágenes.',

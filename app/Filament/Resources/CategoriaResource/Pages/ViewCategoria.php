@@ -55,7 +55,6 @@ class ViewCategoria extends ViewRecord
                     ->required()
                     ->label('Imagen')
                     ->image()
-                    ->disk('ftp')
                     ->directory('categorias')
                     ->validationMessages([
                         'maxFiles' => 'Se permite un máximo de 1 imágenes.',

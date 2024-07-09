@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('marca_id')->constrained('marcas')->cascadeOnDelete();
-            $table->foreignId('categoria_id')->constrained('categorias')->cascadeOnDelete();
+            $table->foreignId('marca_id')->constrained('marcas')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('categoria_id')->constrained('categorias')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('nombre');
             $table->string('enlace');
             $table->json('imagenes')->nullable();
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->boolean('disponible')->default(false);
             $table->integer('cantidad_disponible');
             $table->boolean('en_oferta')->default(false);
-            $table->decimal('porcentaje_oferta', 3, 2)->default(0);
+            $table->decimal('porcentaje_oferta', 10, 4)->default(0);
             $table->timestamps();
         });
     }

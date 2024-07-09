@@ -43,25 +43,31 @@ class CategoriaResource extends Resource
                     ->validationMessages([
                         'maxLenght' => 'El nombre debe  contener un maximo de 80 carácteres.',
                         'required' => 'Debe introducir un nombre de la marca',
-                        'regex' => 'El nombre solo debe contener letras y espacios.'
+                        'regex' => 'El nombre solo debe contener letras y espacios.',
+                        'unique' => 'Esta categoría ya existe.',
                     ])
                     ->afterStateUpdated(fn(string $operation, $state, Set $set) => $operation
                     === 'create' ? $set('enlace', Str::slug($state)) : null)
                     ->reactive()
-                    ->live(onBlur: true),
+                    ->live(onBlur: true)
+                    ->unique(Categoria::class, ignoreRecord: true)
+                    ->maxLength(255),
 
-                Forms\Components\TextInput::make('enlace')
+                TextInput::make('enlace')
                     ->required()
                     ->label('Enlace')
                     ->disabled()
                     ->dehydrated()
-                    ->unique(Producto::class, ignoreRecord: true),
+                    ->unique(Categoria::class, ignoreRecord: true)
+                    ->validationMessages([
+                        'unique' => 'Este enlace ya existe'
+                    ]),
 
-                Forms\Components\FileUpload::make('imagen')
+                FileUpload::make('imagen')
                     ->required()
                     ->label('Imagen')
                     ->image()
-                    ->disk('ftp')
+                    ->disk('public')
                     ->directory('categorias')
                     ->validationMessages([
                         'maxFiles' => 'Se permite un máximo de 1 imágenes.',
