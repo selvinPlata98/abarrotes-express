@@ -1,4 +1,5 @@
 <?php
+                                                                                   
 
 use Illuminate\Support\Facades\Route;
 
@@ -14,12 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+return view('welcome');
 });
 
-Route::get('/login')->name('login');
+Route::get('/login', function (){
+    return view('login');
+});
 
-
-
-
-
+Route::get('/categoria', function (){
+    return view('mostrar-categoria');
+});
