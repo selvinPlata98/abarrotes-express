@@ -7,10 +7,10 @@
                     <form method="post" wire:submit.prevent="guardar" >
                     <div class="mb-3">
                             <label for="Nombre de usuario" class="block ">Nombre de usuario</label>
-                            <input wire:model="name" type="name" id="register-email" class="w-full px-3 py-1 border focus:border-transparent rounded-full focus:outline-none focus:ring-2 focus:ring-primary" required >
+                            <input wire:model="name" type="name" id="register-email" class="w-full px-3 py-1 border focus:border-transparent rounded-full focus:outline-none focus:ring-2 focus:ring-primary" maxlength="50" required >
                         </div>
                         <div class="mb-3">
-                            <label for="register-email" class="block ">correo</label>
+                            <label for="register-email" class="block ">correo electrónico</label>
                             <input wire:model="email" type="email" id="register-email" class="w-full px-3 py-1 border focus:border-transparent rounded-full focus:outline-none focus:ring-2 focus:ring-primary" required>
                         </div>
                         <div class="mb-3">
