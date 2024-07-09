@@ -12,7 +12,7 @@
                 <section id="brands" class="bg-white py-16 px-4">
         <div class="container mx-auto max-w-screen-xl px-4 testimonials">
           <div class="text-center mb-12 lg:mb-20">
-          <h2 class="text-5xl font-bold mb-4"><span class="text-primary">Nuestros Producto</span></h2>
+          <h2 class="text-5xl font-bold mb-4"><span class="text-primary">Nuestros Productos</span></h2>
           <p class="my-7">¡Descubre nuestros increíbles productos! Sumérgete en una experiencia única y encuentra todo lo que necesitas en un solo lugar.</p>
 
         </div>
@@ -68,7 +68,7 @@
             <div class="bg-white p-3 rounded-lg shadow-lg">
                 
             
-            <img src="categorias/{{$categorias->imagen}}" class="w-full object-cover mb-4 rounded-lg" alt="{{$categorias->imagen}}">  
+            <img src="{{ url('storage/' . $categorias->imagen) }}" class="w-full object-cover mb-4 rounded-lg" alt="{{$categorias->imagen}}">
   <a href="#" class="text-lg font-semibold mb-2">{{$categorias->nombre}}</a>
             </div>
             
@@ -92,9 +92,9 @@
         <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 px-4 mb-8">
             <div class="bg-white p-3 rounded-lg shadow-lg">
 
-            @if ($marcas->imagenes && count($marcas->imagenes) > 0)
-    <img src="{{ url('storage/' . $marcas->imagen[0]) }}" class="w-full object-cover mb-4 rounded-lg" alt="{{$marcas->imagenes[0]}}">
-@endif
+
+            <img src="{{ url('storage/' . $marcas->imagen) }}" class="w-full object-cover mb-4 rounded-lg" alt="{{$marcas->imagen}}">
+
                 <a href="#" class="text-lg font-semibold mb-2">{{$marcas -> nombre}}</a>
             </div>
         </div>

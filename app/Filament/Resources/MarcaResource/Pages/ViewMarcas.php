@@ -1,36 +1,32 @@
 <?php
 
-namespace App\Filament\Resources;
-use App\Filament\Resources\MarcaResource\Pages\CreateMarca;
-use App\Filament\Resources\MarcaResource\Pages\EditMarca;
-use App\Filament\Resources\MarcaResource\Pages\ListMarcas;
-use App\Filament\Resources\MarcaResource\Pages\ViewMarca;
+namespace App\Filament\Resources\MarcaResource\Pages;
+
+use App\Filament\Resources\MarcaResource\Pages;
+use App\Filament\Resources\MarcaResource;
+use Filament\Actions;
+use Filament\Resources\Pages\ViewRecord;
+use App\Filament\Resources\MarcaResource\RelationManagers;
 use App\Models\Marca;
 use Filament\Forms;
+use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Filament\Forms\Components\TextInput;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Forms\Components\Select;
-use Filament\Tables\Actions\ActionGroup;
-use Filament\Forms\Components\FileUpload;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-class MarcaResource extends Resource
+class ViewMarcas extends ViewRecord
 {
-    protected static ?string $model = Marca::class;
-    protected static ?string $navigationGroup = 'Productos';
-    protected static ?string $navigationIcon = 'heroicon-o-cube';
-    protected static ?string $activeNavigationIcon = 'heroicon-s-cube';
-    protected static ?int $navigationSort = 3;
+    protected static string $resource = MarcaResource::class;
 
-    
-    public static function form(Form $form): Form
+    public  function form(Form $form): Form
+
     {
+        
         return $form
             ->schema([
                 Forms\Components\TextInput::make('nombre')
@@ -38,30 +34,31 @@ class MarcaResource extends Resource
                     ->label('Nombre De la Marca')
                     ->maxLength(80)
                     ->regex('/^[A-Za-z ]+$/')
-                    ->unique(Marca::class, ignoreRecord: true)
                     ->validationMessages([
                         'maxLenght' => 'El nombre debe  contener un maximo de 80 carácteres.',
                         'required' => 'Debe introducir un nombre de la marca',
-                        'unique' => 'Esta Marca ya existe'
+                        'regex' => 'El nombre solo debe contener letras y espacios.'
                     ])
                     ->afterStateUpdated(fn(string $operation, $state, Set $set) => $operation
                     === 'create' ? $set('enlace', Str::slug($state)) : null)
                     ->reactive()
                     ->live(onBlur: true)
-                    ->unique(Marca::class, ignoreRecord: true)
+                    ->label('Nombre')
                     ->maxLength(255),
 
                     Forms\Components\TextInput::make('enlace')
-                            ->required()
-                            ->label('Enlace')
-                            ->disabled()
-                            ->dehydrated()
-                            ->unique(Marca::class, ignoreRecord: true),
+                    ->required()
+                    ->label('Enlace')
+                    ->disabled()
+                    ->dehydrated()
+                    ->unique(Marca::class, ignoreRecord: true),
+
 
                 Forms\Components\FileUpload::make('imagen')
                     ->required()
                     ->label('Imagen')
                     ->image()
+                    ->disk('ftp')
                     ->directory('marcas')
                     ->validationMessages([
                         'maxFiles' => 'Se permite un máximo de 1 imágenes.',
@@ -78,30 +75,5 @@ class MarcaResource extends Resource
                     ->label('Disponible')
                     ->default(true),
             ]);
-    }
-
-
-
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => ListMarcas::route('/'),
-            'create' => CreateMarca::route('/create'),
-            'edit' => EditMarca::route('/{record}/edit'),
-            'view' => ViewMarca::route('/{record}/view')
-        ];
-    }
-
-    public static function getGloballySearchableAttributes(): array
-    {
-        return ['nombre', 'enlace'];
     }
 }
