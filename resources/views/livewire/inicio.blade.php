@@ -25,7 +25,7 @@
     <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 px-4 mb-8">
             <div class="bg-white p-3 rounded-lg shadow-lg">
             @if(isset($productos->imagenes) && count($productos->imagenes) > 0)
-    <img src="{{ url('storage/' . $productos->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg" alt="Producto 1">
+    <img src="{{ url('storage/' . $productos->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg" alt="{{$productos->imagenes[0]}}">
   @endif              
   <a href="#" class="text-lg font-semibold mb-2">{{$productos->nombre}}</a>
                 <div class="flex items-center mb-4">
@@ -48,10 +48,15 @@
     @endforeach
 
 
-    <section id="brands" class="bg-white py-16 px-4">
+    
+
+
+</div>
+
+<section id="brands" class="bg-white py-16 px-4">
         <div class="container mx-auto max-w-screen-xl px-4 testimonials">
           <div class="text-center mb-12 lg:mb-20">
-            <h2 class="text-5xl font-bold mb-4">Descubra <span class="text-primary">Nuestras Categoria</span></h2>
+            <h2 class="text-5xl font-bold mb-4">Descubra <span class="text-primary">Nuestras Categorias</span></h2>
             <p class="my-7">Descubre las principales categorías que ofrecemos en nuestra tienda y explora todo lo que tenemos para ti.</p>
         </div>
     
@@ -62,9 +67,8 @@
         <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 px-4 mb-8">
             <div class="bg-white p-3 rounded-lg shadow-lg">
                 
-            @if(isset($categorias->imagenes) && count($categorias->imagenes) > 1)
-    <img src="{{ url('storage/' . $categorias->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg" alt="{{$categorias->imagenes[0]}}">
-  @endif    
+            
+            <img src="categorias/{{$categorias->imagen}}" class="w-full object-cover mb-4 rounded-lg" alt="{{$categorias->imagen}}">  
   <a href="#" class="text-lg font-semibold mb-2">{{$categorias->nombre}}</a>
             </div>
             
@@ -73,10 +77,9 @@
     @empty
         <p>No se encontraron categorías.</p>
     @endforelse
-</div>
 
 
-</div>
+</section>
 
 <section id="brands" class="bg-white py-16 px-4">
         <div class="container mx-auto max-w-screen-xl px-4 testimonials">
@@ -89,8 +92,9 @@
         <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 px-4 mb-8">
             <div class="bg-white p-3 rounded-lg shadow-lg">
 
-            <img src="{{ isset($marcas->imagenes) && count($marcas->imagenes) > 0 ? url('storage/' . $marcas->imagenes[0]) : '' }}" class="w-full object-cover mb-4 rounded-lg" alt="Producto 1">
-
+            @if ($marcas->imagenes && count($marcas->imagenes) > 0)
+    <img src="{{ url('storage/' . $marcas->imagen[0]) }}" class="w-full object-cover mb-4 rounded-lg" alt="{{$marcas->imagenes[0]}}">
+@endif
                 <a href="#" class="text-lg font-semibold mb-2">{{$marcas -> nombre}}</a>
             </div>
         </div>

@@ -27,7 +27,7 @@
             <!-- Left section: Logo -->
             <a href="{{ route('inicio')}}" class="flex items-center">
               <div>
-                  <img src="/imagen/l13.jpeg" alt="Logo" class="h-18 w-14 mr-7">
+                  <img src="/imagen/logo.jpeg" alt="Logo" class="h-18 w-14 mr-7">
               </div>
             </a>
 
@@ -186,7 +186,7 @@
             <!-- Contact Information -->
             <div class="w-full sm:w-2/6 px-4 mb-8 text-left">
             <h3 class="text-lg font-semibold mb-4">contactanos</h3>
-            <p><img src="/imagen/l13.jpeg" alt="Logo" class="h-[60px] mb-4"></p>
+            <p><img src="/imagen/logo.jpeg" alt="Logo" class="h-[60px] mb-4"></p>
             <p>123 Street Name, Paris, France</p>
             <p class="text-xl font-bold my-4">telefono: (+504) 8909-3117</p>
             <a href="#" class="underline">Email: abarrotes-express@company.com</a>
