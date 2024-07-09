@@ -44,7 +44,7 @@
             <!-- Center section: Menu -->
             <nav class="hidden lg:flex md:flex-grow justify-center">
               <ul class="flex justify-center space-x-4 text-white">
-                  <li><a href="index.html" class="hover:text-secondary font-semibold">Categoria</a></li>
+                  <li><a href="#" class="hover:text-secondary font-semibold">Categoria</a></li>
 
                   <!-- Men Dropdown -->
                   
@@ -59,42 +59,16 @@
             <div class="hidden lg:flex items-center space-x-4 relative">
               <a href="{{ route('registro')}}"
                   class="bg-primary border border-primary hover:bg-transparent text-white hover:text-primary font-semibold px-4 py-2 rounded-full inline-block">Registro</a>
-              <a href="register.html"
+              <a href="{{ route('login')}}"
                   class="bg-primary border border-primary hover:bg-transparent text-white hover:text-primary font-semibold px-4 py-2 rounded-full inline-block">login</a>
               <div class="relative group cart-wrapper">
                   <a href="/cart.html" >
                       <img src="assets/images/cart-shopping.svg" alt="Cart" class="h-6 w-6 group-hover:scale-120">
                   </a>
                   <!-- Cart dropdown -->
-                  <div class="absolute right-0 mt-1 w-80 bg-white shadow-lg p-4 rounded hidden group-hover:block">
-                      <div class="space-y-4">
-                          <!-- product item -->
-                          <div class="flex items-center justify-between pb-4 border-b border-gray-line">
-                              <div class="flex items-center">
-                                  <img src="/assets/images/single-product/1.jpg" alt="Product" class="h-12 w-12 object-cover rounded mr-2">
-                                  <div>
-                                      <p class="font-semibold">Summer black dress</p>
-                                      <p class="text-sm">Quantity: 1</p>
-                                  </div>
-                              </div>
-                              <p class="font-semibold">$25.00</p>
-                          </div>
-                          <!-- product item -->
-                          <div class="flex items-center justify-between">
-                            <div class="flex items-center">
-                                <img src="/assets/images/single-product/2.jpg" alt="Product" class="h-12 w-12 object-cover rounded mr-2">
-                                <div>
-                                    <p class="font-semibold">Black suit</p>
-                                    <p class="text-sm">Quantity: 1</p>
-                                </div>
-                            </div>
-                            <p class="font-semibold">$125.00</p>
-                        </div>
-                      </div>
-                      <a href="/cart.html" class="block text-center mt-4 border border-primary bg-primary hover:bg-transparent text-white hover:text-primary py-2 rounded-full font-semibold">Go to Cart</a>
-                  </div>
+                  
               </div>
-              <a id="search-icon" href="javascript:void(0);" class="text-white hover:text-secondary group">
+              <a id="search-icon" href="#" class="text-white hover:text-secondary group">
                   <img src="/imagen/search-icon.svg" alt="Search"
                       class="h-6 w-6 transition-transform transform group-hover:scale-120">
               </a>
@@ -188,16 +162,7 @@
         <div class="container mx-auto px-4 py-10">
         <div class="flex flex-wrap -mx-4">
             <!-- Menu 1 -->
-            <div class="w-full sm:w-1/6 px-4 mb-8">
-            <h3 class="text-lg font-semibold mb-4">Categoria</h3>
-            <ul>
-                <li><a href="/shop.html" class="hover:text-primary">Shop</a></li>
-                <li><a href="/single-product-page.html" class="hover:text-primary">Women</a></li>
-                <li><a href="/shop.html" class="hover:text-primary">Men</a></li>
-                <li><a href="/single-product-page.html" class="hover:text-primary">Shoes</a></li>
-                <li><a href="/single-product-page.html" class="hover:text-primary">Accessories</a></li>
-            </ul>
-            </div>
+            <livewire:traer-categoria>
             <!-- Menu 2 -->
             <div class="w-full sm:w-1/6 px-4 mb-8">
             <h3 class="text-lg font-semibold mb-4">Servicio al cliente</h3>
@@ -210,17 +175,16 @@
             </div>
             <!-- Menu 3 -->
             <div class="w-full sm:w-1/6 px-4 mb-8">
-            <h3 class="text-lg font-semibold mb-4">Account</h3>
+            <h3 class="text-lg font-semibold mb-4">Cuenta</h3>
             <ul>
-                <li><a href="#" class="hover:text-primary">Cart</a></li>
-                <li><a href="#" class="hover:text-primary">Registration</a></li>
-                <li><a href="#" class="hover:text-primary">Login</a></li>
+                <li><a href="{{route('registro')}}" class="hover:text-primary">Registro</a></li>
+                <li><a href="{{route('login')}}" class="hover:text-primary">Login</a></li>
             </ul>
             </div>
             <!-- Social Media -->
             
             <!-- Contact Information -->
-            <div class="w-full sm:w-2/6 px-4 mb-8">
+            <div class="w-full sm:w-2/6 px-4 mb-8 text-left">
             <h3 class="text-lg font-semibold mb-4">contactanos</h3>
             <p><img src="/imagen/l13.jpeg" alt="Logo" class="h-[60px] mb-4"></p>
             <p>123 Street Name, Paris, France</p>

@@ -6,36 +6,23 @@
                 <!-- Slide 1 -->
                 <div class="swiper-slide">
                     <img src="/imagen/logo.jpeg" alt="Product 1">
-                    <div class="swiper-slide-content">
-                      <h2 class="text-3xl md:text-7xl font-bold text-white mb-2 md:mb-4">Women</h2>
-                      <p class="mb-4 text-white md:text-2xl">Experience the best in sportswear with <br>our latest collection.</p>
-                        <a href="/"
-                            class="bg-primary hover:bg-transparent text-white hover:text-white border border-transparent hover:border-white font-semibold px-4 py-2 rounded-full inline-block">Shop
-                            now</a>
-                    </div>
                 </div>
 
 
                 <section id="brands" class="bg-white py-16 px-4">
         <div class="container mx-auto max-w-screen-xl px-4 testimonials">
           <div class="text-center mb-12 lg:mb-20">
-          <h2 class="text-2xl font-bold mb-8">Nuestro productos</h2>
+          <h2 class="text-5xl font-bold mb-4"><span class="text-primary">Nuestros Producto</span></h2>
+          <p class="my-7">¡Descubre nuestros increíbles productos! Sumérgete en una experiencia única y encuentra todo lo que necesitas en un solo lugar.</p>
+
         </div>
 
 
  <!-- Traer los productos de la base de datos -->
 <div class="flex flex-wrap -mx-4">
     @foreach ($producto as $productos)
-    @if($productos->en_oferta = 0)
-    <a href="#" class="text-lg font-semibold mb-2">{{$productos->nombre}}</a>
-                <div class="flex items-center mb-4">
-                    <span class="text-sm line-through ml-2">{{$productos->precio}}</span>
-                </div>
-                <button class="bg-primary border border-transparent hover:bg-transparent hover:border-primary text-white hover:text-primary font-semibold py-2 px-4 rounded-full w-full">agregar al carrito</button>
-            </div>
-        </div>
-        @else
-        <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 px-4 mb-8">
+    @if($productos->en_oferta > 0)
+    <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 px-4 mb-8">
             <div class="bg-white p-3 rounded-lg shadow-lg">
             @if(isset($productos->imagenes) && count($productos->imagenes) > 0)
     <img src="{{ url('storage/' . $productos->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg" alt="Producto 1">
@@ -43,6 +30,14 @@
   <a href="#" class="text-lg font-semibold mb-2">{{$productos->nombre}}</a>
                 <div class="flex items-center mb-4">
                     <span class="text-lg font-bold text-primary">{{$productos->precio - $productos->en_oferta}}</span>
+                    <span class="text-sm line-through ml-2">{{$productos->precio}}</span>
+                </div>
+                <button class="bg-primary border border-transparent hover:bg-transparent hover:border-primary text-white hover:text-primary font-semibold py-2 px-4 rounded-full w-full">agregar al carrito</button>
+            </div>
+        </div>
+        @else
+        <a href="#" class="text-lg font-semibold mb-2">{{$productos->nombre}}</a>
+                <div class="flex items-center mb-4">
                     <span class="text-sm line-through ml-2">{{$productos->precio}}</span>
                 </div>
                 <button class="bg-primary border border-transparent hover:bg-transparent hover:border-primary text-white hover:text-primary font-semibold py-2 px-4 rounded-full w-full">agregar al carrito</button>
@@ -71,7 +66,6 @@
     <img src="{{ url('storage/' . $categorias->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg" alt="{{$categorias->imagenes[0]}}">
   @endif    
   <a href="#" class="text-lg font-semibold mb-2">{{$categorias->nombre}}</a>
-                <button class="bg-primary border border-transparent hover:bg-transparent hover:border-primary text-white hover:text-primary font-semibold py-2 px-4 rounded-full w-full">agregar al carrito</button>
             </div>
             
 
@@ -98,11 +92,10 @@
             <img src="{{ isset($marcas->imagenes) && count($marcas->imagenes) > 0 ? url('storage/' . $marcas->imagenes[0]) : '' }}" class="w-full object-cover mb-4 rounded-lg" alt="Producto 1">
 
                 <a href="#" class="text-lg font-semibold mb-2">{{$marcas -> nombre}}</a>
-                <button class="bg-primary border border-transparent hover:bg-transparent hover:border-primary text-white hover:text-primary font-semibold py-2 px-4 rounded-full w-full">agregar al carrito</button>
             </div>
         </div>
         @empty
-        <p>No se encontraron categorías.</p>
+        <p>No se encontraron las marcas.</p>
     @endforelse
 
    
@@ -121,7 +114,7 @@
               </div>
               <div class="flex flex-col p-6 bg-white rounded-xl shadow-lg">
                   <h1 class="mb-4 text-2xl font-semibold leading-none tracking-tighter text-gray-dark lg:text-3xl">Metodo de pago</h1>
-                  <p class="flex-grow text-base font-medium leading-relaxed text-gray-txt">Pago con tarjeta de crédito o débito</p>
+                  <p class="flex-grow text-base font-medium leading-relaxed text-gray-txt">Aceptamos pagos únicamente con tarjeta de crédito o débito! Puedes realizar tus compras de manera segura y conveniente utilizando cualquiera de estas dos opciones de pago.</p>
                   <img class="object-cover object-center w-full mb-8 rounded-xl" src="imagen/tarjeta.png" alt="blog">
               </div>
               <div class="flex flex-col p-6 bg-white rounded-xl shadow-lg">
