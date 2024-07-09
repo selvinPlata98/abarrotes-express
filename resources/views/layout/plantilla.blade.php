@@ -95,7 +95,7 @@
                   </div>
               </div>
               <a id="search-icon" href="javascript:void(0);" class="text-white hover:text-secondary group">
-                  <img src="assets/images/search-icon.svg" alt="Search"
+                  <img src="/imagen/search-icon.svg" alt="Search"
                       class="h-6 w-6 transition-transform transform group-hover:scale-120">
               </a>
               <!-- Search field -->
@@ -189,7 +189,7 @@
         <div class="flex flex-wrap -mx-4">
             <!-- Menu 1 -->
             <div class="w-full sm:w-1/6 px-4 mb-8">
-            <h3 class="text-lg font-semibold mb-4">Shop</h3>
+            <h3 class="text-lg font-semibold mb-4">Categoria</h3>
             <ul>
                 <li><a href="/shop.html" class="hover:text-primary">Shop</a></li>
                 <li><a href="/single-product-page.html" class="hover:text-primary">Women</a></li>
@@ -199,15 +199,7 @@
             </ul>
             </div>
             <!-- Menu 2 -->
-            <div class="w-full sm:w-1/6 px-4 mb-8">
-            <h3 class="text-lg font-semibold mb-4">Pages</h3>
-            <ul>
-                <li><a href="/shop.html" class="hover:text-primary">Shop</a></li>
-                <li><a href="/single-product-page.html" class="hover:text-primary">Product</a></li>
-                <li><a href="/checkout.html" class="hover:text-primary">Checkout</a></li>
-                <li><a href="/404.html" class="hover:text-primary">404</a></li>
-            </ul>
-            </div>
+        
             <!-- Menu 3 -->
             <div class="w-full sm:w-1/6 px-4 mb-8">
             <h3 class="text-lg font-semibold mb-4">Account</h3>
@@ -218,33 +210,14 @@
             </ul>
             </div>
             <!-- Social Media -->
-            <div class="w-full sm:w-1/6 px-4 mb-8">
-            <h3 class="text-lg font-semibold mb-4">Follow Us</h3>
-            <ul>
-                <li class="flex items-center mb-2">
-                <a href="#" class="hover:text-primary">Facebook</a>
-                </li>
-                <li class="flex items-center mb-2">
-                <a href="#" class="hover:text-primary">Twitter</a>
-                </li>
-                <li class="flex items-center mb-2">
-                <a href="#" class="hover:text-primary">Instagram</a>
-                </li>
-                <li class="flex items-center mb-2">
-                <a href="#" class="hover:text-primary">Pinterest</a>
-                </li>
-                <li class="flex items-center mb-2">
-                <a href="#" class="hover:text-primary">YouTube</a>
-                </li>
-            </ul>
-            </div>
+            
             <!-- Contact Information -->
             <div class="w-full sm:w-2/6 px-4 mb-8">
-            <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+            <h3 class="text-lg font-semibold mb-4">contactanos</h3>
             <p><img src="/imagen/l13.jpeg" alt="Logo" class="h-[60px] mb-4"></p>
             <p>123 Street Name, Paris, France</p>
-            <p class="text-xl font-bold my-4">Phone: (123) 456-7890</p>
-            <a href="mailto:info@company.com" class="underline">Email: info@company.com</a>
+            <p class="text-xl font-bold my-4">telefono: (+504) 8909-3117</p>
+            <a href="mailto:info@company.com" class="underline">Email: abarrotes-express@company.com</a>
             </div>
         </div>
         </div>
@@ -260,13 +233,12 @@
                 <li><a href="#" class="hover:text-primary">Términos de servicio</a></li>
                 <li><a href="#" class="hover:text-primary">FAQ</a></li>
             </ul>
-            <p class="text-sm mt-4">Your shop's description goes here. This is a brief introduction to your shop and what you offer.</p>
             </div>
             <!-- Payment Icons -->
             <div class="w-full lg:w-1/4 text-center lg:text-right">
-            <img src="/assets/images/social_icons/paypal.svg" alt="PayPal" class="inline-block h-8 mr-2">
-            <img src="/assets/images/social_icons/stripe.svg" alt="Stripe" class="inline-block h-8 mr-2">
-            <img src="/assets/images/social_icons/visa.svg" alt="Visa" class="inline-block h-8">
+            <img src="/imagen/paypal.svg" alt="PayPal" class="inline-block h-8 mr-2">
+            <img src="/imagen/stripe.svg" alt="Stripe" class="inline-block h-8 mr-2">
+            <img src="/imagen/visa.svg" alt="Visa" class="inline-block h-8">
             </div>
         </div>
         </div>
