@@ -28,9 +28,9 @@
 <header class="bg-gray-dark sticky top-0 z-50">
     <div class="container mx-auto flex justify-between items-center py-4">
         <!-- Left section: Logo -->
-        <a href="index.html" class="flex items-center">
+        <a href="/" class="flex items-center">
             <div>
-                <img src="/imagen/logo.jpeg" alt="Logo" class="h-18 w-14 mr-7">
+                <img src="/imagen/logo.jpeg" alt="Logo" width="50px" height="50px" class="rounded-2xl">
             </div>
         </a>
 
@@ -48,13 +48,15 @@
         <nav class="hidden lg:flex md:flex-grow justify-center">
             <ul class="flex justify-center space-x-4 text-white">
                 <li><a href="{{ url('/categoria') }}" class="hover:text-secondary font-semibold">Categorias</a></li>
+                <li><a href="{{ url('/categoria') }}" class="hover:text-secondary font-semibold">Marcas</a></li>
+                <li><a href="{{ url('/categoria') }}" class="hover:text-secondary font-semibold">Productos</a></li>
             </ul>
         </nav>
 
         <!-- Right section: Buttons (for desktop) -->
         <div class="hidden lg:flex items-center space-x-4 relative">
-            <a href="{{ url('/registro') }}" class="bg-primary border border-primary hover:bg-transparent text-white hover:text-primary font-semibold px-4 py-2 rounded-full inline-block">Registro</a>
-            <a href="{{ url('/login') }}" class="bg-primary border border-primary hover:bg-transparent text-white hover:text-primary font-semibold px-4 py-2 rounded-full inline-block">Login</a>
+            <a href="{{ url('/registro') }}" class="bg-primary border border-primary hover:bg-transparent text-white hover:text-primary font-semibold px-4 py-2 rounded-full inline-block">Registrate</a>
+            <a href="{{ url('/login') }}" class="bg-primary border border-primary hover:bg-transparent text-white hover:text-primary font-semibold px-4 py-2 rounded-full inline-block">Iniciar Sesión</a>
             <div class="relative group cart-wrapper">
                 <a href="/cart.html" >
                     <img src="assets/images/cart-shopping.svg" alt="Cart" class="h-6 w-6 group-hover:scale-120">

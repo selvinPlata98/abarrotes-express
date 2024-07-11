@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre')->unique();
             $table->string('enlace')->unique();
-            $table->string('imagen')->nullable();
+            $table->longText('imagen')->nullable();
             $table->boolean('disponible')->default(false);
             $table->timestamps();
         });

@@ -18,4 +18,5 @@ class MostrarCategoria extends Component
     {
         return view('livewire.mostrar-categoria');
     }
+
 }

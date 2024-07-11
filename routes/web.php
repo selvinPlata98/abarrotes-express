@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('livewire.inicio');
 });
 
 
@@ -31,4 +31,8 @@ Route::get('/categoria', function (){
 
 Route::get('/registro', function () {
     return view('registro');
-});
+})->name('registro');
+
+Route::get('/inicio', function () {
+    return view('inicio');
+})->name('inicio');
