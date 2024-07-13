@@ -47,59 +47,34 @@
         <!-- Center section: Menu -->
         <nav class="hidden lg:flex md:flex-grow justify-center">
             <ul class="flex justify-center space-x-4 text-white">
-                <li><a href="{{ url('/categoria') }}" class="hover:text-secondary font-semibold">Categorias</a></li>
-                <li><a href="{{ url('/categoria') }}" class="hover:text-secondary font-semibold">Marcas</a></li>
-                <li><a href="{{ url('/categoria') }}" class="hover:text-secondary font-semibold">Productos</a></li>
+                <li><a href="{{ url('/categoria') }}" class="hover:text-cyan-500 font-semibold">Categorias</a></li>
+                <li><a href="{{ url('/categoria') }}" class="hover:text-cyan-500 font-semibold">Marcas</a></li>
+                <li><a href="{{ url('/categoria') }}" class="hover:text-cyan-500 font-semibold">Productos</a></li>
+                <li><a href="{{ url('/categoria') }}" class="hover:text-cyan-500 font-semibold">Promociones</a></li>
+                <li><a href="{{ url('/categoria') }}" class="hover:text-cyan-500 font-semibold">Descuentos</a></li>
+                <li><a href="{{ url('/categoria') }}" class="hover:text-cyan-500 font-semibold">Cupones</a></li>
             </ul>
         </nav>
 
+
         <!-- Right section: Buttons (for desktop) -->
         <div class="hidden lg:flex items-center space-x-4 relative">
-            <a href="{{ url('/registro') }}" class="bg-primary border border-primary hover:bg-transparent text-white hover:text-primary font-semibold px-4 py-2 rounded-full inline-block">Registrate</a>
-            <a href="{{ url('/login') }}" class="bg-primary border border-primary hover:bg-transparent text-white hover:text-primary font-semibold px-4 py-2 rounded-full inline-block">Iniciar Sesión</a>
-            <div class="relative group cart-wrapper">
-                <a href="/cart.html" >
-                    <img src="assets/images/cart-shopping.svg" alt="Cart" class="h-6 w-6 group-hover:scale-120">
-                </a>
-                <!-- Cart dropdown -->
-                <div class="absolute right-0 mt-1 w-80 bg-white shadow-lg p-4 rounded hidden group-hover:block">
-                    <div class="space-y-4">
-                        <!-- product item -->
-                        <div class="flex items-center justify-between pb-4 border-b border-gray-line">
-                            <div class="flex items-center">
-                                <img src="/assets/images/single-product/1.jpg" alt="Product" class="h-12 w-12 object-cover rounded mr-2">
-                                <div>
-                                    <p class="font-semibold">Summer black dress</p>
-                                    <p class="text-sm">Quantity: 1</p>
-                                </div>
-                            </div>
-                            <p class="font-semibold">$25.00</p>
-                        </div>
-                        <!-- product item -->
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center">
-                                <img src="/assets/images/single-product/2.jpg" alt="Product" class="h-12 w-12 object-cover rounded mr-2">
-                                <div>
-                                    <p class="font-semibold">Black suit</p>
-                                    <p class="text-sm">Quantity: 1</p>
-                                </div>
-                            </div>
-                            <p class="font-semibold">$125.00</p>
-                        </div>
-                    </div>
-                    <a href="/cart.html" class="block text-center mt-4 border border-primary bg-primary hover:bg-transparent text-white hover:text-primary py-2 rounded-full font-semibold">Go to Cart</a>
-                </div>
-            </div>
-            <a id="search-icon" href="javascript:void(0);" class="text-white hover:text-secondary group">
-                <img src="assets/images/search-icon.svg" alt="Search"
-                     class="h-6 w-6 transition-transform transform group-hover:scale-120">
+            <a href="{{ url('/registro') }}" class="bg-primary border border-primary text-white font-semibold px-4 py-2 rounded-full inline-block"
+               style="background-color: #008b8b; border-color: #008b8b; color: white; transition: background-color 0.3s ease, color 0.3s ease;"
+               onmouseover="this.style.backgroundColor='#005f5f'; this.style.color='#ffffff';"
+               onmouseout="this.style.backgroundColor='#008b8b'; this.style.color='#ffffff';">
+                Regístrate
             </a>
-            <!-- Search field -->
-            <div id="search-field"
-                 class="hidden absolute top-full right-0 mt-2 w-full bg-white shadow-lg p-2 rounded">
-                <input type="text" class="w-full p-2 border border-gray-300 rounded"
-                       placeholder="Search for products...">
-            </div>
+
+            <a href="{{ url('/login') }}" class="bg-primary border border-primary text-white font-semibold px-4 py-2 rounded-full inline-block"
+               style="background-color: #008b8b; border-color: #008b8b; color: white; transition: background-color 0.3s ease, color 0.3s ease;"
+               onmouseover="this.style.backgroundColor='#005f5f'; this.style.color='#ffffff';"
+               onmouseout="this.style.backgroundColor='#008b8b'; this.style.color='#ffffff';">
+                Iniciar Sesión
+            </a>
+
+
+
         </div>
     </div>
 </header>
@@ -190,61 +165,70 @@
             <div class="w-full sm:w-1/6 px-4 mb-8">
                 <h3 class="text-lg font-semibold mb-4">Shop</h3>
                 <ul>
-                    <li><a href="/shop.html" class="hover:text-primary">Shop</a></li>
-                    <li><a href="/single-product-page.html" class="hover:text-primary">Women</a></li>
-                    <li><a href="/shop.html" class="hover:text-primary">Men</a></li>
-                    <li><a href="/single-product-page.html" class="hover:text-primary">Shoes</a></li>
-                    <li><a href="/single-product-page.html" class="hover:text-primary">Accessories</a></li>
+                    <li><a href="/shop.html" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Shop</a></li>
+                    <li><a href="/single-product-page.html" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Women</a></li>
+                    <li><a href="/shop.html" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Men</a></li>
+                    <li><a href="/single-product-page.html" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Shoes</a></li>
+                    <li><a href="/single-product-page.html" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Accessories</a></li>
                 </ul>
             </div>
             <!-- Menu 2 -->
             <div class="w-full sm:w-1/6 px-4 mb-8">
-                <h3 class="text-lg font-semibold mb-4">Pages</h3>
+                <h3 class="text-lg font-semibold mb-4">Paginas</h3>
                 <ul>
-                    <li><a href="/shop.html" class="hover:text-primary">Shop</a></li>
-                    <li><a href="/single-product-page.html" class="hover:text-primary">Product</a></li>
-                    <li><a href="/checkout.html" class="hover:text-primary">Checkout</a></li>
-                    <li><a href="/404.html" class="hover:text-primary">404</a></li>
+                    <li><a href="/shop.html" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Categorias</a></li>
+                    <li><a href="/single-product-page.html" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Marcas</a></li>
+                    <li><a href="/checkout.html" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Productos</a></li>
+                    <li><a href="/404.html" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Promociones</a></li>
+                    <li><a href="/404.html" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Descuentos</a></li>
+                    <li><a href="/404.html" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Cupones</a></li>
                 </ul>
             </div>
             <!-- Menu 3 -->
             <div class="w-full sm:w-1/6 px-4 mb-8">
-                <h3 class="text-lg font-semibold mb-4">Account</h3>
+                <h3 class="text-lg font-semibold mb-4">Cuenta</h3>
                 <ul>
-                    <li><a href="/cart.html" class="hover:text-primary">Cart</a></li>
-                    <li><a href="/register.html" class="hover:text-primary">Registration</a></li>
-                    <li><a href="/register.html" class="hover:text-primary">Login</a></li>
+                    <li><a href="/cart.html" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Carrito</a></li>
+                    <li><a href="/register.html" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Registrarse</a></li>
+                    <li><a href="/register.html" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Iniciar Sesión</a></li>
                 </ul>
             </div>
             <!-- Social Media -->
             <div class="w-full sm:w-1/6 px-4 mb-8">
-                <h3 class="text-lg font-semibold mb-4">Follow Us</h3>
+                <h3 class="text-lg font-semibold mb-4">Siguenos</h3>
                 <ul>
                     <li class="flex items-center mb-2">
-                        <a href="#" class="hover:text-primary">Facebook</a>
+                        <i class="fab fa-facebook mr-2"></i><a href="#" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Facebook</a>
                     </li>
                     <li class="flex items-center mb-2">
-                        <a href="#" class="hover:text-primary">Twitter</a>
+                        <i class="fab fa-twitter mr-2"></i><a href="#" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Twitter</a>
                     </li>
                     <li class="flex items-center mb-2">
-                        <a href="#" class="hover:text-primary">Instagram</a>
+                        <i class="fab fa-instagram mr-2"></i><a href="#" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Instagram</a>
                     </li>
                     <li class="flex items-center mb-2">
-                        <a href="#" class="hover:text-primary">Pinterest</a>
+                        <i class="fab fa-pinterest mr-2"></i><a href="#" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Pinterest</a>
                     </li>
                     <li class="flex items-center mb-2">
-                        <a href="#" class="hover:text-primary">YouTube</a>
+                        <i class="fab fa-youtube mr-2"></i><a href="#" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">YouTube</a>
                     </li>
                 </ul>
             </div>
+
+
+
+
             <!-- Contact Information -->
             <div class="w-full sm:w-2/6 px-4 mb-8">
-                <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
-                <p><img src="assets/images/template-logo.png" alt="Logo" class="h-[60px] mb-4"></p>
-                <p>123 Street Name, Paris, France</p>
-                <p class="text-xl font-bold my-4">Phone: (123) 456-7890</p>
-                <a href="mailto:info@company.com" class="underline">Email: info@company.com</a>
+                <h3 class="text-lg font-semibold mb-4">Contactanos</h3>
+                <div class="flex items-center mb-4">
+                    <img src="/imagen/logo.jpeg" alt="Logo" width="80px" height="80px" class="rounded-2xl">
+                    <p class="ml-4">Barrio El Carmelo, Frente al Marchante N°2, Danlí El Paraíso</p>
+                </div>
+                <p class="text-xl font-bold my-4">Telefono: +504 9326-5241</p>
+                <a href="mailto:info@company.com" class="underline">Email: Abarrotes.Express@gmail.com</a>
             </div>
+
         </div>
     </div>
 
@@ -253,20 +237,15 @@
         <div class="container mx-auto px-4 flex flex-wrap justify-between items-center">
             <!-- Copyright and Links -->
             <div class="w-full lg:w-3/4 text-center lg:text-left mb-4 lg:mb-0">
-                <p class="mb-2 font-bold">&copy; 2024 Your Company. All rights reserved.</p>
+                <p class="mb-2 font-bold">&copy; 2024 Abarrotes Express. Todos los derechos reservados.</p>
                 <ul class="flex justify-center lg:justify-start space-x-4 mb-4 lg:mb-0">
-                    <li><a href="#" class="hover:text-primary">Privacy Policy</a></li>
-                    <li><a href="#" class="hover:text-primary">Terms of Service</a></li>
-                    <li><a href="#" class="hover:text-primary">FAQ</a></li>
+                    <li><a href="#" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Politicas de Privacidad</a></li>
+                    <li><a href="#" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Terminos del Servicio</a></li>
+                    <li><a href="#" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">FAQ</a></li>
                 </ul>
-                <p class="text-sm mt-4">Your shop's description goes here. This is a brief introduction to your shop and what you offer.</p>
+                <p class="text-sm mt-4">Tu tienda de abarrotes en línea, ofreciendo una amplia variedad de productos de calidad para tu conveniencia.</p>
             </div>
-            <!-- Payment Icons -->
-            <div class="w-full lg:w-1/4 text-center lg:text-right">
-                <img src="/assets/images/social_icons/paypal.svg" alt="PayPal" class="inline-block h-8 mr-2">
-                <img src="/assets/images/social_icons/stripe.svg" alt="Stripe" class="inline-block h-8 mr-2">
-                <img src="/assets/images/social_icons/visa.svg" alt="Visa" class="inline-block h-8">
-            </div>
+
         </div>
     </div>
 </footer>
