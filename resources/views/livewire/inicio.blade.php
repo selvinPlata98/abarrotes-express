@@ -17,11 +17,10 @@
 
         </div>
 
-
  <!-- Traer los productos de la base de datos -->
  <div class="flex flex-wrap -mx-4">
-    @foreach ($producto as $productos)
-    @if($productos->en_oferta > 0)
+    @forelse ($producto as $productos)
+        @if($productos->en_oferta > 0)
     <div class="w-1/4 px-4 mb-8">
         <div class="bg-white p-3 rounded-lg shadow-lg">
             @if(isset($productos->imagenes) && count($productos->imagenes) > 0)
@@ -32,22 +31,26 @@
                 <span class="text-lg font-bold text-primary">{{$productos->precio - $productos->en_oferta}}</span>
                 <span class="text-sm line-through ml-2">{{$productos->precio}}</span>
             </div>
-            <button class="bg-primary border border-transparent hover:bg-transparent hover:border-primary text-white hover:text-primary font-semibold py-2 px-4 rounded-full w-full">agregar al carrito</button>
+            <button class="bg-primary text-white border border-primary hover:bg-transparent hover:text-primary py-2 px-3 rounded-full w-full" style="background-color: #008b8b; border-color: #008b8b; transition: background-color 0.3s ease; color: white;" onmouseover="this.style.backgroundColor='#005f5f'; this.style.color='#ffffff';" onmouseout="this.style.backgroundColor='#008b8b'; this.style.color='#ffffff';">agregar al carrito</button>
         </div>
     </div>
     @else
-    <a href="#" class="text-lg font-semibold mb-2">{{$productos->nombre}}</a>
-    <div class="flex items-center mb-4">
-        <span class="text-sm line-through ml-2">{{$productos->precio}}</span>
-    </div>
-    <button class="bg-primary border border-transparent hover:bg-transparent hover:border-primary text-white hover:text-primary font-semibold py-2 px-4 rounded-full w-full">agregar al carrito</button>
-    </div>
+    <div class="bg-white p-3 rounded-lg shadow-lg">
+            @if(isset($productos->imagenes) && count($productos->imagenes) > 0)
+                <img src="{{ url('storage/' . $productos->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg" alt="{{$productos->imagenes[0]}}">
+            @endif              
+            <a href="#" class="text-lg font-semibold mb-2">{{$productos->nombre}}</a>
+            <div class="flex items-center mb-4">
+                <span class="text-lg font-bold text-primary">{{$productos->precio }}</span>
+            </div>
+            <button class="bg-primary border border-transparent hover:bg-transparent hover:border-primary text-white hover:text-primary font-semibold py-2 px-4 rounded-full w-full">agregar al carrito</button>
+        </div>
     </div>
     @endif 
     @endforeach
 
 
-    
+
 
 
 </div>
@@ -58,8 +61,8 @@
             <h2 class="text-5xl font-bold mb-4">Descubra <span class="text-primary">Nuestras Categorias</span></h2>
             <p class="my-7">Descubre las principales categorías que ofrecemos en nuestra tienda y explora todo lo que tenemos para ti.</p>
         </div>
-    
-    
+
+
  <!-- Traer los categoria de la base de datos -->
  <div class="flex flex-wrap -mx-4">
     @forelse ($categoria as $categorias)
@@ -70,7 +73,7 @@
             <img src="{{ url('storage/' . $categorias->imagen) }}" class="w-full object-cover mb-4 rounded-lg" alt="{{$categorias->imagen}}">
   <a href="#" class="text-lg font-semibold mb-2">{{$categorias->nombre}}</a>
             </div>
-            
+
 
         </div>
     @empty
@@ -101,7 +104,7 @@
         <p>No se encontraron las marcas.</p>
     @endforelse
 
-   
+
     </section>
 
 
@@ -113,7 +116,7 @@
               <h1 class="mb-4 text-2xl font-semibold leading-none tracking-tighter text-gray-dark lg:text-3xl">Compra 100% segura.</h1>
                   <p class="flex-grow text-base font-medium leading-relaxed text-gray-txt">Compra con confianza en abarrotes-express, tu tienda en línea donde garantizamos una experiencia satifatoria</p>
                   <img class="object-cover object-center w-full mb-8 rounded-xl" src="/imagen/segurida.png" alt="blog">
-                  
+
               </div>
               <div class="flex flex-col p-6 bg-white rounded-xl shadow-lg">
                   <h1 class="mb-4 text-2xl font-semibold leading-none tracking-tighter text-gray-dark lg:text-3xl">Metodo de pago</h1>

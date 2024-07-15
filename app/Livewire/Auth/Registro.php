@@ -59,10 +59,10 @@ class Registro extends Component
         $user->save();
 
         $this->reset();
-    
+
         // Mostrar un mensaje de éxito
         session()->flash('mensaje', '¡Registro exitoso!');
 
-        return redirect()->to('/');
+        return redirect()->to('/inicio');
     }
 }

@@ -31,7 +31,7 @@ class EditCategoria extends EditRecord
 
                 TextInput::make('nombre')
                     ->required()
-                    ->label('Nombre De la Categoria')
+                    ->label('Nombre De la MostrarCategoria')
                     ->maxLength(80)
                     ->regex('/^[A-Za-z ]+$/')
                     ->validationMessages([
