@@ -50,7 +50,7 @@ class UsuariosResource extends Resource
                     ->validationMessages([
                         'maxLenght' => 'El nombre no debe contener más de 100 carácteres.',
                        'required' => 'Debe introducir un nombre de usuario.',
-                        'regex' => 'El nombre solo debe contener letras y espacios.'
+                        'regex' => 'El nombre solo debe contener letras y espacios.',
                     ]),
 
                 TextInput::make('email')

@@ -18,10 +18,9 @@ Route::get('/', function () {
 return view('welcome');
 });
 
-Route::get('/login', function (){
-    return view('login');
-});
+Route::get('/login', \App\Livewire\Auth\LoginPage::class)->name('login');
 
-Route::get('/categoria', function (){
-    return view('mostrar-categoria');
-});
+
+
+
+
