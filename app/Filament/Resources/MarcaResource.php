@@ -26,8 +26,9 @@ class MarcaResource extends Resource
     protected static ?string $navigationGroup = 'Productos';
     protected static ?string $navigationIcon = 'heroicon-o-cube';
     protected static ?string $activeNavigationIcon = 'heroicon-s-cube';
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 3;
 
+    
     public static function form(Form $form): Form
     {
         return $form
@@ -50,20 +51,18 @@ class MarcaResource extends Resource
                     ->unique(Marca::class, ignoreRecord: true)
                     ->maxLength(255),
 
-                Forms\Components\TextInput::make('enlace')
-                    ->required()
-                    ->label('Enlace')
-                    ->disabled()
-                    ->dehydrated()
-                    ->maxLength(255)
-                    ->validationMessages([
-                        'unique' => 'Este enlace ya existe'
-                    ]),
+                    Forms\Components\TextInput::make('enlace')
+                            ->required()
+                            ->label('Enlace')
+                            ->disabled()
+                            ->dehydrated()
+                            ->unique(Marca::class, ignoreRecord: true),
 
                 Forms\Components\FileUpload::make('imagen')
                     ->required()
                     ->label('Imagen')
                     ->image()
+                    ->visibility('public')
                     ->directory('marcas')
                     ->validationMessages([
                         'maxFiles' => 'Se permite un máximo de 1 imágenes.',
@@ -100,5 +99,10 @@ class MarcaResource extends Resource
             'edit' => EditMarca::route('/{record}/edit'),
             'view' => ViewMarca::route('/{record}/view')
         ];
+    }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['nombre', 'enlace'];
     }
 }

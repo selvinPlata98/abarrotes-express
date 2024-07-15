@@ -3,6 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,14 +14,27 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', function () {
-return view('welcome');
+    return view('welcome');
+    }); 
+    
+Route::get('/inicio', function () {
+    return view('inicio');
+})->name('inicio');
+
+
+Route::get('/login', function (){
+    return view('login');
+})->name('login');
+
+Route::get('/categoria', function (){
+    return view('mostrar-categoria');
 });
 
-Route::get('/login', \App\Livewire\Auth\LoginPage::class)->name('login');
 
 
-
+Route::get('/registro', function () {
+    return view('registro');
+})->name('registro');
 
 

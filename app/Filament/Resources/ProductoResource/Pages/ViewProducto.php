@@ -34,12 +34,13 @@ class ViewProducto extends ViewRecord
                             ->required()
                             ->label('Nombre del Producto')
                             ->maxLength(80)
-                            ->regex('/^[A-Za-z ]+$/')
+                            ->regex('/^[A-Za-zÀ-ÿ\s]+$/')
                             ->validationMessages([
-                                'maxLength' => 'El nombre debe  contener un maximo de 80 carácteres.',
+                                'maxLength' => 'El nombre debe contener un máximo de 80 caracteres.',
                                 'required' => 'Debe introducir un nombre del producto',
                                 'regex' => 'El nombre solo debe contener letras y espacios.'
                             ])
+                            ->unique(Producto::class, ignoreRecord: true,)
                             ->afterStateUpdated(fn(string $operation, $state, Set $set) => $operation
                             === 'create' ? $set('enlace', Str::slug($state)) : null)
                             ->reactive()
@@ -55,7 +56,6 @@ class ViewProducto extends ViewRecord
 
                         Forms\Components\FileUpload::make('imagenes')
                             ->required()
-                            ->placeholder('')
                             ->label('Imágenes')
                             ->multiple(true)
                             ->image()
@@ -63,25 +63,27 @@ class ViewProducto extends ViewRecord
                             ->visibility('public')
                             ->validationMessages([
                                 'maxFiles' => 'Se permite un máximo de 5 imágenes.',
-                                'required' => 'Debe subir al menos una imagen.',
+                                'required' => 'Debe seleccionar al menos una imagen.',
                                 'image' => 'El archivo debe ser una imagen válida.',
                             ])
                             ->maxFiles(5)
                             ->columnSpan(2)
                             ->preserveFilenames()
-                            ->reorderable(),
+                            ->reorderable()
+                            ->openable(),
 
-                        Forms\Components\MarkdownEditor::make('descripcion')
+                        Forms\Components\TextInput::make('descripcion')
                             ->required()
-                            ->fileAttachmentsDirectory('/productos/descripciones')
-                            ->fileAttachmentsDisk('local')
                             ->label('Descripción')
-                            ->maxlength(300)
+                            ->maxLength(800)
+                            ->regex('/^[A-Za-zÀ-ÿ0-9.,!?()"\s-]+$/')
                             ->validationMessages([
                                 'required' => 'La descripción es obligatoria.',
-                                'maxlength' => 'La descripción no puede exceder los 300 caracteres.'
+                                'maxlength' => 'La descripción no puede exceder los 800 caracteres.',
+                                'regex' => 'La descripción solo puede contener letras, números y caracteres de puntuación comunes.'
                             ])
                             ->columnSpan(2),
+
 
                         Forms\Components\TextInput::make('precio')
                             ->required()
@@ -89,8 +91,6 @@ class ViewProducto extends ViewRecord
                             ->regex('/^(\d{1,8})(\.\d{1,2})?$/')
                             ->label('Precio')
                             ->minValue(0)
-                            ->step('10')
-                            ->default(0)
                             ->validationMessages([
                                 'required' => 'El precio es obligatorio.',
                                 'numeric' => 'El precio debe ser un valor numérico.',
@@ -102,7 +102,6 @@ class ViewProducto extends ViewRecord
                             ->numeric()
                             ->label('Cantidad Disponible')
                             ->step('1')
-                            ->default(0)
                             ->minValue(0),
 
                     ])->columns(2)
@@ -113,9 +112,11 @@ class ViewProducto extends ViewRecord
                             ->label('Disponible')
                             ->default(false),
 
+
                         Forms\Components\Toggle::make('en_oferta')
                             ->label('En Oferta')
-                            ->default(false),
+                            ->default(false)
+                            ->live(),
 
                         Forms\Components\TextInput::make('porcentaje_oferta')
                             ->required()
@@ -123,16 +124,15 @@ class ViewProducto extends ViewRecord
                             ->label('Porcentaje de Oferta')
                             ->nullable()
                             ->step('0.01')
-                            ->default(0)
                             ->maxValue(1)
                             ->minValue(0)
-                            ->regex('/^\d{1,3}(\.\d{1,2})?$/')
+                            ->regex('/^(0\.00|1\.00|0\.[0-9]{1,2}|1\.0{1,2})$/')
                             ->validationMessages([
                                 'required' => 'El porcentaje de oferta debe ser un valor numérico.',
-                                'regex' => 'El porcentaje de oferta debe tener hasta 3 dígitos enteros y hasta 2 decimales.'
+                                'regex' => 'El porcentaje de oferta debe tener hasta 1 dígito enteros y hasta 2 decimales.'
                             ])
-                            ->columns(2)
-                            ->visible(fn(\Filament\Forms\Get $get):bool => $get('en_oferta')),
+                            ->visible(fn(\Filament\Forms\Get $get):bool => $get('en_oferta'))
+                            ->columns(2),
 
 
 
@@ -162,6 +162,7 @@ class ViewProducto extends ViewRecord
     {
         return [
             Actions\EditAction::make(),
+            Actions\DeleteAction::make(),
         ];
     }
 }
