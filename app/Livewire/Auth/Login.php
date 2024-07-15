@@ -33,7 +33,7 @@ class Login extends Component
                 'email.exists' => 'Correo electrónico no encontrado.',
                 'password.required' => 'El campo contraseña es obligatorio.',
                 'password.max' => 'La contraseña no puede tener más de 300 caracteres.',
-                'password.min' => 'La contraseña no puede tener menos de 4 caracteres.',
+                'password.min' => 'La contraseña no puede tener menos de 4 o 6 caracteres.',
             ]
         );
 

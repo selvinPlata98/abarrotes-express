@@ -5,7 +5,7 @@
             <div class="swiper-wrapper">
                 <!-- Slide 1 -->
                 <div class="swiper-slide">
-                    <img src="/imagen/logo.jpeg" alt="Product 1">
+                    <img src="/imagen/logo.jpeg" alt="logo">
                 </div>
 
 
