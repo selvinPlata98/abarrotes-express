@@ -15,10 +15,10 @@ class Inicio extends Component
     public $marca;
 
     public function render()
-    {
-        $this->marca = Marca::all();
-        $this->categoria = Categoria::all();
-        $this->producto = Producto::all();
-        return view('livewire.inicio');
+{
+    $this->marca = Marca::all();
+    $this->categoria = Categoria::inRandomOrder()->limit(4)->get();
+    $this->producto = Producto::inRandomOrder()->limit(4)->get();
+    return view('livewire.inicio');
     }
 }

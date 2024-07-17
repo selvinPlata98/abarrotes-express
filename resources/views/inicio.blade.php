@@ -1,5 +1,5 @@
-@extends('layout.plantilla')
-@section('titulo','inicio')
+@extends('components.layouts.app')
+@section('titulo','categorias')
 @section('contenido')
-     <livewire:inicio>   
+    <livewire:inicio>
 @endsection

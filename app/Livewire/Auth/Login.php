@@ -42,7 +42,7 @@ class Login extends Component
             return;
         }
 
-        return Redirect::to('/');
+        return Redirect::to('/inicio');
     }
 
 

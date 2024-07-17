@@ -96,7 +96,7 @@ class ProductoResource extends Resource
                             ])
                             ->columnSpan(2),
 
-                        Forms\Components\TextInput::make('precio')
+                        Forms\Components\TextInput::make('precio')->prefix('L.')
                             ->required()
                             ->inputMode('decimal')
                             ->numeric()
@@ -134,7 +134,7 @@ class ProductoResource extends Resource
                         Group::make([
 
                         ]),
-                        Forms\Components\TextInput::make('porcentaje_oferta')
+                        Forms\Components\TextInput::make('porcentaje_oferta')->prefix('%')
                             ->required()
                             ->numeric()
                             ->inputMode('decimal')

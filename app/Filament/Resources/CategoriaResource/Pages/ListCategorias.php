@@ -31,7 +31,6 @@ class ListCategorias extends ListRecords
             ->columns([
                 TextColumn::make('nombre')->label('Nombre'),
                 TextColumn::make('enlace')->label('Enlace'),
-                ImageColumn::make('imagen')->label('Imagen'),
                 BooleanColumn::make('disponible')->label('Disponible'),
             ])
             ->paginated([10, 25, 50, 100,])

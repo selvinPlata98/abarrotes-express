@@ -18,7 +18,6 @@ class ListMarcas extends ListRecords
             ->columns([
                 Tables\Columns\TextColumn::make('nombre')->label('Nombre'),
                 Tables\Columns\TextColumn::make('enlace')->label('Enlace'),
-                Tables\Columns\ImageColumn::make('imagen')->label('Imagen'),
                 Tables\Columns\IconColumn::make('disponible')
                     ->label('Disponible')
                 ->boolean()
