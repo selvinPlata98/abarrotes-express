@@ -37,4 +37,6 @@ Route::get('/registro', function () {
     return view('registro');
 })->name('registro');
 
-
+Route::get('/producto-shop', function () {
+    return view('productoShop');
+})->name('producto-shop');

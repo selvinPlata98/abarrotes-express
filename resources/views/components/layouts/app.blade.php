@@ -49,7 +49,7 @@
             <ul class="flex justify-center space-x-4 text-white">
                 <li><a href="{{ url('/categoria') }}" class="hover:text-cyan-500 font-semibold">Categorias</a></li>
                 <li><a href="{{ url('/categoria') }}" class="hover:text-cyan-500 font-semibold">Marcas</a></li>
-                <li><a href="{{ url('/categoria') }}" class="hover:text-cyan-500 font-semibold">Productos</a></li>
+                <li><a href="{{ url('/producto-shop') }}" class="hover:text-cyan-500 font-semibold">Productos</a></li>
                 <li><a href="{{ url('/categoria') }}" class="hover:text-cyan-500 font-semibold">Promociones</a></li>
                 <li><a href="{{ url('/categoria') }}" class="hover:text-cyan-500 font-semibold">Descuentos</a></li>
                 <li><a href="{{ url('/categoria') }}" class="hover:text-cyan-500 font-semibold">Cupones</a></li>

@@ -16,9 +16,8 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
+        "@preline/carousel": "^2.3.0",
         "preline": "^2.3.0",
         "swiper": "^11.0.7"
     }
-
-
 }

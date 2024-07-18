@@ -2710,6 +2710,11 @@ video {
   text-decoration-style: solid;
 }
 
+.tamanoCard{
+  width: 240px;
+  height: 240px;
+}
+
 .decoration-double {
   text-decoration-style: double;
 }

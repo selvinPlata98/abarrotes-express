@@ -1,7 +1,7 @@
 <div>
     
 <div class="w-full sm:w-1/6 px-4 mb-8">
-<h3 class="text-lg font-semibold mb-4">Categoria</h3>
+<h3 class="text-lg font-semibold mb-4">Categorias</h3>
     @forelse ($categoria as $categorias)
             
             <ul>

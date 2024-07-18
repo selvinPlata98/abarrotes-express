@@ -1,5 +1,5 @@
 @extends('components.layouts.app')
-@section('titulo','categorias')
+@section('titulo','inicio')
 @section('contenido')
     <livewire:inicio>
 @endsection
