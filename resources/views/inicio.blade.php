@@ -1,4 +1,4 @@
-@extends('layouts.plantilla')
+@extends('components.layouts.app')
 @section('titulo','inicio')
 @section('contenido')
 

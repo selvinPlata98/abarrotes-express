@@ -68,7 +68,7 @@
             <div class="bg-white p-3 rounded-lg shadow-lg">
 
 
-            <img src="categorias/{{$categorias->imagen}}" class="w-full object-cover mb-4 rounded-lg" alt="{{$categorias->imagen}}">
+            <img src="{{url('storage/' , $categorias->imagen)}}" class="w-full object-cover mb-4 rounded-lg" alt="{{$categorias->imagen}}">
   <a href="#" class="text-lg font-semibold mb-2">{{$categorias->nombre}}</a>
             </div>
 

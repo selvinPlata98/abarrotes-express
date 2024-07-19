@@ -1,17 +1,30 @@
-<div class="mb-8 text-center">
-    <h2 class="text-2xl font-semibold mb-4">Categorías</h2>
-    <div class="flex flex-wrap -mx-4">
+<div class="container mx-auto max-w-screen-xl px-4 testimonials">
+    <div class="text-center mb-12 lg:mb-20">
+        <h2 class="text-5xl font-bold mb-4">Explora <span class="text-primary">Nuestras Categorias</span></h2>
+        <p class="my-7">Sumérgete en nuestra variada colección de categorías y descubre productos seleccionados especialmente para ti. ¡Encuentra lo que necesitas y mucho más!</p>
+    </div>
+
+    <div class="tarjetas-contenedor row">
         @foreach ($categorias as $categoria)
-            <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 px-4 mb-8">
-                <div class="bg-white p-3 rounded-lg shadow-lg text-center">
+            <div class=" tarjeta-contenedor-personalizado">
+                <div class="tarjeta-personalizada">
                     @if (isset($categoria->imagen))
-                        <div class="rounded-full h-24 w-24 mx-auto mb-4 overflow-hidden border-4 border-gray-200">
-                            <img src="{{ url('storage/' . $categoria->imagen) }}" class="h-full w-full object-cover rounded-full" alt="{{ $categoria->nombre }}">
+                        <div class="imagen-contenedor-personalizado">
+                            <img src="{{ url('storage/' , $categoria->imagen) }}" class="imagen-personalizada" alt="{{ $categoria->nombre }}" loading="lazy">
                         </div>
                     @endif
-                    <a href="#" class="text-lg font-semibold mb-2 block">{{ $categoria->nombre }}</a>
+                    <div class="enlace-personalizado">
+                        <a href="#">
+                            <i class="fas fa-eye mr-1"></i>
+                        </a>
+                        <span>{{ $categoria->nombre }}</span>
+                    </div>
                 </div>
             </div>
         @endforeach
+    </div>
+
+    <div class="d-flex justify-content-center paginacion">
+        {{ $categorias->links() }}
     </div>
 </div>
