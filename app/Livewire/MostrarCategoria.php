@@ -7,16 +7,15 @@ use App\Models\Categoria;
 
 class MostrarCategoria extends Component
 {
+    public $perPage = 9;
 
-    public $categorias;
-
-    public function mount()
-    {
-        $this->categorias = Categoria::all();
-    }
     public function render()
     {
-        return view('livewire.mostrar-categoria');
-    }
+        $categorias = Categoria::paginate($this->perPage);
 
+        return view('livewire.mostrar-categoria', [
+            'categorias' => $categorias,
+        ]);
+    }
 }
+

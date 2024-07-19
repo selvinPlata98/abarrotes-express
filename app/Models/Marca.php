@@ -27,5 +27,12 @@ protected $table = 'marcas';
         return $this->hasMany(Producto::class, 'marca_id');
     }
 
+<<<<<<< HEAD
 
+=======
+    public function cupones()
+    {
+        return $this->hasMany(Cupon::class, 'marca_id');
+    }
+>>>>>>> l_ortez
 }

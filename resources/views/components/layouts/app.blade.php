@@ -16,10 +16,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/css/estilo/custom.css">
-    <link rel="stylesheet" href="/css/estilo/styles.css">
+    <link rel="stylesheet" href="{{url(asset('/css/estilo/styles.css'))}}">
+    <link rel="stylesheet" href="{{url(asset('/css/estilo/custom.css'))}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="node_modules/swiper/swiper-bundle.css">
 </head>
 
 
@@ -59,19 +58,9 @@
 
         <!-- Right section: Buttons (for desktop) -->
         <div class="hidden lg:flex items-center space-x-4 relative">
-            <a href="{{ url('/registro') }}" class="bg-primary border border-primary text-white font-semibold px-4 py-2 rounded-full inline-block"
-               style="background-color: #008b8b; border-color: #008b8b; color: white; transition: background-color 0.3s ease, color 0.3s ease;"
-               onmouseover="this.style.backgroundColor='#005f5f'; this.style.color='#ffffff';"
-               onmouseout="this.style.backgroundColor='#008b8b'; this.style.color='#ffffff';">
-                Regístrate
-            </a>
+            <a href="{{ url('/registro') }}" class="bg-primary border border-primary text-white font-semibold px-4 py-2 rounded-full inline-block">Regístrate</a>
 
-            <a href="{{ url('/login') }}" class="bg-primary border border-primary text-white font-semibold px-4 py-2 rounded-full inline-block"
-               style="background-color: #008b8b; border-color: #008b8b; color: white; transition: background-color 0.3s ease, color 0.3s ease;"
-               onmouseover="this.style.backgroundColor='#005f5f'; this.style.color='#ffffff';"
-               onmouseout="this.style.backgroundColor='#008b8b'; this.style.color='#ffffff';">
-                Iniciar Sesión
-            </a>
+            <a href="{{ url('/login') }}" class="bg-primary border border-primary text-white font-semibold px-4 py-2 rounded-full inline-block">Iniciar Sesión</a>
 
 
 
@@ -133,14 +122,12 @@ use App\Models\Producto;
     </div>
 </nav>
 
-<!-- Register and login -->
+
+
+
+<!-- Contenido -->
 <div>
-
     @yield('contenido')
-
-
-
-
 </div>
 
 
@@ -251,6 +238,7 @@ use App\Models\Producto;
 
         </div>
     </div>
+
 </footer>
 
 

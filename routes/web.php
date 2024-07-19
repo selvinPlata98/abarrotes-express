@@ -36,5 +36,3 @@ Route::get('/categoria', function (){
 Route::get('/registro', function () {
     return view('registro');
 })->name('registro');
-
-

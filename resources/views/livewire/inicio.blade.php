@@ -68,9 +68,15 @@
     @forelse ($categoria as $categorias)
         <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 px-4 mb-8">
             <div class="bg-white p-3 rounded-lg shadow-lg">
+<<<<<<< HEAD
                 
             
             <img src="{{ url('storage/' . $categorias->imagen) }}" class="w-full object-cover mb-4 rounded-lg" alt="{{$categorias->imagen}}">
+=======
+
+
+            <img src="{{url('storage/' , $categorias->imagen)}}" class="w-full object-cover mb-4 rounded-lg" alt="{{$categorias->imagen}}">
+>>>>>>> l_ortez
   <a href="#" class="text-lg font-semibold mb-2">{{$categorias->nombre}}</a>
             </div>
 

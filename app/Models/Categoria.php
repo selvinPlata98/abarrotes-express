@@ -26,8 +26,15 @@ class Categoria extends Model
         return $this->hasmany(Producto::class,'categoria_id');
      }
 
+<<<<<<< HEAD
      public function getImagenUrlAttribute()
      {
          return $this->imagen ? Storage::url($this->imagen) : null;
      }
+=======
+    public function cupones()
+    {
+        return $this->hasMany(Cupon::class, 'categoria_id');
+    }
+>>>>>>> l_ortez
 }
