@@ -25,4 +25,9 @@ protected $table = 'marcas';
     {
         return $this->hasMany(Producto::class, 'marca_id');
     }
+
+    public function cupones()
+    {
+        return $this->hasMany(Cupon::class, 'marca_id');
+    }
 }

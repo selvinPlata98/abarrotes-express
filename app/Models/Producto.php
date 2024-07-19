@@ -51,6 +51,11 @@ class Producto extends Model
         return $this->hasMany(ElementoOrden::class, 'producto_id');
     }
 
+    public function cupones()
+    {
+        return $this->hasMany(Cupon::class, 'producto_id');
+    }
+
 
 
 
