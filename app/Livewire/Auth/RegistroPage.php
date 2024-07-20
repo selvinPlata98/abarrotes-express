@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 
-class Registro extends Component
+class RegistroPage extends Component
 {
 
     public $id;
@@ -19,7 +19,7 @@ class Registro extends Component
 
     public function render()
     {
-        return view('livewire.auth.registro');
+        return view('livewire.auth.registro-page');
     }
 
 
@@ -49,7 +49,7 @@ class Registro extends Component
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8|max:18',
         ]);*/
-    
+
         // Crear un nuevo registro en la base de datosssss
         $user = new User();
         $user->name = $this->name;
@@ -61,7 +61,7 @@ class Registro extends Component
         $this->reset();
 
         // Mostrar un mensaje de éxito
-        session()->flash('mensaje', '¡Registro exitoso!');
+        session()->flash('mensaje', '¡RegistroPage exitoso!');
 
         return redirect()->to('/inicio');
     }

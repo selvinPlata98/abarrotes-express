@@ -7,7 +7,7 @@ use App\Models\Producto;
 use App\Models\Categoria;
 use App\Models\Marca;
 
-class Inicio extends Component
+class InicioPage extends Component
 {
 
     public $producto;
@@ -19,6 +19,6 @@ class Inicio extends Component
     $this->marca = Marca::all();
     $this->categoria = Categoria::inRandomOrder()->limit(4)->get();
     $this->producto = Producto::inRandomOrder()->limit(4)->get();
-    return view('livewire.inicio');
+    return view('livewire.inicio-page');
     }
 }

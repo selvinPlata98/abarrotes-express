@@ -5,7 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Categoria;
 
-class MostrarCategoria extends Component
+class MostrarCategoriaPage extends Component
 {
     public $perPage = 9;
 
@@ -13,7 +13,7 @@ class MostrarCategoria extends Component
     {
         $categorias = Categoria::paginate($this->perPage);
 
-        return view('livewire.mostrar-categoria', [
+        return view('livewire.mostrar-categoria-page', [
             'categorias' => $categorias,
         ]);
     }

@@ -20,27 +20,11 @@
                 <div class="mb-4">
                     <span class="text-red-500">{{ session('error') }}</span>
                 </div>
-<<<<<<< HEAD
-                @if (session()->has('error'))
-                    <div class="mb-3">
-                        <span class="text-red-500">{{ session('error') }}</span>
-                    </div>
-                @endif
-                <button type="submit" 
-                class="bg-primary text-white border border-primary hover:bg-transparent hover:text-primary py-2 px-3 rounded-full w-full" 
-                style="background-color: #008b8b; border-color: #008b8b; transition: background-color 0.3s ease; color: white;" onmouseover="this.style.backgroundColor='#005f5f'; this.style.color='#ffffff';" onmouseout="this.style.backgroundColor='#008b8b'; this.style.color='#ffffff';">
-                    Iniciar Sesión
-                </button>
-            </form>
-            <p class="mt-4 text-sm">¿No tienes una cuenta? <a href="#" class="text-primary hover:text-primary-dark" style="color: #008b8b; hover:color: #005f5f;">Regístrate</a></p>
-        </div>
-=======
             @endif
             <button type="submit" class="btn w-full">
                 Iniciar Sesión
             </button>
         </form>
         <p class="mt-4 text-sm text-center">¿No tienes una cuenta? <a href="#" class="text-primary hover:text-primary-dark">Regístrate</a></p>
->>>>>>> l_ortez
     </div>
 </div>

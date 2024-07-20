@@ -21,7 +21,7 @@ class ViewCategoria extends ViewRecord
     {
         return [
           Actions\EditAction::make(),
-            Actions\DeleteAction::make(),
+          Actions\DeleteAction::make()
         ];
     }
 
@@ -32,7 +32,7 @@ class ViewCategoria extends ViewRecord
 
                 TextInput::make('nombre')
                     ->required()
-                    ->label('Nombre De la MostrarCategoria')
+                    ->label('Nombre De la MostrarCategoriaPage')
                     ->maxLength(80)
                     ->regex('/^[A-Za-z ]+$/')
                     ->validationMessages([
@@ -69,7 +69,6 @@ class ViewCategoria extends ViewRecord
                 Toggle::make('disponible')
                     ->label('Disponible')
                     ->default(true),
-
             ]);
     }
 }

@@ -21,9 +21,9 @@ class CuponResource extends Resource
 
     protected static ?string $pluralLabel = "Cupones";
 
-    protected static ?string $navigationGroup = 'Tienda';
+    protected static ?string $navigationGroup = 'Productos';
 
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 5;
 
     public static function form(Form $form): Form
     {
@@ -50,7 +50,7 @@ class CuponResource extends Resource
 
                         Forms\Components\DatePicker::make('fecha_inicio')
                             ->required()
-                            ->label('Fecha de Inicio')
+                            ->label('Fecha de InicioPage')
                             ->validationMessages([
                                 'required' => 'La fecha de inicio es obligatoria.',
                             ]),
@@ -110,7 +110,7 @@ class CuponResource extends Resource
                 Tables\Columns\TextColumn::make('descuento')
                     ->label('Descuento'),
                 Tables\Columns\TextColumn::make('fecha_inicio')
-                    ->label('Fecha de Inicio'),
+                    ->label('Fecha de InicioPage'),
                 Tables\Columns\TextColumn::make('fecha_expiracion')
                     ->label('Fecha de Expiración'),
                 Tables\Columns\BooleanColumn::make('estado')

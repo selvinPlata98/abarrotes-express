@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
-class Login extends Component
+class LoginPage extends Component
 {
     public $email;
     public $password;
@@ -17,7 +17,7 @@ class Login extends Component
 
     public function render()
     {
-        return view('livewire.auth.login');
+        return view('livewire.auth.login-page');
     }
 
     public function save()

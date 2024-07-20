@@ -1,5 +1,5 @@
 <?php
-                                                                                   
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -14,25 +14,15 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', function () {
-    return view('welcome');
-    }); 
-    
-Route::get('/inicio', function () {
-    return view('inicio');
-})->name('inicio');
+Route::get('/', \App\Livewire\InicioPage::class);
+Route::get('/inicio', \App\Livewire\InicioPage::class)->name('inicio');;
 
 
-Route::get('/login', function (){
-    return view('login');
-})->name('login');
+Route::get('/categorias', \App\Livewire\MostrarCategoriaPage::class);
+Route::get('/producto/{enlace}', \App\Livewire\ProductoPage::class);
 
-Route::get('/categoria', function (){
-    return view('mostrar-categoria');
+Route::middleware('guest')->group(function (){
+    Route::get('/registro', \App\Livewire\Auth\RegistroPage::class)->name('registro');
+    Route::get('/login', \App\Livewire\Auth\LoginPage::class)->name('login');
 });
 
-
-
-Route::get('/registro', function () {
-    return view('registro');
-})->name('registro');
