@@ -38,3 +38,11 @@ Route::get('/registro', function () {
 })->name('registro');
 
 
+Route::get('/error404', function (){
+    return view('page-error');
+});
+
+
+Route::get('/marca', function (){
+    return view('mostrar-marcas');
+});
