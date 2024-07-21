@@ -1,30 +1,3 @@
-/* cart */
-document.addEventListener('DOMContentLoaded', function () {
-  const cartIcon = document.querySelector('.cart-wrapper');
-  const cartDropdown = cartIcon.querySelector('.group-hover\\:block');
-
-  cartIcon.addEventListener('mouseenter', function () {
-      clearTimeout(cartIcon.__timer);
-      cartDropdown.classList.remove('hidden');
-  });
-
-  cartIcon.addEventListener('mouseleave', function () {
-      cartIcon.__timer = setTimeout(() => {
-          cartDropdown.classList.add('hidden');
-      }, 1300);
-  });
-
-  cartDropdown.addEventListener('mouseenter', function () {
-      clearTimeout(cartIcon.__timer);
-  });
-
-  cartDropdown.addEventListener('mouseleave', function () {
-      cartIcon.__timer = setTimeout(() => {
-          cartDropdown.classList.add('hidden');
-      }, 1300);
-  });
-});
-
 /* mobile menu */
 document.addEventListener("DOMContentLoaded", function () {
   const hamburgerBtn = document.getElementById('hamburger');
@@ -67,17 +40,7 @@ if (typeof Swiper !== 'undefined') {
   });
 }
 
-/* search icon show/hide */
-document.getElementById('search-icon').addEventListener('click', function() {
-  var searchField = document.getElementById('search-field');
-  if (searchField.classList.contains('hidden')) {
-      searchField.classList.remove('hidden');
-      searchField.classList.add('search-slide-down');
-  } else {
-      searchField.classList.add('hidden');
-      searchField.classList.remove('search-slide-down');
-  }
-});
+
 
 function toggleDropdown(id, show) {
   const dropdown = document.getElementById(id);
@@ -98,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const decreaseButton = document.getElementById('decrease');
     const increaseButton = document.getElementById('increase');
     const quantityInput = document.getElementById('quantity');
-  
+
     if (decreaseButton && increaseButton && quantityInput) {
         decreaseButton.addEventListener('click', function () {
             let quantity = parseInt(quantityInput.value);
@@ -108,14 +71,14 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             updateButtons();
         });
-  
+
         increaseButton.addEventListener('click', function () {
             let quantity = parseInt(quantityInput.value);
             quantity += 1;
             quantityInput.value = quantity;
             updateButtons();
         });
-  
+
         function updateButtons() {
             if (parseInt(quantityInput.value) === 1) {
                 decreaseButton.setAttribute('disabled', true);
@@ -203,3 +166,43 @@ document.addEventListener('DOMContentLoaded', function () {
       });
   });
 });
+
+/* cart
+document.addEventListener('DOMContentLoaded', function () {
+  const cartIcon = document.querySelector('.cart-wrapper');
+  const cartDropdown = cartIcon.querySelector('.group-hover\\:block');
+
+  cartIcon.addEventListener('mouseenter', function () {
+      clearTimeout(cartIcon.__timer);
+      cartDropdown.classList.remove('hidden');
+  });
+
+  cartIcon.addEventListener('mouseleave', function () {
+      cartIcon.__timer = setTimeout(() => {
+          cartDropdown.classList.add('hidden');
+      }, 1300);
+  });
+
+  cartDropdown.addEventListener('mouseenter', function () {
+      clearTimeout(cartIcon.__timer);
+  });
+
+  cartDropdown.addEventListener('mouseleave', function () {
+      cartIcon.__timer = setTimeout(() => {
+          cartDropdown.classList.add('hidden');
+      }, 1300);
+  });
+});
+ */
+
+/* search icon show/hide
+document.getElementById('search-icon').addEventListener('click', function() {
+    var searchField = document.getElementById('search-field');
+    if (searchField.classList.contains('hidden')) {
+        searchField.classList.remove('hidden');
+        searchField.classList.add('search-slide-down');
+    } else {
+        searchField.classList.add('hidden');
+        searchField.classList.remove('search-slide-down');
+    }
+});*/

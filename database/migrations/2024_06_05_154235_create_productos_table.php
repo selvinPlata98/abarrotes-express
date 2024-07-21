@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('enlace');
             $table->json('imagenes')->nullable();
-            $table->longText('escridpcion')->nullable();
+            $table->longText('descripcion')->nullable();
             $table->decimal('precio', 10, 2);
             $table->boolean('disponible')->default(false);
             $table->integer('cantidad_disponible');
