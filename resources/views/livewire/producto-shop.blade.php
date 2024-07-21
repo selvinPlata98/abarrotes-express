@@ -43,8 +43,8 @@
                         <div class="space-y-2">
                             @forelse($categoria ?? [] as $categorias)
                             <label class="flex items-center">
-                                <input type="checkbox" class="form-checkbox custom-checkbox" wire:model="categoriasFiltradas" 
-                               value="{{ $categorias->id }}" wire:click="filtrocate">
+                                <input type="checkbox" class="form-checkbox custom-checkbox" 
+                       value="{{ $categorias->id }} " >
                                 <span class="ml-2">{{$categorias->nombre}}</span>
                             </label>
                             @empty

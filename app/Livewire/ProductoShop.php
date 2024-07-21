@@ -6,7 +6,7 @@ use Livewire\Component;
 use App\Models\Producto;
 use App\Models\Categoria;
 use App\Models\Marca;
-
+use Livewire\WithPagination;
 
 class ProductoShop extends Component
 {
@@ -16,18 +16,11 @@ class ProductoShop extends Component
     public $marca;
     public $paginacion = 10;
     public $categoriasFiltradas = [];
+    
 
-    public function filtro(){
-        
-    }
+    
 
-    public function filtrocate(){
-        $query = Producto::query();
-        if (!empty($this->categoriasFiltradas)) {
-            $query->whereIn('categoria_id', $this->categoriasFiltradas);
-        }
-    }
-
+    
     public function precio(){
         if ($this->orden === 'barato') {
             $this->producto = Producto::orderBy('precio', 'asc')->get();
@@ -41,19 +34,23 @@ class ProductoShop extends Component
 {
     $this->orden = '';
     $this->producto = Producto::all();
+    $this->categoria = Categoria::all();
+    $this->marca = Marca::all();
 }
+
 
     public function render()
     {
-        $this->categoria = Categoria::all();
-        $this->marca = Marca::all();
-        
-        /*$query = Producto::query();   
-        $productos = $query->paginate($this->paginacion);*/
-        //$this->producto = Producto::all();
-        
+        $query = Producto::query();
 
-        return view('livewire.producto-shop');
+        if (!empty($this->categoriasFiltradas)) {
+            $query->whereIn('categoria_id', $this->categoriasFiltradas);
+        }
+        
+        
+        return view('livewire.producto-shop',[
+            'productos' => $this->producto,
+            'categorias' => $this->categoria,]);
     }
 
     
