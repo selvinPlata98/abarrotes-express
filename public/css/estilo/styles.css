@@ -3710,3 +3710,117 @@ video {
 
 
 
+/*ESTILOS PARA ERROR404*/
+/* ------------------ PÁGINA 404 ------------------ */
+#error-pagina-404 {
+    background-color: #ffffff; /* bg-white */
+    padding: 4rem 0; /* py-16 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* min-h-screen */
+}
+
+#error-pagina-404 .error-contenedor {
+    max-width: 1200px; /* max-w-screen-lg */
+    padding: 0 1rem; /* px-4 */
+}
+
+#error-pagina-404 .error-contenido {
+    display: grid;
+    gap: 2rem; /* gap-8 */
+    grid-template-columns: 1fr 1fr;
+}
+
+#error-pagina-404 .error-texto-contenido {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+#error-pagina-404 h1 {
+    font-size: 2.25rem; /* text-4xl */
+    font-weight: 700; /* font-bold */
+    color: #fbbf24; /* text-primary */
+    margin-bottom: 1.25rem; /* mb-5 */
+}
+
+#error-pagina-404 p {
+    color: #4b5563; /* text-gray-txt */
+    margin-bottom: 1.25rem; /* mb-5 */
+}
+
+#error-pagina-404 img {
+    max-height: 20rem; /* h-80 */
+    width: 100%;
+    object-fit: cover;
+}
+
+#error-pagina-404 .error-imagen-contenido {
+    border-radius: 0.75rem; /* rounded-lg */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-lg */
+    background-color: #f3f4f6; /* bg-gray-100 */
+}
+
+/* ------------------ PIE DE PÁGINA ------------------ */
+footer {
+    border-top: 1px solid #e5e7eb; /* border-gray-line */
+}
+
+footer h3 {
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 600; /* font-semibold */
+    margin-bottom: 1rem; /* mb-4 */
+}
+
+footer ul {
+    padding: 0;
+    margin: 0;
+}
+
+footer ul li {
+    margin-bottom: 0.5rem; /* mb-2 */
+}
+
+footer ul li a {
+    color: #1f2937; /* text-gray-900 */
+}
+
+footer ul li a:hover {
+    color: #fbbf24; /* hover:text-primary */
+}
+
+footer .container {
+    padding: 0 1rem; /* px-4 */
+}
+
+footer .social-icons img {
+    width: 1rem; /* h-4 */
+    height: 1rem; /* w-4 */
+    margin-right: 0.5rem; /* mr-2 */
+    transition: transform 0.3s; /* transition-transform */
+}
+
+footer .social-icons img:hover {
+    transform: scale(1.1); /* hover:scale-110 */
+}
+
+footer .payment-icons img {
+    height: 2rem; /* h-8 */
+    margin-right: 0.5rem; /* mr-2 */
+}
+
+/* ------------------ ESTILOS
+
+
+
+
+
+
+/*FIN ESTILOS PARA ERROR404*/
+
+
+
+
+

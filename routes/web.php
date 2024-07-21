@@ -27,6 +27,9 @@ Route::get('/categoria', function (){
     return view('mostrar-categoria');
 });
 
+Route::get('/error404', function () {
+    return view('error404');
+})->name('error404');
 
 
 Route::get('/registro', function () {
