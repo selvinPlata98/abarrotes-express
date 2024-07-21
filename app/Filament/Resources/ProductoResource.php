@@ -65,6 +65,7 @@ class ProductoResource extends Resource
                             ->image()
                             ->directory('productos')
                             ->visibility('public')
+                            ->disk('public')
                             ->validationMessages([
                                 'maxFiles' => 'Se permite un máximo de 5 imágenes.',
                                 'required' => 'Debe seleccionar al menos una imagen.',
