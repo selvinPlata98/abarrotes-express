@@ -44,7 +44,7 @@
                             @forelse($categoria ?? [] as $categorias)
                             <label class="flex items-center">
                                 <input type="checkbox" class="form-checkbox custom-checkbox" 
-                       value="{{ $categorias->id }} " >
+                       value="{{ $categorias->id }} "  wire:model="categoriasFiltradas" wire:click="filtrocate">
                                 <span class="ml-2">{{$categorias->nombre}}</span>
                             </label>
                             @empty
@@ -59,11 +59,12 @@
                         <div class="space-y-2">
                             @forelse($marca ?? [] as $marcas)
                             <label class="flex items-center">
-                                <input type="checkbox" class="form-checkbox custom-checkbox">
+                                <input type="checkbox" class="form-checkbox custom-checkbox"
+                                value="{{ $marcas->id }} "  wire:model="marcasFiltradas" wire:click="filtromarcas">
                                 <span class="ml-2">{{$marcas->nombre}}</span>
                             </label>
                             @empty
-        <li>No se encontraron categorías.</li>
+        <li>No se encontraron marcas.</li>
             </ul>
                             @endforelse
                         </div>

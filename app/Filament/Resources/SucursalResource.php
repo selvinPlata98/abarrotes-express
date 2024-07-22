@@ -17,10 +17,12 @@ class SucursalResource extends Resource
 {
     protected static ?string $model = Sucursal::class;
     protected static ?string $pluralLabel = "Sucursales";
+    protected static ?string $navigationGroup = 'Tienda';
     protected static ?string $navigationIcon = 'heroicon-o-building-storefront';
 
     protected static ?string $activeNavigationIcon = 'heroicon-s-building-storefront';
 
+    protected static ?int $navigationSort = 2;
     public static function form(Form $form): Form
     {
         return $form

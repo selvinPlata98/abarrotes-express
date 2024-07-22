@@ -3,7 +3,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite && npx tailwindcss -i assets/css/tailwind.css -o assets/css/styles.css --watch",
-        "build": "vite build && npx tailwindcss -i assets/css/tailwind.css -o assets/css/styles.css --minify"
+        "build": "npx tailwindcss -i assets/css/tailwind.css -o assets/css/styles.css --minify && vite build"
     },
     "devDependencies": {
         "@egoist/tailwindcss-icons": "^1.8.0",
