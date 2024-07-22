@@ -5,7 +5,7 @@
             <!-- Left section: Logo -->
             <a href="{{url('/inicio')}}" class="flex items-center">
                 <div>
-                    <img src="/imagen/logo.jpeg" alt="Logo" width="50px" height="50px" class="rounded-2xl">
+                    <img src="/imagen/logo1.jpeg" alt="Logo" width="50px" height="50px" class="rounded-2xl">
                 </div>
             </a>
 
