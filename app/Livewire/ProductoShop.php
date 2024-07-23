@@ -10,11 +10,15 @@ use Livewire\WithPagination;
 
 class ProductoShop extends Component
 {
+    use WithPagination;
+    
     public $producto;
     public $categoria;
     public $orden='';
     public $marca;
-    public $paginacion = 10;
+    public $perPage = 5;
+    public $mostrarTodasCategorias = false;
+    public $categoriasVisibles = 3;
     public $categoriasFiltradas = [];
     public $marcasFiltradas = [];
     
@@ -45,13 +49,22 @@ class ProductoShop extends Component
         else if($this->orden === 'caro'){
             $this->producto = Producto::orderBy('precio', 'desc')->get();
         } 
+        else if($this->orden === 'tiempo'){
+            $this->producto = Producto::orderBy('created_at', 'asc')->get();
+        } 
         
+    }
+
+
+    public function mostrarMas()
+    {
+        $this->mostrarTodasCategorias = true;
     }
     
 
     public function mount() {
     $this->orden = '';
-    $this->producto = Producto::all();
+    $this->producto = Producto::inRandomOrder()->get();
     $this->categoria = Categoria::all();
     $this->marca = Marca::all();
 }
@@ -60,9 +73,11 @@ class ProductoShop extends Component
     public function render()
     {
         
+        
+
         return view('livewire.producto-shop',[
-            'productos' => $this->producto,
-            'categorias' => $this->categoria,]);
+            'producto' => $this->producto,
+            'categoria' => $this->categoria,]);
     }
 
     

@@ -2710,11 +2710,6 @@ video {
   text-decoration-style: solid;
 }
 
-.tamanoCard{
-  width: 240px;
-  height: 240px;
-}
-
 .decoration-double {
   text-decoration-style: double;
 }
@@ -3782,7 +3777,17 @@ video {
 }
 /*FIN ESTILOS PAGINACION*/
 
+.dim{
+  width: 90%;
+}
 
+
+
+.tamanoCard{
+  object-fit: cover;
+  width: 12rem;
+  height: 12rem;
+}
 
 
 

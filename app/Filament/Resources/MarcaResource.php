@@ -64,6 +64,7 @@ class MarcaResource extends Resource
                     ->image()
                     ->visibility('public')
                     ->directory('marcas')
+                    ->disk('public')
                     ->validationMessages([
                         'maxFiles' => 'Se permite un máximo de 1 imágenes.',
                         'required' => 'Debe seleccionar al menos una imagen.',
