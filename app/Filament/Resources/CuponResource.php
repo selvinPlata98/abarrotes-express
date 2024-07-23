@@ -72,7 +72,6 @@ class CuponResource extends Resource
                         Forms\Components\Select::make('usuario_id')
                             ->relationship('usuario', 'name')
                             ->nullable()
-                            ->searchable()
                             ->native(false)
                             ->label('Usuario'),
 
@@ -85,7 +84,6 @@ class CuponResource extends Resource
                         Forms\Components\Select::make('producto_id')
                             ->relationship('producto', 'nombre')
                             ->nullable()
-                            ->searchable()
                             ->native(false)
                             ->label('Producto'),
 
@@ -93,13 +91,13 @@ class CuponResource extends Resource
                             ->relationship('categoria', 'nombre')
                             ->nullable()
                             ->native(false)
-                            ->searchable()
+
                             ->label('Categoría'),
 
                         Forms\Components\Select::make('marca_id')
                             ->relationship('marca', 'nombre')
                             ->nullable()
-                            ->searchable()
+
                             ->native(false)
                             ->label('Marca'),
 

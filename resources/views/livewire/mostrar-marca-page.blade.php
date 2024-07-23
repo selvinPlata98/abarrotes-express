@@ -19,8 +19,8 @@
     <div class="tarjetas-contenedor row">
         @forelse ($marcas as $marca)
             <div class="tarjeta-contenedor-personalizado">
-                <a href="#" class="tarjeta-link">
-                    <div class="tarjeta-personalizada">
+                <a href="{{ route('productoshop', ['categoria' => 'all', 'marca' => $marca->id]) }}" class="tarjeta-link">
+                <div class="tarjeta-personalizada">
                         @if (isset($marca->imagen))
                             <div class="imagen-contenedor-personalizado">
                                 <img src="{{ url('storage/' , $marca->imagen) }}" class="imagen-personalizada" alt="{{ $marca->nombre }}" loading="lazy">

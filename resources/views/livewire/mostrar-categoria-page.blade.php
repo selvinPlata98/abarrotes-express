@@ -7,8 +7,8 @@
     <div class="tarjetas-contenedor row">
         @forelse ($categorias as $categoria)
             <div class="tarjeta-contenedor-personalizado">
-                <a href="#" class="tarjeta-link">
-                    <div class="tarjeta-personalizada">
+                <a href="{{ route('productoshop', ['categoria' => $categoria->id]) }}" class="tarjeta-link">
+                <div class="tarjeta-personalizada">
                         @if (isset($categoria->imagen))
                             <div class="imagen-contenedor-personalizado">
                                 <img src="{{ url('storage/' , $categoria->imagen) }}" class="imagen-personalizada" alt="{{ $categoria->nombre }}" loading="lazy">
