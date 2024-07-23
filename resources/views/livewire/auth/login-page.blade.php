@@ -25,6 +25,6 @@
                 Iniciar Sesión
             </button>
         </form>
-        <p class="mt-4 text-sm text-center">¿No tienes una cuenta? <a href="#" class="text-primary hover:text-primary-dark">Regístrate</a></p>
+        <p class="mt-4 text-sm text-center">¿No tienes una cuenta? <a href="{{ url('/registro') }}" class="text-primary hover:text-primary-dark">Regístrate</a></p>
     </div>
 </div>

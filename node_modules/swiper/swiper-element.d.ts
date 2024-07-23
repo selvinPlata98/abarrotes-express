@@ -39,6 +39,9 @@ interface SwiperContainerEventMap extends Omit<HTMLElementEventMap, 'click' | 'p
    * Event will be fired on key press
    */
   keypress: CustomEvent<[swiper: Swiper, keyCode: string]>;/**
+   * Event will be fired on mousewheel scroll
+   */
+  scroll: CustomEvent<[swiper: Swiper, event: WheelEvent]>;/**
    * Event will be fired on navigation hide
    */
   navigationhide: CustomEvent<[swiper: Swiper]>;
@@ -87,10 +90,7 @@ interface SwiperContainerEventMap extends Omit<HTMLElementEventMap, 'click' | 'p
   scrollbardragend: CustomEvent<[swiper: Swiper, event: MouseEvent | TouchEvent | PointerEvent]>;/**
    * Event will be fired on zoom change
    */
-  zoomchange: CustomEvent<[swiper: Swiper, scale: number, imageEl: HTMLElement, slideEl: HTMLElement]>;/**
-   * Event will be fired on mousewheel scroll
-   */
-  scroll: CustomEvent<[swiper: Swiper, event: WheelEvent]>;
+  zoomchange: CustomEvent<[swiper: Swiper, scale: number, imageEl: HTMLElement, slideEl: HTMLElement]>;
 
   
   /**

@@ -33,6 +33,7 @@ class CuponResource extends Resource
                     Section::make([
                         Forms\Components\TextInput::make('codigo')
                             ->required()
+                            ->maxLength(8)
                             ->label('Código del Cupón')
                             ->unique(Cupon::class, ignoreRecord: true)
                             ->validationMessages([
@@ -40,23 +41,29 @@ class CuponResource extends Resource
                                 'unique' => 'Este código ya existe.',
                             ]),
 
-                        Forms\Components\TextInput::make('descuento')
+                        Forms\Components\TextInput::make('descuento')->prefix('%')
                             ->required()
                             ->label('Descuento')
                             ->numeric()
+                            ->step('0.01')
+                            ->default(0)
+                            ->minValue(0)
+                            ->maxValue(1)
                             ->validationMessages([
                                 'required' => 'El descuento es obligatorio.',
                             ]),
 
                         Forms\Components\DatePicker::make('fecha_inicio')
                             ->required()
-                            ->label('Fecha de InicioPage')
+                            ->label('Fecha de Inicio')
+                            ->rules('before_or_equal:today')
                             ->validationMessages([
                                 'required' => 'La fecha de inicio es obligatoria.',
                             ]),
 
                         Forms\Components\DatePicker::make('fecha_expiracion')
                             ->required()
+                            ->rules('after:fecha_inicio', 'before_or_equal:' . now()->addYears(1)->toDateString())
                             ->label('Fecha de Expiración')
                             ->validationMessages([
                                 'required' => 'La fecha de expiración es obligatoria.',
@@ -65,6 +72,7 @@ class CuponResource extends Resource
                         Forms\Components\Select::make('usuario_id')
                             ->relationship('usuario', 'name')
                             ->nullable()
+                            ->searchable()
                             ->native(false)
                             ->label('Usuario'),
 
@@ -77,6 +85,7 @@ class CuponResource extends Resource
                         Forms\Components\Select::make('producto_id')
                             ->relationship('producto', 'nombre')
                             ->nullable()
+                            ->searchable()
                             ->native(false)
                             ->label('Producto'),
 
@@ -84,11 +93,13 @@ class CuponResource extends Resource
                             ->relationship('categoria', 'nombre')
                             ->nullable()
                             ->native(false)
+                            ->searchable()
                             ->label('Categoría'),
 
                         Forms\Components\Select::make('marca_id')
                             ->relationship('marca', 'nombre')
                             ->nullable()
+                            ->searchable()
                             ->native(false)
                             ->label('Marca'),
 
@@ -151,6 +162,7 @@ class CuponResource extends Resource
             'index' => Pages\ListCupons::route('/'),
             'create' => Pages\CreateCupon::route('/create'),
             'edit' => Pages\EditCupon::route('/{record}/edit'),
+            'view' => Pages\ViewCupon::route('/{record}/view')
         ];
     }
 }

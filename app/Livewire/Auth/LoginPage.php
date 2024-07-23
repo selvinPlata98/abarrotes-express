@@ -18,6 +18,8 @@ class LoginPage extends Component
     public function render()
     {
         return view('livewire.auth.login-page');
+
+
     }
 
     public function save()
@@ -39,10 +41,10 @@ class LoginPage extends Component
 
         if (!Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
             $this->addError('email', 'Correo y contraseña no coinciden');
-            return;
+
         }
 
-        return Redirect::to('/inicio');
+
     }
 
 

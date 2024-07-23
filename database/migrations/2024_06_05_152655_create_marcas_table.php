@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nombre')->unique();
             $table->string('enlace')->unique();
             $table->longText('imagen')->nullable();
+            $table->longText('descripcion')->nullable();
             $table->boolean('disponible');
             $table->timestamps();
         });
