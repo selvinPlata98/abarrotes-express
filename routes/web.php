@@ -19,6 +19,7 @@ Route::get('/inicio', \App\Livewire\InicioPage::class)->name('inicio');;
 
 
 Route::get('/categorias', \App\Livewire\MostrarCategoriaPage::class);
+Route::get('/marcas', \App\Livewire\MostrarMarcaPage::class);
 Route::get('/producto/{enlace}', \App\Livewire\ProductoPage::class);
 
 Route::middleware('guest')->group(function (){
@@ -26,7 +27,4 @@ Route::middleware('guest')->group(function (){
     Route::get('/login', \App\Livewire\Auth\LoginPage::class)->name('login');
 });
 
-
-Route::get('/marca', function (){
-    return view('mostrar-marcas');
-});
+Route::get('/error', \App\Livewire\errorPage::class);
