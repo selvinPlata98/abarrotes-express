@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', \App\Livewire\InicioPage::class);
 Route::get('/inicio', \App\Livewire\InicioPage::class)->name('inicio');
+Route::get('/home', \App\Livewire\InicioPage::class)->name('home');
 
 
 Route::get('/categorias', \App\Livewire\MostrarCategoriaPage::class);
