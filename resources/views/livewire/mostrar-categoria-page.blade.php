@@ -5,26 +5,35 @@
     </div>
 
     <div class="tarjetas-contenedor row">
-        @foreach ($categorias as $categoria)
-            <div class=" tarjeta-contenedor-personalizado">
+        @forelse ($categorias as $categoria)
+            <div class="tarjeta-contenedor-personalizado">
+                <a href="{{ route('productoshop', ['categoria' => $categoria->id]) }}" class="tarjeta-link">
                 <div class="tarjeta-personalizada">
-                    @if (isset($categoria->imagen))
-                        <div class="imagen-contenedor-personalizado">
-                            <img src="{{ url('storage/' , $categoria->imagen) }}" class="imagen-personalizada" alt="{{ $categoria->nombre }}" loading="lazy">
-                        </div>
-                    @endif
-                    <div class="enlace-personalizado">
-                        <a href="#">
+                        @if (isset($categoria->imagen))
+                            <div class="imagen-contenedor-personalizado">
+                                <img src="{{ url('storage/' , $categoria->imagen) }}" class="imagen-personalizada" alt="{{ $categoria->nombre }}" loading="lazy">
+                            </div>
+                        @endif
+                        <div class="enlace-personalizado">
                             <i class="fas fa-eye mr-1"></i>
-                        </a>
-                        <span>{{ $categoria->nombre }}</span>
+                            <span>{{ $categoria->nombre }}</span>
+                        </div>
+                        <div class="descripcion">
+                            <p>{{ $categoria->descripcion }}</p>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
-        @endforeach
+        @empty
+            <div class="text-center">
+                <p>No hay categorías disponibles en este momento. ¡Vuelve pronto para descubrir más!</p>
+            </div>
+        @endforelse
     </div>
 
-    <div class="d-flex justify-content-center paginacion">
-        {{ $categorias->links() }}
-    </div>
+    @if ($categorias->isNotEmpty())
+        <div class="d-flex justify-content-center paginacion">
+            {{ $categorias->links() }}
+        </div>
+    @endif
 </div>

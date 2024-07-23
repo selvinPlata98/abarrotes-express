@@ -28,7 +28,7 @@ class MarcaResource extends Resource
     protected static ?string $activeNavigationIcon = 'heroicon-s-cube';
     protected static ?int $navigationSort = 3;
 
-    
+
     public static function form(Form $form): Form
     {
         return $form
@@ -64,6 +64,7 @@ class MarcaResource extends Resource
                     ->image()
                     ->visibility('public')
                     ->directory('marcas')
+                    ->disk('public')
                     ->validationMessages([
                         'maxFiles' => 'Se permite un máximo de 1 imágenes.',
                         'required' => 'Debe seleccionar al menos una imagen.',
@@ -78,6 +79,26 @@ class MarcaResource extends Resource
                 Forms\Components\Toggle::make('disponible')
                     ->label('Disponible')
                     ->default(true),
+
+                Forms\Components\MarkdownEditor::make('descripcion')
+                    ->required()
+                    ->label('Descripción')
+                    ->toolbarButtons(
+                        [
+                            'bold',
+                            'bulletList',
+                            'heading',
+                            'italic',
+                            'link',
+                            'redo',
+                            'undo'],
+                    )
+                    ->maxlength(300)
+                    ->validationMessages([
+                        'required' => 'La descripción es obligatoria.',
+                        'maxlength' => 'La descripción no puede exceder los 300 caracteres.'
+                    ])
+                    ->columnSpan(2),
             ]);
     }
 

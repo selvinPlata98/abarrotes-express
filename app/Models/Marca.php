@@ -18,6 +18,7 @@ protected $table = 'marcas';
         'nombre',
         'enlace',
         'imagen',
+        'descripcion',
         'disponible'
     ];
 

@@ -69,6 +69,9 @@ type SwiperProps = Omit<
    * Event will be fired on key press
    */
   onKeyPress?: (swiper: SwiperClass, keyCode: string) => void;/**
+   * Event will be fired on mousewheel scroll
+   */
+  onScroll?: (swiper: SwiperClass, event: WheelEvent) => void;/**
    * Event will be fired on navigation hide
    */
   onNavigationHide?: (swiper: SwiperClass) => void;
@@ -117,10 +120,7 @@ type SwiperProps = Omit<
   onScrollbarDragEnd?: (swiper: SwiperClass, event: MouseEvent | TouchEvent | PointerEvent) => void;/**
    * Event will be fired on zoom change
    */
-  onZoomChange?: (swiper: SwiperClass, scale: number, imageEl: HTMLElement, slideEl: HTMLElement) => void;/**
-   * Event will be fired on mousewheel scroll
-   */
-  onScroll?: (swiper: SwiperClass, event: WheelEvent) => void;
+  onZoomChange?: (swiper: SwiperClass, scale: number, imageEl: HTMLElement, slideEl: HTMLElement) => void;
     
   /**
    * Fired right after Swiper initialization.

@@ -5,7 +5,7 @@
             <!-- Left section: Logo -->
             <a href="{{url('/inicio')}}" class="flex items-center">
                 <div>
-                    <img src="/imagen/logo.jpeg" alt="Logo" width="50px" height="50px" class="rounded-2xl">
+                    <img src="/imagen/logo1.jpeg" alt="Logo" width="50px" height="50px" class="rounded-2xl">
                 </div>
             </a>
 
@@ -24,7 +24,7 @@
                 <ul class="flex justify-center space-x-4 text-white">
                     <li><a href="{{ url('/categorias') }}" class="hover:text-cyan-500 font-semibold">Categorias</a></li>
                     <li><a href="{{ url('/categorias') }}" class="hover:text-cyan-500 font-semibold">Marcas</a></li>
-                    <li><a href="{{ url('/categorias') }}" class="hover:text-cyan-500 font-semibold">Productos</a></li>
+                    <li><a href="{{ url('/producto-shop') }}" class="hover:text-cyan-500 font-semibold">Productos</a></li>
                     <li><a href="{{ url('/categorias') }}" class="hover:text-cyan-500 font-semibold">Promociones</a></li>
                     <li><a href="{{ url('/categorias') }}" class="hover:text-cyan-500 font-semibold">Descuentos</a></li>
                     <li><a href="{{ url('/categorias') }}" class="hover:text-cyan-500 font-semibold">Cupones</a></li>
