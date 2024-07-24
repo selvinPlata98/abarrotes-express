@@ -22,7 +22,7 @@ Route::get('/home', \App\Livewire\InicioPage::class)->name('home');
 Route::get('/categorias', \App\Livewire\MostrarCategoriaPage::class);
 Route::get('/marcas', \App\Livewire\MostrarMarcaPage::class);
 Route::get('/productoshop/{categoria?}/{marca?}', \App\Livewire\ProductoShop::class)->name('productoshop');
-Route::get('/producto/{enlace}', \App\Livewire\ProductoPage::class);
+Route::get('/producto/{enlace}', \App\Livewire\ProductoPage::class)->name('producto');;
 Route::get('/error', \App\Livewire\ErrorPage::class);
 
 Route::middleware('guest')->group(function (){

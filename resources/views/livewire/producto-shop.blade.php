@@ -82,7 +82,7 @@
                     @if(isset($productos->imagenes) && count($productos->imagenes) > 0)
                         <img src="{{ url('storage~HEAD/' . $productos->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$productos->imagenes[0]}}">
                     @endif              
-                    <a href="#" class="text-lg font-semibold mb-2">{{$productos->nombre}}</a>
+                    <a href="{{ route('producto', ['enlace' => $productos->enlace]) }}" class="text-lg font-semibold mb-2">{{$productos->nombre}}</a>
                     <div class="flex items-center mb-4">
                         <span class="text-lg font-bold text-primary">{{$productos->precio - $productos->en_oferta}}</span>
                         <span class="text-sm line-through ml-2">{{$productos->precio}}</span>
@@ -96,7 +96,7 @@
                     @if(isset($productos->imagenes) && count($productos->imagenes) > 0)
                         <img src="{{ url('storage~HEAD/' . $productos->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$productos->imagenes[0]}}">
                     @endif              
-                    <a href="#" class="text-lg font-semibold mb-2">{{$productos->nombre}}</a>
+                    <a href="{{ route('producto', ['enlace' => $productos->enlace]) }}" class="text-lg font-semibold mb-2">{{$productos->nombre}}</a>
                     <div class="flex items-center mb-4">
                         <span class="text-lg font-bold text-primary">{{$productos->precio }}</span>
                     </div>
