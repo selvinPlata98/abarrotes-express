@@ -1,0 +1,34 @@
+<!doctype html>
+<html  lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link rel="icon" type="icon" href="assets/images/favicon.png" />
+    <title>{{$title ?? 'Abarrotes Express'}}</title>
+    @livewireStyles
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{{url(asset('/js/script.js'))}}"></script>
+    <link rel="stylesheet" href="{{url(asset('/css/estilo/styles.css'))}}">
+    <link rel="stylesheet" href="{{url(asset('/css/estilo/custom.css'))}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+@livewire('complementos.navbar')
+{{--Contenido--}}
+<div>
+        <main>
+            {{ $slot }}
+        </main>
+</div>
+@livewire('complementos.footer')
+@livewireScripts
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>

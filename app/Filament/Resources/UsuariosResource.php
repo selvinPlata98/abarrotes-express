@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\UserResource\Pages\ViewUser;
 use App\Filament\Resources\UsuariosResource\Pages;
 use App\Models\User;
 use Filament\Forms\Components\DatePicker;
@@ -30,10 +31,12 @@ class UsuariosResource extends Resource
 
     protected static ?string $slug = 'usuarios';
     protected static ?int $navigationSort = 1;
+    protected static ?string $navigationGroup = 'Usuarios';
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
     protected static ?string $activeNavigationIcon = 'heroicon-s-users';
     protected static ?string $pluralModelLabel = 'Usuarios';
+
 
     public static function form(Form $form): Form
     {
@@ -47,7 +50,7 @@ class UsuariosResource extends Resource
                     ->validationMessages([
                         'maxLenght' => 'El nombre no debe contener más de 100 carácteres.',
                        'required' => 'Debe introducir un nombre de usuario.',
-                        'regex' => 'El nombre solo debe contener letras y espacios.'
+                        'regex' => 'El nombre solo debe contener letras y espacios.',
                     ]),
 
                 TextInput::make('email')
@@ -86,47 +89,13 @@ class UsuariosResource extends Resource
             ]);
     }
 
-    public static function table(Table $table): Table
-    {
-        return $table
-            ->columns([
-                TextColumn::make('name')
-                    ->searchable()
-                    ->sortable()
-                    ->label('Nombre de Usuario'),
-
-                TextColumn::make('email')
-                    ->searchable()
-                    ->sortable()
-                    ->label('Correo Electrónico'),
-
-                TextColumn::make('email_verified_at')
-                    ->label('Fecha de Verificación de Correo')
-                    ->date(),
-            ])
-            ->filters([
-                //
-            ])
-            ->actions([
-                ViewAction::make(),
-                ActionGroup::make([
-                    EditAction::make(),
-                    DeleteAction::make(),
-                ])
-            ])
-            ->bulkActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
-            ]);
-    }
-
     public static function getPages(): array
     {
         return [
             'index' => Pages\ListUsuarios::route('/'),
             'create' => Pages\CreateUsuarios::route('/create'),
             'edit' => Pages\EditUsuarios::route('/{record}/edit'),
+            'view' => Pages\ViewUsuario::route('/{record}/view')
         ];
     }
 
