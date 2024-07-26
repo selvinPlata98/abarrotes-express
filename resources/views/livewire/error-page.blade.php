@@ -10,9 +10,10 @@
                 </div>
             </div>
             <div class="relativo h-80 overflow-hidden redondear-lg fondo-gris-sombreado md:h-auto">
-                <img src="/imagen/Error404.jpeg" alt="Imagen de Error 404" class="w-full h-auto">
+                <img src="/imagen/Carrito404.jpg" alt="Imagen de Error 404" class="w-full h-auto">
             </div>
 
         </div>
     </div>
 </section>
+

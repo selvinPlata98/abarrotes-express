@@ -3,16 +3,20 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, softDeletes, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -23,6 +27,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_admin',
         'email_verified_at'
     ];
 
@@ -59,5 +64,22 @@ class User extends Authenticatable
     public function cupones()
     {
         return $this->hasMany(Cupon::class, 'user_id');
+    }
+
+
+    public $user;
+    public $isAdmin;
+
+    public function mount()
+    {
+        $this->user = auth()->user();
+        if ($this->user) {
+            $this->isAdmin = $this->user->is_admin;
+        }
+    }
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return str_ends_with($this -> is_admin, 1);
     }
 }

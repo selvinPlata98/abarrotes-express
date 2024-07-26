@@ -3482,19 +3482,18 @@ video {
 }
 
 
-/* ESTILOS CATEGORIAS*/
+/* ESTILOS CATEGORIAS Y MARCAS */
 .container {
     margin-bottom: 2rem;
     text-align: center;
 }
 
-.text-primary {
-    color: #3490dc;
-}
-
 .testimonials .text-center {
     margin-bottom: 12px;
-    @media (min-width: 1024px) {
+}
+
+@media (min-width: 1024px) {
+    .testimonials .text-center {
         margin-bottom: 20px;
     }
 }
@@ -3542,7 +3541,7 @@ video {
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
     text-align: left;
     overflow: hidden;
-    height: 310px;
+    height: 350px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -3624,6 +3623,26 @@ video {
     width: 100%;
 }
 
+.descripcion {
+    display: block;
+    padding: 0.5rem 1rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: white;
+    z-index: 2;
+    text-align: justify;
+    font-size: 0.875rem;
+    box-sizing: border-box;
+    transform: translateY(100%);
+    transition: transform 0.5s ease-in;
+}
+
+.tarjeta-personalizada:hover .descripcion {
+    transform: translateY(-185%);
+}
+
 @media (any-hover: hover) and (any-pointer: fine) {
     .tarjeta-personalizada {
         transition: transform 0.5s ease-in;
@@ -3638,7 +3657,58 @@ video {
     }
 }
 
-/*FIN ESTILOS CATEGORIAS*/
+.search-bar-container {
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.search-bar-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+    gap: 0.5rem;
+}
+
+.search-bar {
+    flex-grow: 1;
+    width: 100%;
+    padding: 0.75rem 2.5rem 0.75rem 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    outline: none;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.clear-button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease;
+    font-size: 1.25rem;
+}
+
+.clear-button:hover {
+    color: #333;
+}
+
+/*FIN ESTILOS CATEGORIAS Y MARCAS*/
+
+
+
+
+
 
 
 
@@ -3699,6 +3769,7 @@ video {
 /*FIN ESTILOS LOGIN*/
 
 
+
 /*ESTILOS PARA PAGINACION*/
 .paginacion{
     display: flex;
@@ -3706,219 +3777,21 @@ video {
 }
 /*FIN ESTILOS PAGINACION*/
 
-***ESTILOS DE MARCAS ******
-.container {
-    margin-bottom: 2rem;
-    text-align: center;
-}
-
-.text-primary {
-    color: #3490dc;
-}
-
-.testimonials .text-center {
-    margin-bottom: 12px;
-    @media (min-width: 1024px) {
-        margin-bottom: 20px;
-    }
-}
-
-.text-5xl {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 4px;
-}
-
-.my-7 {
-    margin-top: 1.75rem;
-    margin-bottom: 1.75rem;
-}
-
-.tarjetas-contenedor {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.tarjeta-contenedor-personalizado {
-    flex: 1 1 23%;
-    max-width: 400px;
-    padding: 1rem;
-    margin: 1rem;
-}
-
-@media (min-width: 640px) {
-    .tarjeta-contenedor-personalizado-sm {
-        flex: 1 1 45%;
-    }
-}
-
-@media (min-width: 768px) {
-    .tarjeta-contenedor-personalizado-md {
-        flex: 1 1 22%;
-    }
-}
-
-.tarjeta-personalizada {
-    background-color: white;
-    padding: 0;
-    border-radius: 15px;
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-    text-align: left;
-    overflow: hidden;
-    height: 310px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    color: white;
-    padding-left: 15px;
-    transition: transform 0.5s ease-in;
-}
-
-.imagen-contenedor-personalizado {
-    width: 100%;
-    height: 100%;
-    margin-bottom: 1rem;
-    overflow: hidden;
-    border-radius: 15px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
-    transition: transform 0.5s ease-in;
-}
-
-.imagen-personalizada {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease-in;
-}
-
-.tarjeta-personalizada::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        180deg,
-        hsla(0, 0%, 0%, 0) 0%,
-        hsla(0, 0%, 0%, 0.3) 10%,
-        hsl(0, 0%, 0%) 100%
-    );
-    z-index: 1;
-    transition: transform 0.5s ease-in;
-    transform: translateY(30%);
-}
-
-.tarjeta-personalizada:hover::before {
-    transform: translateY(0%);
-}
-
-.enlace-personalizado {
-    font-size: 1.125rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    display: block;
-    color: white;
-    position: relative;
-    z-index: 2;
-    transition: transform 0.5s ease-in;
-}
-
-.enlace-personalizado::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 0;
-    height: 2px;
-    background-color: white;
-    transition: width 0.5s ease-in;
-}
-
-.tarjeta-personalizada:hover .enlace-personalizado {
-    transform: translateY(-650%);
-}
-
-.tarjeta-personalizada:hover .enlace-personalizado::after {
-    width: 100%;
-}
-
-@media (any-hover: hover) and (any-pointer: fine) {
-    .tarjeta-personalizada {
-        transition: transform 0.5s ease-in;
-    }
-
-    .tarjeta-personalizada:hover {
-        transform: scale(1.05);
-    }
-
-    .tarjeta-personalizada:hover .imagen-personalizada {
-        transform: scale(1.3);
-    }
+.dim{
+  width: 90%;
 }
 
 
 
-.search-bar-container {
-    margin-bottom: 2rem;
-    text-align: center; 
-    position: relative;
-}
-
-
-.search-bar-wrapper {
-    position: relative;
-    justify-content: center; 
-    align-items: center; 
-    max-width: 500px;
-    margin: 0 auto; 
-    gap: 0.5rem; 
-}
-
-
-.search-bar {
-    width: 100%;
-    padding: 0.75rem 2.5rem 0.75rem 0.75rem; 
-    border: 1px solid #ddd; 
-    border-radius: 5px; 
-    font-size: 1rem; 
-    outline: none; 
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); 
-    transition: border-color 0.3s ease, box-shadow 0.3s ease; 
-    position: relative; 
-}
-
-
-.clear-button {
-    position: absolute;
-    right: 10px; 
-    top: 50%; 
-    transform: translateY(-50%); 
-    background: none; 
-    border: none;
-    cursor: pointer; 
-    color: #666;
-    transition: color 0.3s ease; 
-    font-size: 1.25rem; 
-}
-
-
-.clear-button:hover {
-    color: #333; 
+.tamanoCard{
+  object-fit: cover;
+  width: 12rem;
+  height: 12rem;
 }
 
 
 
-/*FIN ESTILOS De Marcas*/
-
-
-
-/*FIN ESTILOS De ERROR404*/
+/*ESTILOS PARA ERROR404*/
 .tarjeta {
     position: relative;
     overflow: hidden;
@@ -3940,8 +3813,8 @@ video {
 
 
 .py-16 {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
 }
 
 .flex {
@@ -4071,3 +3944,11 @@ video {
     height: auto;
 }
 /*FIN ESTILOS PARA ERROR404*/
+
+
+
+
+
+
+
+

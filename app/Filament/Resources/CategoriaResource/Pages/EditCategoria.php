@@ -6,6 +6,7 @@ use App\Filament\Resources\CategoriaResource;
 use App\Models\Categoria;
 use Filament\Actions;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
@@ -31,7 +32,7 @@ class EditCategoria extends EditRecord
 
                 TextInput::make('nombre')
                     ->required()
-                    ->label('Nombre De la MostrarCategoriaPage')
+                    ->label('Nombre De la Categoria')
                     ->maxLength(80)
                     ->regex('/^[A-Za-z ]+$/')
                     ->validationMessages([
@@ -73,6 +74,26 @@ class EditCategoria extends EditRecord
                 Toggle::make('disponible')
                     ->label('Disponible')
                     ->default(true),
+
+                MarkdownEditor::make('descripcion')
+                    ->required()
+                    ->label('Descripción')
+                    ->toolbarButtons(
+                        [
+                            'bold',
+                            'bulletList',
+                            'heading',
+                            'italic',
+                            'link',
+                            'redo',
+                            'undo'],
+                    )
+                    ->maxlength(300)
+                    ->validationMessages([
+                        'required' => 'La descripción es obligatoria.',
+                        'maxlength' => 'La descripción no puede exceder los 300 caracteres.'
+                    ])
+                    ->columnSpan(2),
 
             ]);
     }

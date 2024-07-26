@@ -5,7 +5,7 @@
             <!-- Left section: Logo -->
             <a href="{{url('/inicio')}}" class="flex items-center">
                 <div>
-                    <img src="/imagen/logo.jpeg" alt="Logo" width="50px" height="50px" class="rounded-2xl">
+                    <img src="/imagen/logo1.jpeg" alt="Logo" width="50px" height="50px" class="rounded-2xl">
                 </div>
             </a>
 
@@ -24,7 +24,7 @@
                 <ul class="flex justify-center space-x-4 text-white">
                     <li><a href="{{ url('/categorias') }}" class="hover:text-cyan-500 font-semibold">Categorias</a></li>
                     <li><a href="{{ url('/categorias') }}" class="hover:text-cyan-500 font-semibold">Marcas</a></li>
-                    <li><a href="{{ url('/categorias') }}" class="hover:text-cyan-500 font-semibold">Productos</a></li>
+                    <li><a href="{{ url('/producto-shop') }}" class="hover:text-cyan-500 font-semibold">Productos</a></li>
                     <li><a href="{{ url('/categorias') }}" class="hover:text-cyan-500 font-semibold">Promociones</a></li>
                     <li><a href="{{ url('/categorias') }}" class="hover:text-cyan-500 font-semibold">Descuentos</a></li>
                     <li><a href="{{ url('/categorias') }}" class="hover:text-cyan-500 font-semibold">Cupones</a></li>
@@ -33,11 +33,26 @@
 
 
             <!-- Right section: Buttons (for desktop) -->
-            <div class="hidden lg:flex items-center space-x-4 relative">
-                <a href="{{ url('/registro') }}" class="bg-primary border border-primary text-white font-semibold px-4 py-2 rounded-full inline-block">Regístrate</a>
+            @guest
+                <div class="hidden lg:flex items-center space-x-4 relative">
+                    <a href="{{ url('/registro') }}" class="bg-primary border border-primary text-white font-semibold px-4 py-2 rounded-full inline-block">Regístrate</a>
+                    <a href="{{ url('/login') }}" class="bg-primary border border-primary text-white font-semibold px-4 py-2 rounded-full inline-block">Iniciar Sesión</a>
+                </div>
+            @endguest
 
-                <a href="{{ url('/login') }}" class="bg-primary border border-primary text-white font-semibold px-4 py-2 rounded-full inline-block">Iniciar Sesión</a>
-            </div>
+            @auth
+                @if(auth()->user()->is_admin == 1)
+                    <div class="hidden lg:flex items-center space-x-4 relative">
+                        <a href="/admin" class="bg-primary border border-primary text-white font-semibold px-4 py-2 rounded-full inline-block">Ir al Panel Administrativo</a>
+                    </div>
+                @else
+                    <div class="hidden lg:flex items-center space-x-4 relative">
+                        <button class="bg-primary border border-primary text-white font-semibold px-4 py-2 rounded-full inline-block" wire:click="logout">Cerrar Sesión</button>
+                    </div>
+                @endif
+            @endauth
+
+
         </div>
     </header>
 
