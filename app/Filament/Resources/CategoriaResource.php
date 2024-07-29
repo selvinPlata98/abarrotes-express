@@ -85,6 +85,7 @@ class CategoriaResource extends Resource
                 Forms\Components\MarkdownEditor::make('descripcion')
                     ->required()
                     ->label('Descripción')
+                    ->maxLength(182)
                     ->toolbarButtons(
                         [
                             'bold',
@@ -95,7 +96,7 @@ class CategoriaResource extends Resource
                             'redo',
                             'undo'],
                     )
-                    ->maxlength(300)
+                    ->maxlength(182)
                     ->validationMessages([
                         'required' => 'La descripción es obligatoria.',
                         'maxlength' => 'La descripción no puede exceder los 300 caracteres.'

@@ -121,6 +121,7 @@ class ProductoResource extends Resource
                     ])->columns(2)
                         ->columnSpan(2), /*Fin de la seccion*/
 
+
                     Section::make([
                         Forms\Components\Toggle::make('disponible')
                             ->label('Disponible')
