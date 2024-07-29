@@ -80,6 +80,10 @@ class User extends Authenticatable implements FilamentUser
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return str_ends_with($this -> is_admin, 1);
+        $is_admin =  false;
+
+        //return $is_admin;
+
+        return $this -> is_admin == 1;
     }
 }

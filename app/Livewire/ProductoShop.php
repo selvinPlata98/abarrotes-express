@@ -10,13 +10,19 @@ use Livewire\WithPagination;
 
 class ProductoShop extends Component
 {
-    use WithPagination;
+use WithPagination;
+ 
+
+    #[Title('Nuestro producto')]
+    #[Url]
+
     
-    public $producto;
-    public $categoria;
+    
+    public $productos;
+    public $categorias;
     public $orden='';
-    public $marca;
-    public $perPage = 5;
+    public $marcas;
+    public $perPage = 3;
     public $mostrarTodasCategorias = false;
     public $categoriasVisibles = 3;
     public $categoriasFiltradas = [];
@@ -30,8 +36,9 @@ class ProductoShop extends Component
         if (!empty($this->categoriasFiltradas)) {
             $query->whereIn('categoria_id', $this->categoriasFiltradas);
         }
-        $this->producto = $query->get();
+        $this->productos = $query->get();
     }
+
 
     public function filtromarcas(){
         $query = Producto::query();
@@ -39,18 +46,19 @@ class ProductoShop extends Component
         if (!empty($this->marcasFiltradas)) {
             $query->whereIn('marca_id', $this->marcasFiltradas);
         }
-        $this->producto = $query->get();
+        $this->productos = $query->get();
+        $productos = $query->paginate($this->perPage);
     }
     
     public function precio(){
         if ($this->orden === 'barato') {
-            $this->producto = Producto::orderBy('precio', 'asc')->get();
+            $this->productos = Producto::orderBy('precio', 'asc')->get();
         }
         else if($this->orden === 'caro'){
-            $this->producto = Producto::orderBy('precio', 'desc')->get();
+            $this->productos = Producto::orderBy('precio', 'desc')->get();
         } 
         else if($this->orden === 'tiempo'){
-            $this->producto = Producto::orderBy('created_at', 'asc')->get();
+            $this->productos = Producto::orderBy('created_at', 'asc')->get();
         } 
         
     }
@@ -64,9 +72,11 @@ class ProductoShop extends Component
 
     public function mount() {
     $this->orden = '';
-    $this->producto = Producto::inRandomOrder()->get();
-    $this->categoria = Categoria::all();
-    $this->marca = Marca::all();
+    $this->productos = Producto::inRandomOrder()->get();
+    //$this->producto = Producto::paginate($this->perPage);
+    
+    $this->categorias = Categoria::all();
+    $this->marcas = Marca::all();
 }
 
 
@@ -76,8 +86,10 @@ class ProductoShop extends Component
         
 
         return view('livewire.producto-shop',[
-            'producto' => $this->producto,
-            'categoria' => $this->categoria,]);
+            'productos' => $this->productos,
+            'categorias' => $this->categorias,
+            'productos' => $this->productos,
+        ]);
     }
 
     

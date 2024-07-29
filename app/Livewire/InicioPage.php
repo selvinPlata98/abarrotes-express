@@ -10,15 +10,15 @@ use App\Models\Marca;
 class InicioPage extends Component
 {
 
-    public $producto;
-    public $categoria;
-    public $marca;
+    public $productos;
+    public $categorias;
+    public $marcas;
 
     public function render()
 {
-    $this->marca = Marca::all();
-    $this->categoria = Categoria::inRandomOrder()->limit(4)->get();
-    $this->producto = Producto::inRandomOrder()->limit(4)->get();
+    $this->marcas = Marca::all();
+    $this->categorias = Categoria::inRandomOrder()->limit(4)->get();
+    $this->productos = Producto::inRandomOrder()->limit(4)->get();
     return view('livewire.inicio-page');
     }
 }

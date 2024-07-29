@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/', \App\Livewire\InicioPage::class);
 Route::get('/', \App\Livewire\InicioPage::class);
 Route::get('/inicio', \App\Livewire\InicioPage::class)->name('inicio');
 Route::get('/home', \App\Livewire\InicioPage::class)->name('home');

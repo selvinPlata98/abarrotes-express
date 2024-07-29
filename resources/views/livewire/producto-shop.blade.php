@@ -42,11 +42,11 @@
                     <div class="mb-6 pb-8 border-b border-gray-line">
                         <h3 class="text-lg font-semibold mb-6">Categorias</h3>
                         <div class="space-y-2">
-                            @forelse($categoria ?? [] as $categorias)
+                            @forelse($categorias ?? [] as $categoria)
                             <label class="flex items-center">
                                 <input type="checkbox" class="form-checkbox custom-checkbox" 
-                       value="{{ $categorias->id }} "  wire:model="categoriasFiltradas" wire:click="filtrocate">
-                                <span class="ml-2">{{$categorias->nombre}}</span>
+                       value="{{ $categoria->id }} "  wire:model="categoriasFiltradas" wire:click="filtrocate">
+                                <span class="ml-2">{{$categoria->nombre}}</span>
                             </label>
                             @empty
         <li>No se encontraron categorías.</li>
@@ -58,11 +58,11 @@
                     <div class="mb-6 pb-8 border-b border-gray-line">
                         <h3 class="text-lg font-semibold mb-6">Marcas</h3>
                         <div class="space-y-2">
-                            @forelse($marca ?? [] as $marcas)
+                            @forelse($marcas ?? [] as $marca)
                             <label class="flex items-center">
                                 <input type="checkbox" class="form-checkbox custom-checkbox"
-                                value="{{ $marcas->id }} "  wire:model="marcasFiltradas" wire:click="filtromarcas">
-                                <span class="ml-2">{{$marcas->nombre}}</span>
+                                value="{{ $marca->id }} "  wire:model="marcasFiltradas" wire:click="filtromarcas">
+                                <span class="ml-2">{{$marca->nombre}}</span>
                             </label>
                             @empty
         <li>No se encontraron marcas.</li>
@@ -75,17 +75,17 @@
                 </div>
                 <!-- Products List -->
                 <div class="flex flex-wrap -mx-3 w-7/10 dim">
-    @forelse ($producto as $productos)
-        @if($productos->en_oferta > 0)
+    @forelse ($productos ?? [] as $producto)
+        @if($producto->en_oferta > 0)
             <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 px-4 mb-8">
                 <div class="bg-white p-3 rounded-lg shadow-lg text-center">
-                    @if(isset($productos->imagenes) && count($productos->imagenes) > 0)
-                        <img src="{{ url('storage~HEAD/' . $productos->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$productos->imagenes[0]}}">
+                    @if(isset($producto->imagenes) && count($producto->imagenes) > 0)
+                        <img src="{{ url('storage/' . $producto->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$producto->imagenes[0]}}">
                     @endif              
-                    <a href="{{ route('producto', ['enlace' => $productos->enlace]) }}" class="text-lg font-semibold mb-2">{{$productos->nombre}}</a>
+                    <a href="{{ route('producto', ['enlace' => $producto->enlace]) }}" class="text-lg font-semibold mb-2">{{$producto->nombre}}</a>
                     <div class="flex items-center mb-4">
-                        <span class="text-lg font-bold text-primary">{{$productos->precio - $productos->en_oferta}}</span>
-                        <span class="text-sm line-through ml-2">{{$productos->precio}}</span>
+                        <span class="text-lg font-bold text-primary">{{$producto->precio - $producto->en_oferta}}</span>
+                        <span class="text-sm line-through ml-2">{{$producto->precio}}</span>
                     </div>
                     <button class="bg-primary text-white border border-primary hover:bg-transparent hover:text-primary py-2 px-3 rounded-full w-full">añadir al carrito</button>
                 </div>
@@ -93,12 +93,12 @@
         @else
             <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 px-4 mb-8">
                 <div class="bg-white p-3 rounded-lg shadow-lg text-center">
-                    @if(isset($productos->imagenes) && count($productos->imagenes) > 0)
-                        <img src="{{ url('storage~HEAD/' . $productos->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$productos->imagenes[0]}}">
+                    @if(isset($producto->imagenes) && count($producto->imagenes) > 0)
+                        <img src="{{ url('storage/' . $producto->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$producto->imagenes[0]}}">
                     @endif              
-                    <a href="{{ route('producto', ['enlace' => $productos->enlace]) }}" class="text-lg font-semibold mb-2">{{$productos->nombre}}</a>
+                    <a href="{{ route('producto', ['enlace' => $producto->enlace]) }}" class="text-lg font-semibold mb-2">{{$producto->nombre}}</a>
                     <div class="flex items-center mb-4">
-                        <span class="text-lg font-bold text-primary">{{$productos->precio }}</span>
+                        <span class="text-lg font-bold text-primary">{{$producto->precio }}</span>
                     </div>
                     <button class="bg-primary text-white border border-primary hover:bg-transparent hover:text-primary py-2 px-3 rounded-full w-full">añadir al carrito</button>
                 </div>
@@ -107,7 +107,7 @@
     @endforeach
 </div>
             </div>
-        
+            
     </section>
 
     <!-- Shop category description -->

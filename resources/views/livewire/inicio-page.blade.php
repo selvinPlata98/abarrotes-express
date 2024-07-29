@@ -20,17 +20,17 @@
 
                         <!-- Traer los productos de la base de datos -->
                         <div  class="flex flex-wrap -mx-4">
-        @forelse ($producto as $productos)
-             @if($productos->en_oferta > 0)
+        @forelse ($productos as $producto)
+             @if($producto->en_oferta > 0)
         <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/4 px-4 mb-8">
                 <div class="bg-white p-3 rounded-lg shadow-lg text-center">
-            @if(isset($productos->imagenes) && count($productos->imagenes) > 0)
-                <img src="{{ url('storage~HEAD/' . $productos->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard"  alt="{{$productos->imagenes[0]}}">
+            @if(isset($producto->imagenes) && count($producto->imagenes) > 0)
+                <img src="{{ url('storage/' . $producto->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard"  alt="{{$producto->imagenes[0]}}">
             @endif              
-            <a href="#" class="text-lg font-semibold mb-2">{{$productos->nombre}}</a>
+            <a href="#" class="text-lg font-semibold mb-2">{{$producto->nombre}}</a>
             <div class="flex items-center mb-4">
-                <span class="text-lg font-bold text-primary">{{$productos->precio - $productos->en_oferta}}</span>
-                <span class="text-sm line-through ml-2">{{$productos->precio}}</span>
+                <span class="text-lg font-bold text-primary">{{$producto->precio - $producto->en_oferta}}</span>
+                <span class="text-sm line-through ml-2">{{$producto->precio}}</span>
             </div>
             <button class="bg-primary text-white border border-primary hover:bg-transparent hover:text-primary py-2 px-3 rounded-full w-full"  >añadir al carrito</button>
         </div>
@@ -38,12 +38,12 @@
     @else
     <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 px-4 mb-8">
                 <div class="bg-white p-3 rounded-lg shadow-lg text-center">
-            @if(isset($productos->imagenes) && count($productos->imagenes) > 0)
-                <img src="{{ url('storage~HEAD/' . $productos->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard"  alt="{{$productos->imagenes[0]}}">
+            @if(isset($producto->imagenes) && count($producto->imagenes) > 0)
+                <img src="{{ url('storage/' . $producto->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard"  alt="{{$producto->imagenes[0]}}">
             @endif              
-            <a href="#" class="text-lg font-semibold mb-2">{{$productos->nombre}}</a>
+            <a href="#" class="text-lg font-semibold mb-2">{{$producto->nombre}}</a>
             <div class="flex items-center mb-4">
-                <span class="text-lg font-bold text-primary">{{$productos->precio }}</span>
+                <span class="text-lg font-bold text-primary">{{$producto->precio }}</span>
             </div>
             <button class="bg-primary text-white border border-primary hover:bg-transparent hover:text-primary py-2 px-3 rounded-full w-full"  >añadir al carrito</button>
         </div>
@@ -67,13 +67,13 @@
 
                     <!-- Traer los categoria de la base de datos -->
                     <div class="flex flex-wrap -mx-4">
-                        @forelse ($categoria as $categorias)
+                        @forelse ($categorias as $categoria)
                             <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 px-4 mb-8">
                                 <div class="bg-white p-3 rounded-lg shadow-lg">
 
 
-                                    <img src="{{url('storage~HEAD/' , $categorias->imagen)}}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$categorias->imagen}}">
-                                    <a href="#" class="text-lg font-semibold mb-2">{{$categorias->nombre}}</a>
+                                    <img src="{{url('storage/' , $categoria->imagen)}}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$categoria->imagen}}">
+                                    <a href="#" class="text-lg font-semibold mb-2">{{$categoria->nombre}}</a>
                                 </div>
 
 
@@ -92,12 +92,12 @@
                         <p class="my-7">Explora las principales marcas que presentamos en nuestra tienda</p>
                     </div>
                     <div class="flex flex-wrap -mx-4">
-                        @forelse ($marca as $marcas)
+                        @forelse ($marcas as $marca)
                             <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 px-4 mb-8">
                                 <div class="bg-white p-3 rounded-lg shadow-lg">
 
-                                        <img src="{{ url('storage~HEAD/' . $marcas->imagen) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$marcas->imagen}}">
-                                    <a href="#" class="text-lg font-semibold mb-2">{{$marcas -> nombre}}</a>
+                                        <img src="{{ url('storage/' . $marca->imagen) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$marca->imagen}}">
+                                    <a href="#" class="text-lg font-semibold mb-2">{{$marca -> nombre}}</a>
                                 </div>
                             </div>
                         @empty
