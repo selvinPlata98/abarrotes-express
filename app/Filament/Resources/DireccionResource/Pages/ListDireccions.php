@@ -16,4 +16,5 @@ class ListDireccions extends ListRecords
             CreateAction::make(),
         ];
     }
+
 }

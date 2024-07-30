@@ -46,6 +46,7 @@ class ListCupons extends ListRecords
                 Tables\Columns\TextColumn::make('marca.nombre')
                     ->label('Marca'),
             ])
+            ->paginated([10, 25, 50, 100,])
 
             ->actions([
                 Tables\Actions\EditAction::make(),

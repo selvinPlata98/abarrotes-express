@@ -40,39 +40,33 @@ class MarcaResource extends Resource
                     ->regex('/^[A-Za-z ]+$/')
                     ->unique(Marca::class, ignoreRecord: true)
                     ->validationMessages([
-                        'maxLenght' => 'El nombre debe  contener un maximo de 80 carácteres.',
+                        'maxLength' => 'El nombre debe contener un máximo de 80 caracteres.',
                         'required' => 'Debe introducir un nombre de la marca',
-                        'unique' => 'Esta Marca ya existe'
+                        'unique' => 'Esta Marca ya existe',
                     ])
                     ->afterStateUpdated(fn(string $operation, $state, Set $set) => $operation
                     === 'create' ? $set('enlace', Str::slug($state)) : null)
                     ->reactive()
-                    ->live(onBlur: true)
-                    ->unique(Marca::class, ignoreRecord: true)
-                    ->maxLength(255),
+                    ->live(onBlur: true),
 
-                    Forms\Components\TextInput::make('enlace')
-                            ->required()
-                            ->label('Enlace')
-                            ->disabled()
-                            ->dehydrated()
-                            ->unique(Marca::class, ignoreRecord: true),
+                Forms\Components\TextInput::make('enlace')
+                    ->required()
+                    ->label('Enlace')
+                    ->disabled()
+                    ->dehydrated()
+                    ->unique(Marca::class, ignoreRecord: true),
 
                 Forms\Components\FileUpload::make('imagen')
                     ->required()
                     ->label('Imagen')
                     ->image()
-                    ->visibility('public')
-                    ->directory('marcas')
                     ->disk('public')
+                    ->directory('marcas')
                     ->validationMessages([
-                        'maxFiles' => 'Se permite un máximo de 1 imágenes.',
+                        'maxFiles' => 'Se permite un máximo de 1 imagen.',
                         'required' => 'Debe seleccionar al menos una imagen.',
                         'image' => 'El archivo debe ser una imagen válida.',
                     ])
-                    ->maxFiles(1)
-                    ->columnSpan(2)
-                    ->preserveFilenames()
                     ->maxFiles(1)
                     ->columnSpan(2),
 
@@ -83,23 +77,23 @@ class MarcaResource extends Resource
                 Forms\Components\MarkdownEditor::make('descripcion')
                     ->required()
                     ->label('Descripción')
-                    ->toolbarButtons(
-                        [
-                            'bold',
-                            'bulletList',
-                            'heading',
-                            'italic',
-                            'link',
-                            'redo',
-                            'undo'],
-                    )
-                    ->maxlength(182)
+                    ->toolbarButtons([
+                        'bold',
+                        'bulletList',
+                        'heading',
+                        'italic',
+                        'link',
+                        'redo',
+                        'undo',
+                    ])
+                    ->maxLength(182)
                     ->validationMessages([
                         'required' => 'La descripción es obligatoria.',
-                        'maxlength' => 'La descripción no puede exceder los 300 caracteres.'
+                        'maxLength' => 'La descripción no puede exceder los 182 caracteres.',
                     ])
                     ->columnSpan(2),
             ]);
+
     }
 
 

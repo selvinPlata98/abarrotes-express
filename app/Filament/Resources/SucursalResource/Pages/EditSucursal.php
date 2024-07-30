@@ -16,4 +16,11 @@ class EditSucursal extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
+    public function getRedirectUrl(): string
+    {
+        $url = $this->getResource()::getUrl('index') . '?sort=-created_at&tableSortColumn=id&tableSortDirection=desc';
+
+        return $url;
+    }
 }

@@ -33,16 +33,15 @@ class CategoriaResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema(components: [
-
+            ->schema([
                 Forms\Components\TextInput::make('nombre')
                     ->required()
                     ->label('Nombre De la Categoria')
                     ->maxLength(80)
                     ->regex('/^[A-Za-z ]+$/')
                     ->validationMessages([
-                        'maxLenght' => 'El nombre debe  contener un maximo de 80 carácteres.',
-                        'required' => 'Debe introducir un nombre de la marca',
+                        'maxLength' => 'El nombre debe contener un máximo de 80 caracteres.',
+                        'required' => 'Debe introducir un nombre para la categoria.',
                         'regex' => 'El nombre solo debe contener letras y espacios.',
                         'unique' => 'Esta categoría ya existe.',
                     ])
@@ -50,8 +49,7 @@ class CategoriaResource extends Resource
                     === 'create' ? $set('enlace', Str::slug($state)) : null)
                     ->reactive()
                     ->live(onBlur: true)
-                    ->unique(Categoria::class, ignoreRecord: true)
-                    ->maxLength(255),
+                    ->unique(Categoria::class, ignoreRecord: true),
 
                 TextInput::make('enlace')
                     ->required()
@@ -60,7 +58,7 @@ class CategoriaResource extends Resource
                     ->dehydrated()
                     ->unique(Categoria::class, ignoreRecord: true)
                     ->validationMessages([
-                        'unique' => 'Este enlace ya existe'
+                        'unique' => 'Este enlace ya existe',
                     ]),
 
                 FileUpload::make('imagen')
@@ -70,7 +68,7 @@ class CategoriaResource extends Resource
                     ->disk('public')
                     ->directory('categorias')
                     ->validationMessages([
-                        'maxFiles' => 'Se permite un máximo de 1 imágenes.',
+                        'maxFiles' => 'Se permite un máximo de 1 imagen.',
                         'required' => 'Debe seleccionar al menos una imagen.',
                         'image' => 'El archivo debe ser una imagen válida.',
                     ])
@@ -85,25 +83,23 @@ class CategoriaResource extends Resource
                 Forms\Components\MarkdownEditor::make('descripcion')
                     ->required()
                     ->label('Descripción')
+                    ->toolbarButtons([
+                        'bold',
+                        'bulletList',
+                        'heading',
+                        'italic',
+                        'link',
+                        'redo',
+                        'undo',
+                    ])
                     ->maxLength(182)
-                    ->toolbarButtons(
-                        [
-                            'bold',
-                            'bulletList',
-                            'heading',
-                            'italic',
-                            'link',
-                            'redo',
-                            'undo'],
-                    )
-                    ->maxlength(182)
                     ->validationMessages([
                         'required' => 'La descripción es obligatoria.',
-                        'maxlength' => 'La descripción no puede exceder los 300 caracteres.'
+                        'maxLength' => 'La descripción no puede exceder los 182 caracteres.',
                     ])
                     ->columnSpan(2),
-
             ]);
+
     }
 
 

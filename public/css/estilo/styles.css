@@ -3769,6 +3769,59 @@ p, h1 {
 
 
 
+.search-bar-container {
+    position: relative;
+    margin-top: -30px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: #999;
+}
+
+.clear-button {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.clear-button.hidden {
+    display: none;
+}
+
+.search-button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.search-button svg {
+    color: #002d72;
+}
+
+
+
+
+
+
+
+
 /*ESTILOS LOGIN*/
 .bg-fondo {
     background-image: url('/imagen/Fondo2-n4hFGeXP0-transformed.jpeg');
