@@ -60,7 +60,9 @@ class MarcaResource extends Resource
                     ->required()
                     ->label('Imagen')
                     ->image()
-                    ->disk('public')
+                    ->imageEditor()
+                    ->imageResizeMode('cover')
+                    ->imageCropAspectRatio('1:1')
                     ->directory('marcas')
                     ->validationMessages([
                         'maxFiles' => 'Se permite un máximo de 1 imagen.',

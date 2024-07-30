@@ -5,12 +5,12 @@
             <!-- Top Filter -->
             <div class="flex flex-col md:flex-row justify-between items-center py-4">
                 <div class="flex items-center space-x-4">
-                   
+
                 </div>
                 <div class="flex mt-5 md:mt-0 space-x-4">
     <div class="relative">
         <select class="block appearance-none w-full bg-white border hover:border-primary px-4 py-2 pr-8 rounded-full shadow leading-tight focus:outline-none focus:shadow-outline" wire:model="orden" wire:click="precio">
-        <option value="">filtro</option> 
+        <option value="">filtro</option>
         <option value="tiempo">Producto reciente</option>
         <option value="caro">Orden precio más alto</option>
             <option value="barato">Orden precio más barato</option>
@@ -24,11 +24,11 @@
 
 
 
-            
-                
 
 
-                
+
+
+
             </div>
             <!-- Filter Toggle Button for Mobile -->
             <div class="block md:hidden text-center mb-4">
@@ -44,7 +44,7 @@
                         <div class="space-y-2">
                             @forelse($categoria ?? [] as $categorias)
                             <label class="flex items-center">
-                                <input type="checkbox" class="form-checkbox custom-checkbox" 
+                                <input type="checkbox" class="form-checkbox custom-checkbox"
                        value="{{ $categorias->id }} "  wire:model="categoriasFiltradas" wire:click="filtrocate">
                                 <span class="ml-2">{{$categorias->nombre}}</span>
                             </label>
@@ -70,8 +70,8 @@
                             @endforelse
                         </div>
                     </div>
-                    
-                    
+
+
                 </div>
                 <!-- Products List -->
                 <div class="flex flex-wrap -mx-3 w-7/10 dim">
@@ -80,34 +80,34 @@
             <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 px-4 mb-8">
                 <div class="bg-white p-3 rounded-lg shadow-lg text-center">
                     @if(isset($productos->imagenes) && count($productos->imagenes) > 0)
-                        <img src="{{ url('storage~HEAD/' . $productos->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$productos->imagenes[0]}}">
-                    @endif              
+                        <img src="{{ url('storage' , $productos->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$productos->imagenes[0]}}">
+                    @endif
                     <a href="#" class="text-lg font-semibold mb-2">{{$productos->nombre}}</a>
                     <div class="flex items-center mb-4">
                         <span class="text-lg font-bold text-primary">{{$productos->precio - $productos->en_oferta}}</span>
                         <span class="text-sm line-through ml-2">{{$productos->precio}}</span>
                     </div>
-                    <button class="bg-primary text-white border border-primary hover:bg-transparent hover:text-primary py-2 px-3 rounded-full w-full">añadir al carrito</button>
+                    <button class="bg-primary text-white border border-primary hover:bg-transparent hover:text-primary py-2 px-3 rounded-full w-full">Añadir al carrito</button>
                 </div>
             </div>
         @else
             <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 px-4 mb-8">
                 <div class="bg-white p-3 rounded-lg shadow-lg text-center">
                     @if(isset($productos->imagenes) && count($productos->imagenes) > 0)
-                        <img src="{{ url('storage~HEAD/' . $productos->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$productos->imagenes[0]}}">
-                    @endif              
+                        <img src="{{ url('storage' , $productos->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$productos->imagenes[0]}}">
+                    @endif
                     <a href="{{ route('productoshop', ['categoria' => $categoria->id]) }}" class="text-lg font-semibold mb-2">{{$productos->nombre}}</a>
                     <div class="flex items-center mb-4">
                         <span class="text-lg font-bold text-primary">{{$productos->precio }}</span>
                     </div>
-                    <button class="bg-primary text-white border border-primary hover:bg-transparent hover:text-primary py-2 px-3 rounded-full w-full">añadir al carrito</button>
+                    <button class="bg-primary text-white border border-primary hover:bg-transparent hover:text-primary py-2 px-3 rounded-full w-full">Añadir al carrito</button>
                 </div>
             </div>
-        @endif 
+        @endif
     @endforeach
 </div>
             </div>
-        
+
     </section>
 
     <!-- Shop category description -->
@@ -117,12 +117,12 @@
                 <h2 class="text-2xl font-bold mb-4">Nuestra Productos</h2>
                 <p class="mb-4">
                 Descubre nuestra amplia variedad de productos en Abarrote Express,
-                 tu tienda de alimentos de confianza. Tenemos todo lo que necesitas para cualquier ocasión, ya sea que estés buscando algo para una comida casual o algo más formal. Nuestra colección incluye una amplia gama de productos de alta calidad, desde enlatados y productos de despensa hasta lácteos, frutas y verduras frescas. También ofrecemos una selección de bebidas no alcohólicas, alimentos preparados, carnes y embutidos, 
+                 tu tienda de alimentos de confianza. Tenemos todo lo que necesitas para cualquier ocasión, ya sea que estés buscando algo para una comida casual o algo más formal. Nuestra colección incluye una amplia gama de productos de alta calidad, desde enlatados y productos de despensa hasta lácteos, frutas y verduras frescas. También ofrecemos una selección de bebidas no alcohólicas, alimentos preparados, carnes y embutidos,
                 productos de higiene personal, artículos para uso doméstico y productos de limpieza.
                 </p>
                 <p>
                 En Abarrote Express nos enorgullece ofrecer una amplia variedad de marcas y productos para satisfacer todos los gustos y necesidades. Nuestro objetivo es brindarte una experiencia de compra conveniente y satisfactoria,
-                 con precios competitivos y un servicio amigable. 
+                 con precios competitivos y un servicio amigable.
                 </p>
             </div>
         </div>

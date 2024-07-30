@@ -69,13 +69,6 @@ class User extends Authenticatable implements FilamentUser
     public $user;
     public $isAdmin;
 
-    public function mount()
-    {
-        $this->user = auth()->user();
-        if ($this->user) {
-            $this->isAdmin = $this->user->is_admin;
-        }
-    }
 
     public function canAccessPanel(Panel $panel): bool
     {

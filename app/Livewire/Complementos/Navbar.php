@@ -18,7 +18,7 @@ class Navbar extends Component
     }
     public function render()
     {
-      if (auth()->check() && auth()->user()->is_admin){
+      if (auth()->check() && auth()->user()->hasRole('Cliente')){
           return view('livewire.complementos.navbar');
       }
         return view('livewire.complementos.navbar');

@@ -24,7 +24,7 @@
         @forelse ($marcas as $marca)
             <div class="brand-card my-2 mx-auto p-relative bg-white shadow-1 blue-hover" style="width: 360px; overflow: hidden; border-radius: 1px;" data-name="{{ strtolower($marca->nombre) }}">
                 @if (isset($marca->imagen))
-                    <div class="card-bg" style="background-image: url('{{ asset('storage/' . $marca->imagen) }}'); width: 100%; height: 200px; background-size: cover; background-position: center;"></div>
+                    <div class="card-bg" style="background-image: url('{{ asset('storage/' , $marca->imagen) }}'); width: 100%; height: 200px; background-size: cover; background-position: center;"></div>
                 @else
                     <img src="https://images.pexels.com/photos/442559/pexels-photo-442559.jpeg?auto=compress&cs=tinysrgb" alt="Imagen por defecto" class="d-block w-full" style="width: 100%; height: 200px; object-fit: cover;">
                 @endif
