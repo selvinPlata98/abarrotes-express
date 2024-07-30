@@ -16,4 +16,11 @@ class EditOrden extends EditRecord
             DeleteAction::make(),
         ];
     }
+
+    public function getRedirectUrl(): string
+    {
+        $url = $this->getResource()::getUrl('index') . '?sort=-created_at&tableSortColumn=id&tableSortDirection=desc';
+
+        return $url;
+    }
 }

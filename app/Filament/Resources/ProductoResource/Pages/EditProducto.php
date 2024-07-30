@@ -180,4 +180,11 @@ class EditProducto extends EditRecord
                 ])->columns(3)
             ])->columns(1);
     }
+
+    public function getRedirectUrl(): string
+    {
+        $url = $this->getResource()::getUrl('index') . '?sort=-created_at&tableSortColumn=id&tableSortDirection=desc';
+
+        return $url;
+    }
 }
