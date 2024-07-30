@@ -25,29 +25,34 @@ use WithPagination;
     public $perPage = 3;
     public $mostrarTodasCategorias = false;
     public $categoriasVisibles = 3;
+    public $mostrarTodasMarcas = false;
+    public $marcasVisibles = 3;
     public $categoriasFiltradas = [];
     public $marcasFiltradas = [];
     
 
-    
-    public function filtrocate(){
-        $query = Producto::query();
-
-        if (!empty($this->categoriasFiltradas)) {
-            $query->whereIn('categoria_id', $this->categoriasFiltradas);
-        }
-        $this->productos = $query->get();
-    }
-
-
     public function filtromarcas(){
         $query = Producto::query();
 
-        if (!empty($this->marcasFiltradas)) {
-            $query->whereIn('marca_id', $this->marcasFiltradas);
-        }
-        $this->productos = $query->get();
-        $productos = $query->paginate($this->perPage);
+    // Filtrar por categorías
+    if (!empty($this->categoriasFiltradas)) {
+        $query->whereIn('categoria_id', $this->categoriasFiltradas);
+    }
+
+    // Filtrar por marcas
+    if (!empty($this->marcasFiltradas)) {
+        $query->whereIn('marca_id', $this->marcasFiltradas);
+    }
+
+    // Nueva condición: filtrar por categorías y marcas simultáneamente
+    if (!empty($this->categoriasFiltradas) && !empty($this->marcasFiltradas)) {
+        $query->whereIn('categoria_id', $this->categoriasFiltradas)
+              ->whereIn('marca_id', $this->marcasFiltradas);
+    }
+
+    // Obtener los productos filtrados
+    $this->productos = $query->get();
+    
     }
     
     public function precio(){
@@ -58,17 +63,20 @@ use WithPagination;
             $this->productos = Producto::orderBy('precio', 'desc')->get();
         } 
         else if($this->orden === 'tiempo'){
-            $this->productos = Producto::orderBy('created_at', 'asc')->get();
+            $this->productos = Producto::orderBy('created_at', 'desc')->get();
         } 
         
     }
 
-
-    public function mostrarMas()
+    public function toggleCategorias()
     {
-        $this->mostrarTodasCategorias = true;
+        $this->mostrarTodasCategorias = !$this->mostrarTodasCategorias;
     }
-    
+
+    public function toggleMarcas()
+    {
+        $this->mostrarTodasMarcas = !$this->mostrarTodasMarcas;
+    }
 
     public function mount() {
     $this->orden = '';

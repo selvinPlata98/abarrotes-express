@@ -19,7 +19,7 @@
 
 
                         <!-- Traer los productos de la base de datos -->
-                        <div  class="flex flex-wrap -mx-4">
+                        <div  class="flex flex-wrap -mx-4 ">
         @forelse ($productos as $producto)
              @if($producto->en_oferta > 0)
         <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/4 px-4 mb-8">
@@ -27,7 +27,7 @@
             @if(isset($producto->imagenes) && count($producto->imagenes) > 0)
                 <img src="{{ url('storage/' . $producto->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard"  alt="{{$producto->imagenes[0]}}">
             @endif              
-            <a href="#" class="text-lg font-semibold mb-2">{{$producto->nombre}}</a>
+            <a href="{{ route('producto', ['enlace' => $producto->enlace]) }}" class="text-lg font-semibold mb-2">{{$producto->nombre}}</a>
             <div class="flex items-center mb-4">
                 <span class="text-lg font-bold text-primary">{{$producto->precio - $producto->en_oferta}}</span>
                 <span class="text-sm line-through ml-2">{{$producto->precio}}</span>
@@ -36,12 +36,12 @@
         </div>
     </div>
     @else
-    <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 px-4 mb-8">
+    <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/4 px-4 mb-8">
                 <div class="bg-white p-3 rounded-lg shadow-lg text-center">
             @if(isset($producto->imagenes) && count($producto->imagenes) > 0)
                 <img src="{{ url('storage/' . $producto->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard"  alt="{{$producto->imagenes[0]}}">
             @endif              
-            <a href="#" class="text-lg font-semibold mb-2">{{$producto->nombre}}</a>
+            <a href="{{ route('producto', ['enlace' => $producto->enlace]) }}" class="text-lg font-semibold mb-2">{{$producto->nombre}}</a>
             <div class="flex items-center mb-4">
                 <span class="text-lg font-bold text-primary">{{$producto->precio }}</span>
             </div>
@@ -49,18 +49,21 @@
         </div>
     </div>
     @endif 
-    @endforeach
+    @empty
+        <p>No se encontraron Productos.</p>
+        @endforelse
 
 
 
 
 
-</div>
+        </div>
+    </div>
 
             <section id="brands" class="bg-white py-16 px-4">
                 <div class="container mx-auto max-w-screen-xl px-4 testimonials">
                     <div class="text-center mb-12 lg:mb-20">
-                        <h2 class="text-5xl font-bold mb-4">Descubra <span class="text-primary">Nuestras Categorias</span></h2>
+                        <h2 class="text-5xl font-bold mb-4">Descubra <span class="text-primary">Nuestras Categorías</span></h2>
                         <p class="my-7">Descubre las principales categorías que ofrecemos en nuestra tienda y explora todo lo que tenemos para ti.</p>
                     </div>
 
@@ -108,25 +111,24 @@
             </section>
 
 
-
             <section class="py-16">
                 <div class="relative items-center w-full px-5 py-12 mx-auto md:px-12 lg:px-24 max-w-7xl">
                     <div class="grid w-full grid-cols-1 gap-6 mx-auto lg:grid-cols-3">
                         <div class="flex flex-col p-6 bg-white rounded-xl shadow-lg">
-                            <h1 class="mb-4 text-2xl font-semibold leading-none tracking-tighter text-gray-dark lg:text-3xl">Compra 100% segura.</h1>
+                            <h1 class="mb-4 text-2xl font-semibold leading-none tracking-tighter text-gray-dark lg:text-3xl text-center">Compra 100% segura</h1>
                             <p class="flex-grow text-base font-medium leading-relaxed text-gray-txt">Compra con confianza en abarrotes-express, tu tienda en línea donde garantizamos una experiencia satifatoria</p>
-                            <img class="object-cover object-center w-full mb-8 rounded-xl" src="/imagen/segurida.png" alt="blog">
+                            <img class="w-full object-cover mb-4 rounded-lg tamanoCard2" src="/imagen/segurida.svg" alt="blog">
 
                         </div>
                         <div class="flex flex-col p-6 bg-white rounded-xl shadow-lg">
-                            <h1 class="mb-4 text-2xl font-semibold leading-none tracking-tighter text-gray-dark lg:text-3xl">Metodo de pago</h1>
+                            <h1 class="mb-4 text-2xl font-semibold leading-none tracking-tighter text-gray-dark lg:text-3xl text-center">Metodo de pago</h1>
                             <p class="flex-grow text-base font-medium leading-relaxed text-gray-txt">Aceptamos pagos únicamente con tarjeta de crédito o débito! Puedes realizar tus compras de manera segura y conveniente utilizando cualquiera de estas dos opciones de pago.</p>
-                            <img class="object-cover object-center w-full mb-8 rounded-xl" src="imagen/tarjeta.png" alt="blog">
+                            <img class="w-full object-cover mb-4 rounded-lg tamanoCard2" src="imagen/tarjeta.svg" alt="blog">
                         </div>
                         <div class="flex flex-col p-6 bg-white rounded-xl shadow-lg">
-                            <h1 class="mb-4 text-2xl font-semibold leading-none tracking-tighter text-gray-dark lg:text-3xl">Recibe tu producto</h1>
+                            <h1 class="mb-4 text-2xl font-semibold leading-none tracking-tighter text-gray-dark lg:text-3xl text-center">Recibe tu producto</h1>
                             <p class="flex-grow text-base font-medium leading-relaxed text-gray-txt">Coordina la entrega de tu compra directamente con el vendedor. Tienes la opción de recibirlo cómodamente en tu domicilio, en la oficina o elegir recogerlo personalmente. ¡Tú tienes la libertad de decidir lo que más te convenga!.</p>
-                            <img class="object-cover object-center w-full mb-8 rounded-xl" src="imagen/envioo.png" alt="blog">
+                            <img class="w-full object-cover mb-4 rounded-lg tamanoCard2" src="imagen/enviado.svg" alt="blog">
 
                         </div>
                     </div>
@@ -134,4 +136,7 @@
             </section>
         </div>
     </section>
+
+
+    
 </div>

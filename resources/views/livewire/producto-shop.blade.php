@@ -40,12 +40,12 @@
                 <div id="filters" class="w-full md:w-1/4 p-4 hidden md:block">
                     <!-- Catgoria -->
                     <div class="mb-6 pb-8 border-b border-gray-line">
-                        <h3 class="text-lg font-semibold mb-6">Categorias</h3>
+                        <h3 class="text-lg font-semibold mb-6">Categorías</h3>
                         <div class="space-y-2">
-                            @forelse($categorias ?? [] as $categoria)
+                            @forelse($categorias->take($mostrarTodasCategorias ? $categorias->count() : $categoriasVisibles) as $categoria)
                             <label class="flex items-center">
                                 <input type="checkbox" class="form-checkbox custom-checkbox" 
-                       value="{{ $categoria->id }} "  wire:model="categoriasFiltradas" wire:click="filtrocate">
+                       value="{{ $categoria->id }} "  wire:model="categoriasFiltradas" wire:click="filtromarcas">
                                 <span class="ml-2">{{$categoria->nombre}}</span>
                             </label>
                             @empty
@@ -53,12 +53,17 @@
             </ul>
                             @endforelse
                         </div>
+                        @if($categorias->count() > $categoriasVisibles)
+        <button wire:click="toggleCategorias" class="mt-4 text-primary">
+            {{ $mostrarTodasCategorias ? 'Ver menos' : 'Ver más' }}
+        </button>
+    @endif
                     </div>
                     <!-- Marcas -->
                     <div class="mb-6 pb-8 border-b border-gray-line">
                         <h3 class="text-lg font-semibold mb-6">Marcas</h3>
                         <div class="space-y-2">
-                            @forelse($marcas ?? [] as $marca)
+                            @forelse($marcas->take($mostrarTodasMarcas ? $marcas->count() : $marcasVisibles) as $marca)
                             <label class="flex items-center">
                                 <input type="checkbox" class="form-checkbox custom-checkbox"
                                 value="{{ $marca->id }} "  wire:model="marcasFiltradas" wire:click="filtromarcas">
@@ -69,6 +74,11 @@
             </ul>
                             @endforelse
                         </div>
+                        @if($marcas->count() > $marcasVisibles)
+        <button wire:click="toggleMarcas" class="mt-4 text-primary">
+            {{ $mostrarTodasMarcas ? 'Ver menos' : 'Ver más' }}
+        </button>
+    @endif
                     </div>
                     
                     
@@ -103,8 +113,11 @@
                     <button class="bg-primary text-white border border-primary hover:bg-transparent hover:text-primary py-2 px-3 rounded-full w-full">añadir al carrito</button>
                 </div>
             </div>
+            
         @endif 
-    @endforeach
+        @empty
+             <p>No se encontraron productos.</p>
+             @endforelse
 </div>
             </div>
             
@@ -112,10 +125,10 @@
 
     <!-- Shop category description -->
     <section id="shop-category-description" class="py-8">
-        <div class="container mx-auto">
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-2xl font-bold mb-4">Nuestra Productos</h2>
-                <p class="mb-4">
+        <div class=" mx-auto">
+            <div class="bg-white  rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-4 container">Nuestra Productos</h2>
+                <p class="mb-6">
                 Descubre nuestra amplia variedad de productos en Abarrote Express,
                  tu tienda de alimentos de confianza. Tenemos todo lo que necesitas para cualquier ocasión, ya sea que estés buscando algo para una comida casual o algo más formal. Nuestra colección incluye una amplia gama de productos de alta calidad, desde enlatados y productos de despensa hasta lácteos, frutas y verduras frescas. También ofrecemos una selección de bebidas no alcohólicas, alimentos preparados, carnes y embutidos, 
                 productos de higiene personal, artículos para uso doméstico y productos de limpieza.

@@ -43,17 +43,16 @@ class ViewMarca extends ViewRecord
                     ->label('Nombre De la Marca')
                     ->maxLength(80)
                     ->regex('/^[A-Za-z ]+$/')
+                    ->unique(Marca::class, ignoreRecord: true)
                     ->validationMessages([
-                        'maxLenght' => 'El nombre debe  contener un maximo de 80 carácteres.',
+                        'maxLength' => 'El nombre debe contener un máximo de 80 caracteres.',
                         'required' => 'Debe introducir un nombre de la marca',
-                        'regex' => 'El nombre solo debe contener letras y espacios.'
+                        'unique' => 'Esta Marca ya existe',
                     ])
                     ->afterStateUpdated(fn(string $operation, $state, Set $set) => $operation
                     === 'create' ? $set('enlace', Str::slug($state)) : null)
                     ->reactive()
-                    ->live(onBlur: true)
-                    ->label('Nombre')
-                    ->maxLength(255),
+                    ->live(onBlur: true),
 
                 Forms\Components\TextInput::make('enlace')
                     ->required()
@@ -62,21 +61,17 @@ class ViewMarca extends ViewRecord
                     ->dehydrated()
                     ->unique(Marca::class, ignoreRecord: true),
 
-
                 Forms\Components\FileUpload::make('imagen')
                     ->required()
                     ->label('Imagen')
                     ->image()
-                    ->disk('ftp')
+                    ->disk('public')
                     ->directory('marcas')
                     ->validationMessages([
-                        'maxFiles' => 'Se permite un máximo de 1 imágenes.',
+                        'maxFiles' => 'Se permite un máximo de 1 imagen.',
                         'required' => 'Debe seleccionar al menos una imagen.',
                         'image' => 'El archivo debe ser una imagen válida.',
                     ])
-                    ->maxFiles(1)
-                    ->columnSpan(2)
-                    ->preserveFilenames()
                     ->maxFiles(1)
                     ->columnSpan(2),
 
@@ -84,23 +79,22 @@ class ViewMarca extends ViewRecord
                     ->label('Disponible')
                     ->default(true),
 
-                MarkdownEditor::make('descripcion')
+                Forms\Components\MarkdownEditor::make('descripcion')
                     ->required()
                     ->label('Descripción')
-                    ->toolbarButtons(
-                        [
-                            'bold',
-                            'bulletList',
-                            'heading',
-                            'italic',
-                            'link',
-                            'redo',
-                            'undo'],
-                    )
-                    ->maxlength(300)
+                    ->toolbarButtons([
+                        'bold',
+                        'bulletList',
+                        'heading',
+                        'italic',
+                        'link',
+                        'redo',
+                        'undo',
+                    ])
+                    ->maxLength(182)
                     ->validationMessages([
                         'required' => 'La descripción es obligatoria.',
-                        'maxlength' => 'La descripción no puede exceder los 300 caracteres.'
+                        'maxLength' => 'La descripción no puede exceder los 182 caracteres.',
                     ])
                     ->columnSpan(2),
             ]);
