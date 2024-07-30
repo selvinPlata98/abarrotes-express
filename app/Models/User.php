@@ -27,7 +27,6 @@ class User extends Authenticatable implements FilamentUser
         'name',
         'email',
         'password',
-        'is_admin',
         'email_verified_at'
     ];
 
@@ -80,6 +79,9 @@ class User extends Authenticatable implements FilamentUser
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return str_ends_with($this -> is_admin, 1);
+        if ($this->hasRole(['SuperAdmin', 'Administrador', 'Vendedor', 'Gerente'])){
+            return true;
+        }
+        return false;
     }
 }

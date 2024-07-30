@@ -67,7 +67,6 @@ class ViewMarca extends ViewRecord
                     ->required()
                     ->label('Imagen')
                     ->image()
-                    ->disk('ftp')
                     ->directory('marcas')
                     ->validationMessages([
                         'maxFiles' => 'Se permite un máximo de 1 imágenes.',

@@ -5,3 +5,6 @@
 /.idea
 /.vscode
 .env
+storage
+public
+vendor

@@ -41,7 +41,7 @@
             @endguest
 
             @auth
-                @if(auth()->user()->is_admin == 1)
+                @if(auth()->user()->hasRole(['Cliente']) == false)
                     <div class="hidden lg:flex items-center space-x-4 relative">
                         <a href="/admin" class="bg-primary border border-primary text-white font-semibold px-4 py-2 rounded-full inline-block">Ir al Panel Administrativo</a>
                     </div>

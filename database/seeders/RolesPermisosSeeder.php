@@ -41,7 +41,7 @@ class RolesPermisosSeeder extends Seeder
         $permisoAdmin2 = Permission::create(['name' => 'update: admin']);
 
         // CREATE ROLES
-        $usuarioRol = Role::create(['name' => 'user'])->syncPermissions([
+        $usuarioRol = Role::create(['name' => 'Cliente'])->syncPermissions([
             $permisoGeneral,
         ]);
 
@@ -79,7 +79,7 @@ class RolesPermisosSeeder extends Seeder
             $permisoAdmin2,
             $permisoUsuario1,
         ]);
-        $moderatorRole = Role::create(['name' => 'vendedor'])->syncPermissions([
+        $moderatorRole = Role::create(['name' => 'Vendedor'])->syncPermissions([
             $permisoUsuario2,
             $permisoRol2,
             $permiso2,
@@ -167,7 +167,6 @@ class RolesPermisosSeeder extends Seeder
             'remember_token' => Str::random(10),
         ])->assignRole($superAdminRole);;
 
-
-        User::factory(10)->create();
+        User::factory(10)->create()->assignRole($usuarioRol);
     }
 }
