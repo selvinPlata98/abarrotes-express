@@ -25,8 +25,8 @@
         <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/4 px-4 mb-8">
                 <div class="bg-white p-3 rounded-lg shadow-lg text-center">
             @if(isset($productos->imagenes) && count($productos->imagenes) > 0)
-                <img src="{{ url('storage~HEAD/' . $productos->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard"  alt="{{$productos->imagenes[0]}}">
-            @endif              
+                <img src="{{ url('storage/' , $productos->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard"  alt="{{$productos->imagenes[0]}}">
+            @endif
             <a href="#" class="text-lg font-semibold mb-2">{{$productos->nombre}}</a>
             <div class="flex items-center mb-4">
                 <span class="text-lg font-bold text-primary">{{$productos->precio - $productos->en_oferta}}</span>
@@ -39,8 +39,8 @@
     <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 px-4 mb-8">
                 <div class="bg-white p-3 rounded-lg shadow-lg text-center">
             @if(isset($productos->imagenes) && count($productos->imagenes) > 0)
-                <img src="{{ url('storage~HEAD/' . $productos->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard"  alt="{{$productos->imagenes[0]}}">
-            @endif              
+                <img src="{{ url('storage/' , $productos->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard"  alt="{{$productos->imagenes[0]}}">
+            @endif
             <a href="#" class="text-lg font-semibold mb-2">{{$productos->nombre}}</a>
             <div class="flex items-center mb-4">
                 <span class="text-lg font-bold text-primary">{{$productos->precio }}</span>
@@ -48,7 +48,7 @@
             <button class="bg-primary text-white border border-primary hover:bg-transparent hover:text-primary py-2 px-3 rounded-full w-full"  >añadir al carrito</button>
         </div>
     </div>
-    @endif 
+    @endif
     @endforeach
 
 
@@ -72,7 +72,7 @@
                                 <div class="bg-white p-3 rounded-lg shadow-lg">
 
 
-                                    <img src="{{url('storage~HEAD/' , $categorias->imagen)}}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$categorias->imagen}}">
+                                    <img src="{{url('storage' , $categorias->imagen)}}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$categorias->imagen}}">
                                     <a href="#" class="text-lg font-semibold mb-2">{{$categorias->nombre}}</a>
                                 </div>
 
@@ -96,7 +96,7 @@
                             <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 px-4 mb-8">
                                 <div class="bg-white p-3 rounded-lg shadow-lg">
 
-                                        <img src="{{ url('storage~HEAD/' . $marcas->imagen) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$marcas->imagen}}">
+                                        <img src="{{ url('storage' , $marcas->imagen) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$marcas->imagen}}">
                                     <a href="#" class="text-lg font-semibold mb-2">{{$marcas -> nombre}}</a>
                                 </div>
                             </div>

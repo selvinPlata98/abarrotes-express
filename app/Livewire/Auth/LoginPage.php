@@ -43,7 +43,7 @@ class LoginPage extends Component
             $this->addError('email', 'Correo y contraseña no coinciden');
 
         }
-
+        return redirect()->route('inicio');
 
     }
 

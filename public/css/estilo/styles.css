@@ -3485,7 +3485,7 @@ video {
 
 /* Estilos generales */
 .categories .title-container {
-    margin-top: 80px; /* Ajusta este valor según sea necesario */
+    margin-top: 80px;
 }
 
 body {
@@ -3514,9 +3514,9 @@ p, h1 {
 }
 
 .card-description {
-    text-align: justify; /* Justificar el texto */
-    margin: 0; /* Eliminar márgenes existentes */
-    padding: 0; /* Eliminar relleno */
+    text-align: justify;
+    margin: 0;
+    padding: 0;
 }
 
 .text-light-black {
@@ -3547,22 +3547,22 @@ p, h1 {
     letter-spacing: 2px;
 }
 
-/* Contenedor de la tarjeta */
+
 .container {
-    max-width: 1140px; /* Ancho máximo del contenedor */
-    margin: 0 auto; /* Centrar el contenedor */
-    padding: 0 1rem; /* Espaciado horizontal */
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .cards-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.5rem; /* Espaciado entre tarjetas */
+    gap: 1.5rem;
 }
 
-/* Estilo de la tarjeta */
+
 .card-wrapper {
-    width: 300px; /* Reducir ancho de la tarjeta */
+    width: 300px;
     margin: 1rem auto;
 }
 
@@ -3588,39 +3588,40 @@ p, h1 {
     border-bottom: 5px solid #002d72;
 }
 
-/* Redondear todas las esquinas de la tarjeta, incluyendo las esquinas inferiores */
+
 .card {
-    background-color: #003d7a; /* Color de fondo azul oscuro */
-    border-radius: 0.5rem; /* Redondear todas las esquinas */
+    background-color: #003d7a;
+    border-radius: 0.5rem;
     overflow: hidden;
 }
 
-/* Imagen de fondo */
+
 .card-bg {
     width: 100%;
-    height: 180px; /* Ajusta la altura según tus necesidades */
+    height: 180px;
     background-size: cover;
     background-position: center;
-    border-radius: 0.5rem 0.5rem 0 0; /* Redondear sólo las esquinas superiores */
+    border-radius: 0.5rem 0.5rem 0 0;
 }
 
-/* Estilo del texto dentro de la tarjeta */
-.card-content {
-    padding: 1rem; /* Añadir relleno alrededor del texto */
-}
 
 .card-description {
-    text-align: justify; /* Justificar el texto */
-    margin: 0; /* Eliminar márgenes existentes */
-    padding: 0; /* Eliminar relleno */
+    text-align: justify;
+    margin: 0;
+    padding: 0 1rem;
+}
+
+.card-content {
+    padding: 1.5rem;
 }
 
 .card-description p {
-    margin-bottom: 1rem; /* Espacio entre párrafos */
+    margin-bottom: 1rem;
 }
 
+
 .card-description p + p {
-    margin-top: 1rem; /* Espacio adicional para el segundo y siguientes párrafos */
+    margin-top: 1rem;
 }
 
 .px-3 {
@@ -3662,10 +3663,11 @@ p, h1 {
 }
 
 .card-heading {
-    font-size: 2rem; /* Tamaño del título */
-    color: #fff; /* Color del texto del título para contraste */
-    font-family: 'Roboto', sans-serif; /* Fuente normal para el título */
-    font-weight: normal; /* Peso de la fuente normal */
+    font-size: 2rem;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+    margin-left: 1rem;
 }
 
 .mb-1 {
@@ -3680,12 +3682,12 @@ p, h1 {
     margin-top: 2rem;
 }
 
-/* Mejorar el botón de ver más */
+
 .styled-link {
     text-decoration: none;
     outline: none;
-    color: #fff; /* Texto blanco para contraste */
-    background-color: #002d72; /* Azul oscuro para el fondo */
+    color: #fff;
+    background-color: #002d72;
     transition: all 0.3s ease;
     display: inline-block;
     padding: 0.75rem 1.5rem;
@@ -3693,21 +3695,21 @@ p, h1 {
     font-weight: 500;
     text-align: center;
     text-transform: uppercase;
-    margin-top: 1.5rem; /* Añadir más espacio encima del botón */
+    margin-top: 1.5rem;
 }
 
 .styled-link:hover,
 .styled-link:focus,
 .styled-link:active {
-    background-color: #001f3f; /* Azul más oscuro para el estado hover/focus/active */
+    background-color: #001f3f;
 }
 
-/* Centrar el texto dentro de la tarjeta */
+
 .text-center {
     text-align: center;
 }
 
-/* Paginación */
+
 .pagination {
     display: flex;
     justify-content: center;
@@ -3727,7 +3729,7 @@ p, h1 {
     color: #536dfe;
 }
 
-/* Utilidades de márgenes y rellenos */
+
 .mx-0 { margin-left: 0; margin-right: 0; }
 .mx-1 { margin-left: 1rem; margin-right: 1rem; }
 .mx-2 { margin-left: 2rem; margin-right: 2rem; }
