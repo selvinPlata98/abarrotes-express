@@ -22,8 +22,6 @@ class RegistroPage extends Component
         return view('livewire.auth.registro-page');
     }
 
-
-
     public function guardar(){
 
         $this->validate([
@@ -43,13 +41,6 @@ class RegistroPage extends Component
             ]
         );
 
-
-       /* $this->validate([
-            'name' => 'required|regex:/^[a-zA-Z0-9_ áéíóúñ]+$/',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8|max:18',
-        ]);*/
-
         // Crear un nuevo registro en la base de datosssss
         $user = new User();
         $user->name = $this->name;
@@ -57,12 +48,9 @@ class RegistroPage extends Component
         $user->password = Hash::make($this->password);
         $user->email_verified_at = Carbon::now();
         $user->save();
-
         $this->reset();
-
         // Mostrar un mensaje de éxito
         session()->flash('mensaje', '¡RegistroPage exitoso!');
-
-        return redirect()->to('/inicio');
+        return redirect()->route('inicio');
     }
 }
