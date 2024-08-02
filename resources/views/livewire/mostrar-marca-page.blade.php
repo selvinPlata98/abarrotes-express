@@ -4,15 +4,16 @@
         <p class="my-7 text-muted">Explora nuestra selección de marcas destacadas y descubre productos especialmente seleccionados para ti. ¡Encuentra calidad y variedad en cada marca que ofrecemos!</p>
     </div>
 
+    <!-- Barra de Búsqueda -->
     <div class="search-bar-container mx-auto max-w-screen-xl px-4 mb-8">
         <div class="relative flex items-center max-w-md mx-auto">
-            <input type="text"  id="searchInput" class="search-input" wire:model.live="search"   placeholder="Buscar marcas...">
-            <button id="clearButton" class="clear-button hidden" >
+            <input type="text" id="searchInput" class="search-input" wire:model.live="search" placeholder="Buscar marcas...">
+            <button id="clearButton" class="clear-button hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                 </svg>
             </button>
-            <button id="searchButton" class="search-button" >
+            <button id="searchButton" class="search-button">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M15.25 10.75a5.5 5.5 0 11-11 0 5.5 5.5 0 0111 0z"/>
                 </svg>
@@ -20,9 +21,10 @@
         </div>
     </div>
 
+    <!-- Contenedor de Tarjetas -->
     <div class="cards-container flex flex-wrap">
         @forelse ($marcas as $marca)
-            <div class="brand-card my-2 mx-auto p-relative bg-white shadow-1 blue-hover" style="width: 360px; overflow: hidden; border-radius: 1px;" data-name="{{ strtolower($marca->nombre) }}">
+            <div class="my-2 mx-auto p-relative bg-white shadow-1 blue-hover" style="width: 360px; overflow: hidden; border-radius: 1px;" data-name="{{ strtolower($marca->nombre) }}">
                 @if (isset($marca->imagen))
                     <div class="card-bg" style="background-image: url('{{ asset('storage/' , $marca->imagen) }}'); width: 100%; height: 200px; background-size: cover; background-position: center;"></div>
                 @else
@@ -56,10 +58,7 @@
 
     @if ($marcas->isNotEmpty())
         <div class="text-center mt-4">
-            {{ $marcas->links() }}
+                {{ $marcas->links() }}
         </div>
     @endif
 </div>
-
-
-

@@ -37,7 +37,7 @@ class CategoriaResource extends Resource
                 Forms\Components\TextInput::make('nombre')
                     ->required()
                     ->label('Nombre De la Categoria')
-                    ->maxLength(80)
+                    ->maxLength(40)
                     ->regex('/^[A-Za-z ]+$/')
                     ->validationMessages([
                         'maxLength' => 'El nombre debe contener un máximo de 80 caracteres.',
@@ -94,10 +94,10 @@ class CategoriaResource extends Resource
                         'redo',
                         'undo',
                     ])
-                    ->maxLength(182)
+                    ->maxLength(200)
                     ->validationMessages([
                         'required' => 'La descripción es obligatoria.',
-                        'maxLength' => 'La descripción no puede exceder los 182 caracteres.',
+                        'maxLength' => 'La descripción no puede exceder los 200 caracteres.',
                     ])
                     ->columnSpan(2),
             ]);

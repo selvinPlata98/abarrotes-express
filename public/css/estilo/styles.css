@@ -2522,6 +2522,7 @@ video {
 .text-5xl {
   font-size: 3rem;
   line-height: 1;
+
 }
 
 .text-base {
@@ -3483,7 +3484,7 @@ video {
 
 
 
-/* Estilos generales */
+/* ESTILOS PARA CATEGORIAS Y MARCAS */
 .categories .title-container {
     margin-top: 80px;
 }
@@ -3609,6 +3610,13 @@ p, h1 {
     text-align: justify;
     margin: 0;
     padding: 0 1rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    box-sizing: border-box;
 }
 
 .card-content {
@@ -3673,6 +3681,7 @@ p, h1 {
 
 .mb-1 {
     margin-bottom: 1.5rem;
+
 }
 
 .mt-0 {
@@ -3681,6 +3690,7 @@ p, h1 {
 
 .mt-4 {
     margin-top: 2rem;
+    margin-bottom: 20px;
 }
 
 
@@ -3696,7 +3706,7 @@ p, h1 {
     font-weight: 500;
     text-align: center;
     text-transform: uppercase;
-
+    margin-top: 1rem;
 
 }
 
@@ -3712,24 +3722,6 @@ p, h1 {
 }
 
 
-.pagination {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-}
-
-.pagination a {
-    padding: 0.5rem 1rem;
-    border: 1px solid rgba(0,0,0,0.12);
-    border-radius: 0.25rem;
-    color: #2196fe;
-    text-decoration: none;
-}
-
-.pagination a:hover {
-    background-color: #e9ecef;
-    color: #536dfe;
-}
 
 
 .mx-0 { margin-left: 0; margin-right: 0; }
@@ -3744,7 +3736,7 @@ p, h1 {
 .mt-1 { margin-top: 1rem; }
 .mt-2 { margin-top: 2rem; }
 .mt-3 { margin-top: 3rem; }
-.mb-0 { margin-bottom: 0; }
+.mb-0 { margin-bottom: 0;margin-left: 1rem; }
 .mb-1 { margin-bottom: 1.5rem; }
 .mb-2 { margin-bottom: 2rem; }
 .mb-3 { margin-bottom: 3rem; }
@@ -3819,7 +3811,7 @@ p, h1 {
 .search-button svg {
     color: #002d72;
 }
-
+/*FIN DE ESTILOS PARA CATEGORIAS Y PAGINAS*/
 
 
 

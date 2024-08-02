@@ -32,8 +32,5 @@ protected $table = 'marcas';
         return $this->hasMany(Cupon::class, 'marca_id');
     }
 
-    public static function search($query)
-    {
-        return static::where('nombre', 'LIKE', "%$query%")->paginate(9);
-    }
+
 }

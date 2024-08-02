@@ -2,11 +2,13 @@
 
 namespace App\Livewire;
 
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use App\Models\Marca;
 
 class MostrarMarcaPage extends Component
 {
+    #[Url]
     public $perPage = 9;
     public $search = '';
 
