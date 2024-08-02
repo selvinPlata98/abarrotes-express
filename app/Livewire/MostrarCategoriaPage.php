@@ -11,11 +11,10 @@ class MostrarCategoriaPage extends Component
 
     public function render()
     {
-        $categorias = Categoria::paginate($this->perPage);
+        $categorias = Categoria::where('disponible', 1)->paginate($this->perPage);
 
         return view('livewire.mostrar-categoria-page', [
             'categorias' => $categorias,
         ]);
     }
 }
-

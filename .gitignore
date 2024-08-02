@@ -4,3 +4,7 @@
 /.fleet
 /.idea
 /.vscode
+.env
+storage
+public
+vendor

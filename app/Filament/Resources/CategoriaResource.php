@@ -65,13 +65,15 @@ class CategoriaResource extends Resource
                     ->required()
                     ->label('Imagen')
                     ->image()
-                    ->disk('public')
                     ->directory('categorias')
                     ->validationMessages([
                         'maxFiles' => 'Se permite un máximo de 1 imagen.',
                         'required' => 'Debe seleccionar al menos una imagen.',
                         'image' => 'El archivo debe ser una imagen válida.',
                     ])
+                    ->imageEditor()
+                    ->imageResizeMode('cover')
+                    ->imageCropAspectRatio('1:1')
                     ->maxFiles(1)
                     ->columnSpan(2)
                     ->preserveFilenames(),

@@ -4,10 +4,13 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages\ViewUser;
 use App\Filament\Resources\UsuariosResource\Pages;
+use App\Filament\Resources\UsuariosResource\RelationManagers\RolesRelationManager;
 use App\Models\User;
+use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\Page;
@@ -49,7 +52,7 @@ class UsuariosResource extends Resource
                     ->regex('/^[A-Za-z ]+$/')
                     ->validationMessages([
                         'maxLenght' => 'El nombre no debe contener más de 100 carácteres.',
-                       'required' => 'Debe introducir un nombre de usuario.',
+                        'required' => 'Debe introducir un nombre de usuario.',
                         'regex' => 'El nombre solo debe contener letras y espacios.',
                     ]),
 
@@ -57,12 +60,18 @@ class UsuariosResource extends Resource
                     ->required()
                     ->email()
                     ->unique(ignoreRecord: true)
-                    ->maxLength(100)                    ->label('Correo Electrónico')
+                    ->maxLength(100)->label('Correo Electrónico')
                     ->validationMessages([
                         'required' => 'Debe introducir un correo electrónico.',
                         'email' => 'Debe introducir un correo electrónico válido.',
                         'unique' => 'El correo ingresado se encuentra en uso, introduzca uno nuevo.'
                     ]),
+
+                CheckboxList::make('roles')
+                    ->helperText('Seleccionar solo uno')
+                    ->relationship('roles', 'name')
+                    ->columns(2)
+                    ->required(),
 
                 DateTimePicker::make('email_verified_at')
                     ->label('Fecha de verificación de Correo'),
@@ -72,8 +81,11 @@ class UsuariosResource extends Resource
                     ->password()
                     ->revealable()
                     ->required()
-                    ->dehydrated(fn($state) => filled($state))
-                    ->required(fn(Page $livewire): bool => $livewire instanceof CreateRecord)
+                    ->dehydrated(static fn(null|string $state):
+                    null|string => filled($state ? \Hash::make($state) : null))
+                    ->required(fn(Page $livewire): bool => $livewire instanceof Pages\CreateUsuarios)
+                    ->dehydrated(static fn(null|string $state):
+                    bool => filled($state))
                     ->validationMessages([
                         'required' => 'Debe introducir una contraseña',
                     ]),
@@ -96,6 +108,13 @@ class UsuariosResource extends Resource
             'create' => Pages\CreateUsuarios::route('/create'),
             'edit' => Pages\EditUsuarios::route('/{record}/edit'),
             'view' => Pages\ViewUsuario::route('/{record}/view')
+        ];
+    }
+
+    public static function getRelations(): array
+    {
+        return[
+          RolesRelationManager::class
         ];
     }
 

@@ -3613,6 +3613,7 @@ p, h1 {
 
 .card-content {
     padding: 1.5rem;
+
 }
 
 .card-description p {
@@ -3695,7 +3696,8 @@ p, h1 {
     font-weight: 500;
     text-align: center;
     text-transform: uppercase;
-    margin-top: 1.5rem;
+
+
 }
 
 .styled-link:hover,
@@ -3766,6 +3768,7 @@ p, h1 {
 .pb-1 { padding-bottom: 1rem; }
 .pb-2 { padding-bottom: 2rem; }
 .pb-3 { padding-bottom: 3rem; }
+
 
 
 
