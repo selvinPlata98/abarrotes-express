@@ -24,8 +24,8 @@ Route::get('/home', function (){
 
 
 Route::get('/categorias', \App\Livewire\MostrarCategoriaPage::class);
-Route::get('/marcas', \App\Livewire\MostrarMarcaPage::class);
-Route::get('/productoshop/{categoria?}/{marca?}', \App\Livewire\ProductoShop::class)->name('productoshop');
+Route::get('/marcas', \App\Livewire\MostrarMarcaPage::class)->name('marcas');
+Route::get('/producto-shop/{categoria?}/{marca?}', \App\Livewire\ProductoShop::class)->name('productoshop');
 Route::get('/producto/{enlace}', \App\Livewire\ProductoPage::class);
 Route::get('/error', \App\Livewire\ErrorPage::class);
 

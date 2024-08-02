@@ -16,8 +16,10 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
+        "@popperjs/core": "^2.11.8",
         "@preline/carousel": "^2.3.0",
-        "preline": "^2.3.0",
+        "@preline/dropdown": "^2.4.1",
+        "preline": "^2.4.1",
         "swiper": "^11.0.7"
     }
 }

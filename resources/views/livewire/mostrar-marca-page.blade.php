@@ -6,7 +6,7 @@
 
     <div class="search-bar-container mx-auto max-w-screen-xl px-4 mb-8">
         <div class="relative flex items-center max-w-md mx-auto">
-            <input type="text" id="searchInput" class="search-input" placeholder="Buscar marcas...">
+            <input type="text" wire:model.live="search" id="searchInput" class="search-input" placeholder="Buscar marcas...">
             <button id="clearButton" class="clear-button hidden" onclick="clearSearch()">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>

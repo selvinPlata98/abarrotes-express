@@ -5,7 +5,7 @@
             <div class="swiper-wrapper">
                 <!-- Slide 1 -->
                 <div class="swiper-slide">
-                    <img src="/imagen/logo3.jpeg" alt="Product 1">
+                    <img src="/imagen/BannerAbarrotesExpress.jpg" alt="Product 1">
                 </div>
 
 
@@ -58,8 +58,8 @@
                                                 <span
                                                     class="text-lg font-bold text-primary">{{$productos->precio }}</span>
                                             </div>
-                                            <button
-                                                class="bg-primary text-white border border-primary hover:bg-transparent hover:text-primary py-2 px-3 rounded-full w-full">
+                                                <button
+                                                    class="bg-primary text-white border border-primary hover:bg-transparent hover:text-primary py-2 px-3 rounded-full w-full">
                                                 Añadir al carrito
                                             </button>
                                         </div>

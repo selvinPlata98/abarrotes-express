@@ -2,7 +2,7 @@
 const { iconsPlugin, dynamicIconsPlugin } = require('@egoist/tailwindcss-icons')
 
 module.exports = {
-    plugins: [iconsPlugin(), dynamicIconsPlugin()], 
+    plugins: [iconsPlugin(), dynamicIconsPlugin()],
 }
 
 export default {
@@ -45,4 +45,5 @@ export default {
     plugins: [
         require('preline/plugin')
     ],
+
 }
