@@ -31,6 +31,7 @@ class ListSucursales extends ListRecords
                 Tables\Columns\TextColumn::make('municipio')->label('Municipio'),
                 Tables\Columns\TextColumn::make('ciudad')->label('Ciudad'),
             ])
+            ->paginated([10, 25, 50, 100,])
             ->filters([
                 //
             ])

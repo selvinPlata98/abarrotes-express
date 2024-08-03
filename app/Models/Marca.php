@@ -31,4 +31,6 @@ protected $table = 'marcas';
     {
         return $this->hasMany(Cupon::class, 'marca_id');
     }
+
+
 }

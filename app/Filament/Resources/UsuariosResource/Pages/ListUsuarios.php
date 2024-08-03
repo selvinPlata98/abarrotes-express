@@ -50,12 +50,6 @@ class ListUsuarios extends ListRecords
                     ->alignCenter()
                     ->label('Correo Electrónico'),
 
-                IconColumn::make('is_admin')
-                    ->sortable()
-                    ->boolean()
-                    ->alignCenter()
-                    ->label('Administrador'),
-
                 TextColumn::make('roles.name') ->sortable()->searchable()
                 ->alignCenter(),
 

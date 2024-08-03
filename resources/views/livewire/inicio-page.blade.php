@@ -12,22 +12,24 @@
                 <section id="brands" class="bg-white py-16 px-4">
                     <div class="container mx-auto max-w-screen-xl px-4 testimonials">
                         <div class="text-center mb-12 lg:mb-20">
-                            <h2 class="text-5xl font-bold mb-4"><span class="text-primary">Nuestros Producto</span></h2>
-                            <p class="my-7">¡Descubre nuestros increíbles productos! Sumérgete en una experiencia única y encuentra todo lo que necesitas en un solo lugar.</p>
+                            <h2 class="text-5xl font-bold mb-4"><span class="text-primary">Nuestros Productos</span>
+                            </h2>
+                            <p class="my-7">¡Descubre nuestros increíbles productos! Sumérgete en una experiencia única
+                                y encuentra todo lo que necesitas en un solo lugar.</p>
 
                         </div>
 
 
                         <!-- Traer los productos de la base de datos -->
                         <div  class="flex flex-wrap -mx-4 ">
-        @forelse ($productos as $producto)
+            @forelse ($productos as $producto)
              @if($producto->en_oferta > 0)
         <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/4 px-4 mb-8">
                 <div class="bg-white p-3 rounded-lg shadow-lg text-center">
             @if(isset($producto->imagenes) && count($producto->imagenes) > 0)
-                <img src="{{ url('storage/' . $producto->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard"  alt="{{$producto->imagenes[0]}}">
-            @endif              
-            <a href="{{ route('producto', ['enlace' => $producto->enlace]) }}" class="text-lg font-semibold mb-2">{{$producto->nombre}}</a>
+                <img src="{{ url('storage/' , $producto->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard"  alt="{{$producto->imagenes[0]}}">
+            @endif
+            <a href="#" class="text-lg font-semibold mb-2">{{$producto->nombre}}</a>
             <div class="flex items-center mb-4">
                 <span class="text-lg font-bold text-primary">{{$producto->precio - $producto->en_oferta}}</span>
                 <span class="text-sm line-through ml-2">{{$producto->precio}}</span>
@@ -39,9 +41,9 @@
     <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/4 px-4 mb-8">
                 <div class="bg-white p-3 rounded-lg shadow-lg text-center">
             @if(isset($producto->imagenes) && count($producto->imagenes) > 0)
-                <img src="{{ url('storage/' . $producto->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard"  alt="{{$producto->imagenes[0]}}">
-            @endif              
-            <a href="{{ route('producto', ['enlace' => $producto->enlace]) }}" class="text-lg font-semibold mb-2">{{$producto->nombre}}</a>
+                <img src="{{ url('storage/' , $producto->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard"  alt="{{$producto->imagenes[0]}}">
+            @endif
+            <a href="#" class="text-lg font-semibold mb-2">{{$producto->nombre}}</a>
             <div class="flex items-center mb-4">
                 <span class="text-lg font-bold text-primary">{{$producto->precio }}</span>
             </div>
@@ -52,7 +54,6 @@
     @empty
         <p>No se encontraron Productos.</p>
         @endforelse
-
 
 
 
@@ -75,18 +76,18 @@
                                 <div class="bg-white p-3 rounded-lg shadow-lg">
 
 
-                                    <img src="{{url('storage/' , $categoria->imagen)}}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$categoria->imagen}}">
+                                    <img src="{{url('storage' , $categoria->imagen)}}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$categoria->imagen}}">
                                     <a href="#" class="text-lg font-semibold mb-2">{{$categoria->nombre}}</a>
                                 </div>
 
 
-                            </div>
-                        @empty
-                            <p>No se encontraron categorías.</p>
-                @endforelse
+                                        </div>
+                                    @empty
+                                        <p>No se encontraron categorías.</p>
+                            @endforelse
 
 
-            </section>
+                        </section>
 
             <section id="brands" class="bg-white py-16 px-4">
                 <div class="container mx-auto max-w-screen-xl px-4 testimonials">
@@ -99,7 +100,7 @@
                             <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 px-4 mb-8">
                                 <div class="bg-white p-3 rounded-lg shadow-lg">
 
-                                        <img src="{{ url('storage/' . $marca->imagen) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$marca->imagen}}">
+                                        <img src="{{ url('storage' , $marca->imagen) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$marca->imagen}}">
                                     <a href="#" class="text-lg font-semibold mb-2">{{$marca -> nombre}}</a>
                                 </div>
                             </div>
@@ -108,7 +109,7 @@
                 @endforelse
 
 
-            </section>
+                        </section>
 
 
             <section class="py-16">

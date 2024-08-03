@@ -8,9 +8,9 @@ use App\Models\Categoria;
 use App\Models\Marca;
 use Livewire\WithPagination;
 
-class ProductoShop extends Component
+class ProductosPage extends Component
 {
-use WithPagination;
+    use WithPagination;
  
 
     #[Title('Nuestro producto')]
@@ -86,19 +86,12 @@ use WithPagination;
     $this->categorias = Categoria::all();
     $this->marcas = Marca::all();
 }
-
-
     public function render()
     {
-        
-        
-
-        return view('livewire.producto-shop',[
+        return view('livewire.productos-page',[
             'productos' => $this->productos,
             'categorias' => $this->categorias,
             'productos' => $this->productos,
         ]);
     }
-
-    
 }

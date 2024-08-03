@@ -20,6 +20,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+
 class ViewMarca extends ViewRecord
 {
     protected static string $resource = MarcaResource::class;

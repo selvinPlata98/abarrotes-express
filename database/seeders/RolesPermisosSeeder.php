@@ -41,7 +41,7 @@ class RolesPermisosSeeder extends Seeder
         $permisoAdmin2 = Permission::create(['name' => 'update: admin']);
 
         // CREATE ROLES
-        $usuarioRol = Role::create(['name' => 'user'])->syncPermissions([
+        $usuarioRol = Role::create(['name' => 'Cliente'])->syncPermissions([
             $permisoGeneral,
         ]);
 
@@ -79,7 +79,7 @@ class RolesPermisosSeeder extends Seeder
             $permisoAdmin2,
             $permisoUsuario1,
         ]);
-        $moderatorRole = Role::create(['name' => 'vendedor'])->syncPermissions([
+        $moderatorRole = Role::create(['name' => 'Vendedor'])->syncPermissions([
             $permisoUsuario2,
             $permisoRol2,
             $permiso2,
@@ -89,7 +89,6 @@ class RolesPermisosSeeder extends Seeder
         // CREATE ADMINS & USERS
         User::create([
             'name' => 'super admin',
-            'is_admin' => 1,
             'email' => 'super@admin.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
@@ -99,7 +98,6 @@ class RolesPermisosSeeder extends Seeder
         User::create([
             'name' => 'Admin',
             'email' => 'admin@ae.com',
-            'is_admin' => 1,
             'email_verified_at' => now(),
             'password' => bcrypt('admin'),
         ])->assignRole($superAdminRole);;
@@ -107,7 +105,6 @@ class RolesPermisosSeeder extends Seeder
         User::create([
             'name' => 'David',
             'email' => 'triminio@ae.com',
-            'is_admin' => 1,
             'email_verified_at' => now(),
             'password' => bcrypt('admin'),
             'remember_token' => Str::random(10),
@@ -117,7 +114,6 @@ class RolesPermisosSeeder extends Seeder
             'name' => 'Luis Angel',
             'email' => 'l_ortez@ae.com',
             'email_verified_at' => now(),
-            'is_admin' => 1,
             'password' => bcrypt('admin'),
             'remember_token' => Str::random(10),
         ])->assignRole($superAdminRole);;
@@ -126,14 +122,12 @@ class RolesPermisosSeeder extends Seeder
             'name' => 'Claudia',
             'email' => 'claudia@ae.com',
             'email_verified_at' => now(),
-            'is_admin' => 1,
             'password' => bcrypt('admin'),
             'remember_token' => Str::random(10),
         ])->assignRole($superAdminRole);;
 
         User::create([
             'name' => 'Selvin',
-            'is_admin' => 1,
             'email_verified_at' => now(),
             'email' => 's_plata@ae.com',
             'password' => bcrypt('admin'),
@@ -142,7 +136,6 @@ class RolesPermisosSeeder extends Seeder
 
         User::create([
             'name' => 'admin',
-            'is_admin' => 1,
             'email' => 'admin@admin.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
@@ -151,7 +144,6 @@ class RolesPermisosSeeder extends Seeder
 
         User::create([
             'name' => 'moderator',
-            'is_admin' => 1,
             'email' => 'moderator@admin.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
@@ -160,14 +152,24 @@ class RolesPermisosSeeder extends Seeder
 
         User::create([
             'name' => 'test',
-            'email' => '12345@ae.com',
-            'is_admin' => 0,
+            'email' => 'prueba@ae.com',
             'email_verified_at' => now(),
             'password' => bcrypt('admin'),
             'remember_token' => Str::random(10),
-        ])->assignRole($superAdminRole);;
+        ])->assignRole($superAdminRole);
 
+        User::create([
+            'name' => 'test',
+            'email' => 'cliente@ae.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('admin'),
+            'remember_token' => Str::random(10),
+        ])->assignRole($usuarioRol);
 
-        User::factory(10)->create();
+        $users = User::factory(10)->create();
+
+        foreach ($users as $user) {
+            $user->assignRole($usuarioRol);
+        }
     }
 }

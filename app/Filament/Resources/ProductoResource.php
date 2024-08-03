@@ -64,8 +64,9 @@ class ProductoResource extends Resource
                             ->multiple(true)
                             ->image()
                             ->directory('productos')
-                            ->visibility('public')
-                            ->disk('public')
+                            ->imageEditor()
+                            ->imageResizeMode('cover')
+                            ->imageCropAspectRatio('1:1')
                             ->validationMessages([
                                 'maxFiles' => 'Se permite un máximo de 5 imágenes.',
                                 'required' => 'Debe seleccionar al menos una imagen.',
@@ -120,6 +121,7 @@ class ProductoResource extends Resource
 
                     ])->columns(2)
                         ->columnSpan(2), /*Fin de la seccion*/
+
 
                     Section::make([
                         Forms\Components\Toggle::make('disponible')

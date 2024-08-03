@@ -13,6 +13,15 @@ use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Support\Str;
+use Filament\Forms;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\Select;
+use Filament\Tables\Actions\ActionGroup;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class EditMarca extends EditRecord
 {
@@ -29,72 +38,72 @@ class EditMarca extends EditRecord
     {
         return $form
             ->schema([
-               TextInput::make('nombre')
+                Forms\Components\TextInput::make('nombre')
                     ->required()
                     ->label('Nombre De la Marca')
                     ->maxLength(80)
                     ->regex('/^[A-Za-z ]+$/')
                     ->unique(Marca::class, ignoreRecord: true)
                     ->validationMessages([
-                        'maxLenght' => 'El nombre debe  contener un maximo de 80 carácteres.',
+                        'maxLength' => 'El nombre debe contener un máximo de 80 caracteres.',
                         'required' => 'Debe introducir un nombre de la marca',
-                        'unique' => 'Esta Marca ya existe'
+                        'unique' => 'Esta Marca ya existe',
                     ])
-                    ->afterStateUpdated(fn(string $operation, $state, Set $set) => $set('enlace', Str::slug($state)))
+                    ->afterStateUpdated(fn(string $operation, $state, Set $set) => $operation
+                    === 'create' ? $set('enlace', Str::slug($state)) : null)
                     ->reactive()
-                    ->live(onBlur: true)
-                    ->unique(Marca::class, ignoreRecord: true)
-                    ->maxLength(255),
+                    ->live(onBlur: true),
 
-               TextInput::make('enlace')
+                Forms\Components\TextInput::make('enlace')
                     ->required()
                     ->label('Enlace')
                     ->disabled()
                     ->dehydrated()
-                    ->maxLength(255)
-                    ->validationMessages([
-                        'unique' => 'Este enlace ya existe'
-                    ]),
+                    ->unique(Marca::class, ignoreRecord: true),
 
-               FileUpload::make('imagen')
+                Forms\Components\FileUpload::make('imagen')
                     ->required()
                     ->label('Imagen')
                     ->image()
+                    ->disk('public')
                     ->directory('marcas')
                     ->validationMessages([
-                        'maxFiles' => 'Se permite un máximo de 1 imágenes.',
+                        'maxFiles' => 'Se permite un máximo de 1 imagen.',
                         'required' => 'Debe seleccionar al menos una imagen.',
                         'image' => 'El archivo debe ser una imagen válida.',
                     ])
                     ->maxFiles(1)
-                    ->columnSpan(2)
-                    ->preserveFilenames()
-                    ->maxFiles(1)
                     ->columnSpan(2),
 
-               Toggle::make('disponible')
+                Forms\Components\Toggle::make('disponible')
                     ->label('Disponible')
                     ->default(true),
 
-                MarkdownEditor::make('descripcion')
+                Forms\Components\MarkdownEditor::make('descripcion')
                     ->required()
                     ->label('Descripción')
-                    ->toolbarButtons(
-                        [
-                            'bold',
-                            'bulletList',
-                            'heading',
-                            'italic',
-                            'link',
-                            'redo',
-                            'undo'],
-                    )
-                    ->maxlength(300)
+                    ->maxLength(182)
+                    ->toolbarButtons([
+                        'bold',
+                        'bulletList',
+                        'heading',
+                        'italic',
+                        'link',
+                        'redo',
+                        'undo',
+                    ])
+
                     ->validationMessages([
                         'required' => 'La descripción es obligatoria.',
-                        'maxlength' => 'La descripción no puede exceder los 300 caracteres.'
+                        'maxLength' => 'La descripción no puede exceder los 182 caracteres.',
                     ])
                     ->columnSpan(2),
             ]);
+    }
+
+    public function getRedirectUrl(): string
+    {
+        $url = $this->getResource()::getUrl('index') . '?sort=-created_at&tableSortColumn=id&tableSortDirection=desc';
+        return $url;
     }
 }
