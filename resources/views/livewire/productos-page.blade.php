@@ -43,11 +43,13 @@
                         <h3 class="text-lg font-semibold mb-6">Categorías</h3>
                         <div class="space-y-2">
                             @forelse($categorias->take($mostrarTodasCategorias ? $categorias->count() : $categoriasVisibles) as $categoria)
+                            @if($categoria->disponible == true)
                             <label class="flex items-center">
                                 <input type="checkbox" class="form-checkbox custom-checkbox" 
                        value="{{ $categoria->id }} "  wire:model="categoriasFiltradas" wire:click="filtromarcas">
                                 <span class="ml-2">{{$categoria->nombre}}</span>
                             </label>
+                            @endif
                             @empty
         <li>No se encontraron categorías.</li>
             </ul>
@@ -64,11 +66,13 @@
                         <h3 class="text-lg font-semibold mb-6">Marcas</h3>
                         <div class="space-y-2">
                             @forelse($marcas->take($mostrarTodasMarcas ? $marcas->count() : $marcasVisibles) as $marca)
+                            @if($marca->disponible == true)
                             <label class="flex items-center">
                                 <input type="checkbox" class="form-checkbox custom-checkbox"
                                 value="{{ $marca->id }} "  wire:model="marcasFiltradas" wire:click="filtromarcas">
                                 <span class="ml-2">{{$marca->nombre}}</span>
                             </label>
+                            @endif
                             @empty
         <li>No se encontraron marcas.</li>
             </ul>
@@ -86,6 +90,7 @@
                 <!-- Products List -->
                 <div class="flex flex-wrap -mx-3 w-7/10 dim">
     @forelse ($productos ?? [] as $producto)
+    @if($producto->disponible == true)
         @if($producto->en_oferta > 0)
             <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 px-4 mb-8">
                 <div class="bg-white p-3 rounded-lg shadow-lg text-center">
@@ -114,6 +119,7 @@
                 </div>
             </div>
             
+        @endif 
         @endif 
         @empty
              <p>No se encontraron productos.</p>

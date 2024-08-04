@@ -23,6 +23,7 @@
                         <!-- Traer los productos de la base de datos -->
                         <div  class="flex flex-wrap -mx-4 ">
             @forelse ($productos as $producto)
+            @if($producto->disponible == true)
              @if($producto->en_oferta > 0)
         <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/4 px-4 mb-8">
                 <div class="bg-white p-3 rounded-lg shadow-lg text-center">
@@ -51,6 +52,7 @@
         </div>
     </div>
     @endif 
+    @endif
     @empty
         <p>No se encontraron Productos.</p>
         @endforelse
@@ -72,6 +74,7 @@
                     <!-- Traer los categoria de la base de datos -->
                     <div class="flex flex-wrap -mx-4">
                         @forelse ($categorias as $categoria)
+                        @if($categoria->disponible == true)
                             <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 px-4 mb-8">
                                 <div class="bg-white p-3 rounded-lg shadow-lg">
 
@@ -82,6 +85,7 @@
 
 
                                         </div>
+                                    @endif
                                     @empty
                                         <p>No se encontraron categorías.</p>
                             @endforelse
@@ -97,6 +101,7 @@
                     </div>
                     <div class="flex flex-wrap -mx-4">
                         @forelse ($marcas as $marca)
+                        @if($marca->disponible == true)
                             <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 px-4 mb-8">
                                 <div class="bg-white p-3 rounded-lg shadow-lg">
 
@@ -104,6 +109,7 @@
                                     <a href="#" class="text-lg font-semibold mb-2">{{$marca -> nombre}}</a>
                                 </div>
                             </div>
+                        @endif
                         @empty
                             <p>No se encontraron las marcas.</p>
                 @endforelse

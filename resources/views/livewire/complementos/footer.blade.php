@@ -19,9 +19,9 @@
                 <div class="w-full sm:w-1/6 px-4 mb-8">
                     <h3 class="text-lg font-semibold mb-4">Paginas</h3>
                     <ul>
-                        <li><a href="/shop.html" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Categorias</a></li>
-                        <li><a href="/single-product-page.html" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Marcas</a></li>
-                        <li><a href="/checkout.html" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Productos</a></li>
+                        <li><a href="{{ url('/categorias') }}" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Categorias</a></li>
+                        <li><a href="{{ url('/marcas') }}" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Marcas</a></li>
+                        <li><a href="{{ url('/productos') }}" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Productos</a></li>
                         <li><a href="/404.html" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Promociones</a></li>
                         <li><a href="/404.html" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Descuentos</a></li>
                         <li><a href="/404.html" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Cupones</a></li>
@@ -32,8 +32,8 @@
                     <h3 class="text-lg font-semibold mb-4">Cuenta</h3>
                     <ul>
                         <li><a href="/cart.html" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Carrito</a></li>
-                        <li><a href="/register.html" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Registrarse</a></li>
-                        <li><a href="/register.html" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Iniciar Sesión</a></li>
+                        <li><a href="{{ url('/registro') }}" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Registrarse</a></li>
+                        <li><a href="{{ url('/login') }}" class="hover:text-cyan-500 hover:underline" style="transition: color 0.3s ease;">Iniciar Sesión</a></li>
                     </ul>
                 </div>
                 <!-- Social Media -->
