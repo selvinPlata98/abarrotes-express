@@ -44,7 +44,7 @@
             @if(isset($producto->imagenes) && count($producto->imagenes) > 0)
                 <img src="{{ url('storage/' , $producto->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard"  alt="{{$producto->imagenes[0]}}">
             @endif
-            <a href="#" class="text-lg font-semibold mb-2">{{$producto->nombre}}</a>
+            <a href="{{ route('producto', ['enlace' => $producto->enlace]) }}" class="text-lg font-semibold mb-2">{{$producto->nombre}}</a>
             <div class="flex items-center mb-4">
                 <span class="text-lg font-bold text-primary">{{$producto->precio }}</span>
             </div>
@@ -80,7 +80,7 @@
 
 
                                     <img src="{{url('storage' , $categoria->imagen)}}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$categoria->imagen}}">
-                                    <a href="#" class="text-lg font-semibold mb-2">{{$categoria->nombre}}</a>
+                                    <a href="{{ route('productos', ['categoria' => $categoria->id]) }}" class="text-lg font-semibold mb-2">{{$categoria->nombre}}</a>
                                 </div>
 
 
@@ -106,7 +106,7 @@
                                 <div class="bg-white p-3 rounded-lg shadow-lg">
 
                                         <img src="{{ url('storage' , $marca->imagen) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$marca->imagen}}">
-                                    <a href="#" class="text-lg font-semibold mb-2">{{$marca -> nombre}}</a>
+                                    <a href="{{ route('productos', ['categoria' => $marca->id]) }}" class="text-lg font-semibold mb-2">{{$marca -> nombre}}</a>
                                 </div>
                             </div>
                         @endif
