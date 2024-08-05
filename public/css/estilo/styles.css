@@ -2180,8 +2180,7 @@ video {
 }
 
 .bg-primary {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 139 139 / var(--tw-bg-opacity));
+  background-color: rgba(59, 130, 246, 1);
 }
 
 .bg-white {
@@ -3998,7 +3997,7 @@ p, h1 {
 }
 
 .color-principal {
-    color: #00bcd4;
+    color: rgb(59, 130, 246);
 }
 
 .mb-5 {

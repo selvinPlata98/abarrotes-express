@@ -544,6 +544,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'jantinnerezo/livewire-alert' => array(
+            'pretty_version' => 'v3.0.2',
+            'version' => '3.0.2.0',
+            'reference' => '24281639258daf80fe0a585f55b7490a88fd68ef',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../jantinnerezo/livewire-alert',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'kirschbaum-development/eloquent-power-joins' => array(
             'pretty_version' => '3.5.6',
             'version' => '3.5.6.0',

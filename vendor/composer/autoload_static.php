@@ -176,6 +176,10 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         array (
             'Jantinnerezo\\LivewireAlert\\' => 27,
         ),
+        'J' => 
+        array (
+            'Jantinnerezo\\LivewireAlert\\' => 27,
+        ),
         'I' => 
         array (
             'Illuminate\\Support\\' => 19,
@@ -581,6 +585,10 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         array (
             0 => __DIR__ . '/..' . '/jantinnerezo/livewire-alert/src',
         ),
+        'Jantinnerezo\\LivewireAlert\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jantinnerezo/livewire-alert/src',
+        ),
         'Illuminate\\Support\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Macroable',
@@ -768,6 +776,7 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         'App\\Filament\\Resources\\CuponResource\\Pages\\EditCupon' => __DIR__ . '/../..' . '/app/Filament/Resources/CuponResource/Pages/EditCupon.php',
         'App\\Filament\\Resources\\CuponResource\\Pages\\ListCupons' => __DIR__ . '/../..' . '/app/Filament/Resources/CuponResource/Pages/ListCupons.php',
         'App\\Filament\\Resources\\CuponResource\\Pages\\ViewCupon' => __DIR__ . '/../..' . '/app/Filament/Resources/CuponResource/Pages/ViewCupon.php',
+        'App\\Filament\\Resources\\CuponResource\\Pages\\ViewCupon' => __DIR__ . '/../..' . '/app/Filament/Resources/CuponResource/Pages/ViewCupon.php',
         'App\\Filament\\Resources\\DireccionResource\\Pages\\CreateDireccion' => __DIR__ . '/../..' . '/app/Filament/Resources/DireccionResource/Pages/CreateDireccion.php',
         'App\\Filament\\Resources\\DireccionResource\\Pages\\EditDireccion' => __DIR__ . '/../..' . '/app/Filament/Resources/DireccionResource/Pages/EditDireccion.php',
         'App\\Filament\\Resources\\DireccionResource\\Pages\\ListDireccions' => __DIR__ . '/../..' . '/app/Filament/Resources/DireccionResource/Pages/ListDireccions.php',
@@ -796,6 +805,7 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         'App\\Filament\\Resources\\RolResource\\Pages\\EditRol' => __DIR__ . '/../..' . '/app/Filament/Resources/RolResource/Pages/EditRol.php',
         'App\\Filament\\Resources\\RolResource\\Pages\\ListRols' => __DIR__ . '/../..' . '/app/Filament/Resources/RolResource/Pages/ListRols.php',
         'App\\Filament\\Resources\\RolResource\\RelationManagers\\PermissionsRelationManager' => __DIR__ . '/../..' . '/app/Filament/Resources/RolResource/RelationManagers/PermissionsRelationManager.php',
+        'App\\Filament\\Resources\\RolResource\\RelationManagers\\PermissionsRelationManager' => __DIR__ . '/../..' . '/app/Filament/Resources/RolResource/RelationManagers/PermissionsRelationManager.php',
         'App\\Filament\\Resources\\SucursalResource' => __DIR__ . '/../..' . '/app/Filament/Resources/SucursalResource.php',
         'App\\Filament\\Resources\\SucursalResource\\Pages\\CreateSucursal' => __DIR__ . '/../..' . '/app/Filament/Resources/SucursalResource/Pages/CreateSucursal.php',
         'App\\Filament\\Resources\\SucursalResource\\Pages\\EditSucursal' => __DIR__ . '/../..' . '/app/Filament/Resources/SucursalResource/Pages/EditSucursal.php',
@@ -820,13 +830,17 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Livewire\\Auth\\LoginPage' => __DIR__ . '/../..' . '/app/Livewire/Auth/LoginPage.php',
         'App\\Livewire\\Auth\\RegistroPage' => __DIR__ . '/../..' . '/app/Livewire/Auth/RegistroPage.php',
+        'App\\Livewire\\CarritoPage' => __DIR__ . '/../..' . '/app/Livewire/CarritoPage.php',
         'App\\Livewire\\Complementos\\Footer' => __DIR__ . '/../..' . '/app/Livewire/Complementos/Footer.php',
         'App\\Livewire\\Complementos\\Navbar' => __DIR__ . '/../..' . '/app/Livewire/Complementos/Navbar.php',
+        'App\\Livewire\\ErrorPage' => __DIR__ . '/../..' . '/app/Livewire/ErrorPage.php',
         'App\\Livewire\\ErrorPage' => __DIR__ . '/../..' . '/app/Livewire/ErrorPage.php',
         'App\\Livewire\\InicioPage' => __DIR__ . '/../..' . '/app/Livewire/InicioPage.php',
         'App\\Livewire\\MostrarCategoriaPage' => __DIR__ . '/../..' . '/app/Livewire/MostrarCategoriaPage.php',
         'App\\Livewire\\MostrarMarcaPage' => __DIR__ . '/../..' . '/app/Livewire/MostrarMarcaPage.php',
+        'App\\Livewire\\MostrarMarcaPage' => __DIR__ . '/../..' . '/app/Livewire/MostrarMarcaPage.php',
         'App\\Livewire\\ProductoPage' => __DIR__ . '/../..' . '/app/Livewire/ProductoPage.php',
+        'App\\Livewire\\ProductosPage' => __DIR__ . '/../..' . '/app/Livewire/ProductosPage.php',
         'App\\Livewire\\ProductosPage' => __DIR__ . '/../..' . '/app/Livewire/ProductosPage.php',
         'App\\Livewire\\TraerCategoria' => __DIR__ . '/../..' . '/app/Livewire/TraerCategoria.php',
         'App\\Models\\Categoria' => __DIR__ . '/../..' . '/app/Models/Categoria.php',
@@ -989,6 +1003,7 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         'Database\\Factories\\UsuarioFactory' => __DIR__ . '/../..' . '/database/factories/UsuarioFactory.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
         'Database\\Seeders\\RolSeeder' => __DIR__ . '/../..' . '/database/seeders/RolSeeder.php',
+        'Database\\Seeders\\RolesPermisosSeeder' => __DIR__ . '/../..' . '/database/seeders/RolesPermisosSeeder.php',
         'Database\\Seeders\\RolesPermisosSeeder' => __DIR__ . '/../..' . '/database/seeders/RolesPermisosSeeder.php',
         'Database\\Seeders\\UsuarioSeeder' => __DIR__ . '/../..' . '/database/seeders/UsuarioSeeder.php',
         'DateError' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateError.php',
@@ -4340,6 +4355,9 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         'Illuminate\\View\\ViewFinderInterface' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewFinderInterface.php',
         'Illuminate\\View\\ViewName' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewName.php',
         'Illuminate\\View\\ViewServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewServiceProvider.php',
+        'Jantinnerezo\\LivewireAlert\\Exceptions\\AlertException' => __DIR__ . '/..' . '/jantinnerezo/livewire-alert/src/Exceptions/AlertException.php',
+        'Jantinnerezo\\LivewireAlert\\LivewireAlert' => __DIR__ . '/..' . '/jantinnerezo/livewire-alert/src/LivewireAlert.php',
+        'Jantinnerezo\\LivewireAlert\\LivewireAlertServiceProvider' => __DIR__ . '/..' . '/jantinnerezo/livewire-alert/src/LivewireAlertServiceProvider.php',
         'Jantinnerezo\\LivewireAlert\\Exceptions\\AlertException' => __DIR__ . '/..' . '/jantinnerezo/livewire-alert/src/Exceptions/AlertException.php',
         'Jantinnerezo\\LivewireAlert\\LivewireAlert' => __DIR__ . '/..' . '/jantinnerezo/livewire-alert/src/LivewireAlert.php',
         'Jantinnerezo\\LivewireAlert\\LivewireAlertServiceProvider' => __DIR__ . '/..' . '/jantinnerezo/livewire-alert/src/LivewireAlertServiceProvider.php',
