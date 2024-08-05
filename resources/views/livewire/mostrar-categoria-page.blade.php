@@ -48,5 +48,4 @@
             </div>
         @endif
     </div>
-</div>
 

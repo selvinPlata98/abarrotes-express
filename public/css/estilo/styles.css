@@ -3799,6 +3799,20 @@ p, h1 {
 
 .search-button {
     position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.clear-button.hidden {
+    display: none;
+}
+
+.search-button {
+    position: absolute;
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
@@ -3890,8 +3904,14 @@ p, h1 {
 
 .tamanoCard{
   object-fit: cover;
-  width: 12rem;
-  height: 12rem;
+  width: 10em;
+  height: 10em;
+}
+
+.tamanoCard2{
+  object-fit: cover;
+  width: 10rem;
+  height: 19rem;
 }
 
 

@@ -9,7 +9,6 @@ use Livewire\Component;
 
 class Navbar extends Component
 {
-
     public $conteo_total = 0;
 
     public function mount(){
@@ -18,7 +17,7 @@ class Navbar extends Component
 
     #[On('update-cart-count')]
     public function updateCartCount($conteo_total){
-        $this-> conteo_total = $conteo_total;
+        $this->conteo_total = $conteo_total;
     }
 
     public function logout()
@@ -26,14 +25,11 @@ class Navbar extends Component
         \Auth::logout();
         session()->invalidate();
         session()->regenerateToken();
-
         return redirect('/');
     }
+
     public function render()
     {
-      if (auth()->check() && auth()->user()->hasRole('Cliente')){
-          return view('livewire.complementos.navbar');
-      }
         return view('livewire.complementos.navbar');
     }
 }

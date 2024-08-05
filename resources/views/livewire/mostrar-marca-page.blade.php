@@ -45,7 +45,7 @@
                     </p>
                 </div>
 
-                <a href="{{ route('productoshop', ['categoria' => $marca->id]) }}" class="text-uppercase d-inline-block font-weight-medium lts-2px ml-2 mb-2 text-center styled-link">
+                <a href="{{ route('productos', ['categoria' => $marca->id]) }}" class="text-uppercase d-inline-block font-weight-medium lts-2px ml-2 mb-2 text-center styled-link">
                     Ver más
                 </a>
             </div>

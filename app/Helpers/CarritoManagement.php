@@ -19,26 +19,32 @@ class CarritoManagement
                 break;
             }
         }
+
         if ($elemento_existente !== null) {
             // Incrementar la cantidad del producto existente
-            $decimal = ($elementos_carrito[$elemento_existente]['porcentaje_oferta'] / 100);
+            $decimal = isset($elementos_carrito[$elemento_existente]['porcentaje_oferta']) ?
+                ($elementos_carrito[$elemento_existente]['porcentaje_oferta'] / 100) : 0;
             $resta = ($elementos_carrito[$elemento_existente]['cantidad'] * $decimal);
             $elementos_carrito[$elemento_existente]['cantidad']++;
-            $elementos_carrito[$elemento_existente]['monto_total'] = $elementos_carrito[$elemento_existente]['cantidad'] - $resta;
+            $elementos_carrito[$elemento_existente]['monto_total'] = $elementos_carrito[$elemento_existente]['cantidad'] * $elementos_carrito[$elemento_existente]['monto_unitario'] - $resta;
         } else {
             // Agregar nuevo producto al carrito
             $producto = Producto::where('id', $producto_id)->first(['id', 'nombre', 'precio', 'imagenes', 'porcentaje_oferta']);
             if ($producto) {
+                $imagenes = is_array($producto->imagenes) ? $producto->imagenes : ['default_image.jpg'];
+                $imagen = $imagenes[0];
                 $elementos_carrito[] = [
                     'producto_id' => $producto_id,
                     'nombre' => $producto->nombre,
-                    'imagen' => $producto->imagenes[0],
+                    'imagen' => $imagen,
                     'cantidad' => 1,
+                    'porcentaje_oferta' => $producto->porcentaje_oferta ?? 0,
                     'monto_unitario' => $producto->precio,
                     'monto_total' => $producto->precio
                 ];
             }
         }
+
         self::agregarElementoCookies($elementos_carrito);
         return count($elementos_carrito);
     }

@@ -33,7 +33,7 @@
 
             <div class="flex justify-end flex-shrink-0">
                 {{--Carrito--}}
-                <a wire:navigate class="font-medium flex items-center text-gray-500 hover:text-gray-400 py-3 md:py-6 dark:text-gray-400 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
+                <a wire:navigate class="font-medium flex items-center text-gray-500 hover:text-gray-400 py-3 md:py-6 dark:text-gray-400 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="{{route('carrito')}}">
                     <i class="fa fa-shopping-cart"></i>
                     <span class="mr-2 ml-2">Carrito</span> <span class="py-0.5 px-1.5 rounded-full text-xs font-medium bg-blue-50 border border-blue-200 text-blue-600">{{$conteo_total}}</span>
                 </a>
