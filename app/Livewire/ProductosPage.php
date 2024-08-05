@@ -53,19 +53,21 @@ class ProductosPage extends Component
     }
 
     public function toggleCategorias()
-    {
-        $this->mostrarTodasCategorias = !$this->mostrarTodasCategorias;
-    }
+{
+    $this->mostrarTodasCategorias = !$this->mostrarTodasCategorias;
+}
 
-    public function toggleMarcas()
-    {
-        $this->mostrarTodasMarcas = !$this->mostrarTodasMarcas;
-    }
+public function toggleMarcas()
+{
+    $this->mostrarTodasMarcas = !$this->mostrarTodasMarcas;
+}
 
     public function mount() 
     {
         $this->categorias = Categoria::all();
         $this->marcas = Marca::all();
+        $this->mostrarTodasCategorias = false; // Asegúrate de inicializar esto
+        $this->mostrarTodasMarcas = false;
     }
 
     public function render()
@@ -89,9 +91,7 @@ class ProductosPage extends Component
             case 'tiempo':
                 $query->orderBy('created_at', 'desc');
                 break;
-            default:
-                $query->inRandomOrder();
-                break;
+            
         }
 
         $productos = $query->paginate($this->perPage);

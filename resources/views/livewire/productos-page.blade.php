@@ -42,8 +42,7 @@
                     <div class="mb-6 pb-8 border-b border-gray-line">
                         <h3 class="text-lg font-semibold mb-6">Categorías</h3>
                         <div class="space-y-2">
-                            @forelse($categorias->take($mostrarTodasCategorias ? $categorias->count() : $categoriasVisibles) as $categoria)
-                            @if($categoria->disponible == true)
+                        @forelse($categorias->take($mostrarTodasCategorias ? $categorias->count() : $categoriasVisibles) as $categoria)                            @if($categoria->disponible == true)
                             <label class="flex items-center">
                                 <input type="checkbox" class="form-checkbox custom-checkbox" 
                        value="{{ $categoria->id }} "  wire:model="categoriasFiltradas" wire:click="filtromarcas">
@@ -56,10 +55,10 @@
                             @endforelse
                         </div>
                         @if($categorias->count() > $categoriasVisibles)
-        <button wire:click="toggleCategorias" class="mt-4 text-primary">
-            {{ $mostrarTodasCategorias ? 'Ver menos' : 'Ver más' }}
-        </button>
-    @endif
+    <button wire:click.prevent="toggleCategorias" class="mt-4 text-primary">
+        {{ $mostrarTodasCategorias ? 'Ver menos' : 'Ver más' }}
+    </button>
+@endif
                     </div>
                     <!-- Marcas -->
                     <div class="mb-6 pb-8 border-b border-gray-line">
@@ -78,8 +77,8 @@
             </ul>
                             @endforelse
                         </div>
-                        @if($marcas->count() > $marcasVisibles)
-        <button wire:click="toggleMarcas" class="mt-4 text-primary">
+                        @if($marcas->count() > $marcasVisibles && $marcas->count() > 3)
+        <button wire:click.prevent="toggleMarcas" class="mt-4 text-primary">
             {{ $mostrarTodasMarcas ? 'Ver menos' : 'Ver más' }}
         </button>
     @endif
