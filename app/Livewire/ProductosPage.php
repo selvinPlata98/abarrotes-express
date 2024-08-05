@@ -11,61 +11,45 @@ use Livewire\WithPagination;
 class ProductosPage extends Component
 {
     use WithPagination;
- 
 
     #[Title('Nuestro producto')]
     #[Url]
-
-    
-    
-    public $productos;
     public $categorias;
-    public $orden='';
+    public $orden = '';
     public $marcas;
-    public $perPage = 3;
+    public $perPage = 4;
     public $mostrarTodasCategorias = false;
     public $categoriasVisibles = 3;
     public $mostrarTodasMarcas = false;
     public $marcasVisibles = 3;
     public $categoriasFiltradas = [];
     public $marcasFiltradas = [];
-    
 
-    public function filtromarcas(){
-        $query = Producto::query();
+    protected $queryString = ['categoriasFiltradas', 'marcasFiltradas', 'orden'];
 
-    // Filtrar por categorías
-    if (!empty($this->categoriasFiltradas)) {
-        $query->whereIn('categoria_id', $this->categoriasFiltradas);
+    public function updatedCategoriasFiltradas()
+    {
+        $this->resetPage();
     }
 
-    // Filtrar por marcas
-    if (!empty($this->marcasFiltradas)) {
-        $query->whereIn('marca_id', $this->marcasFiltradas);
+    public function updatedMarcasFiltradas()
+    {
+        $this->resetPage();
     }
 
-    // Nueva condición: filtrar por categorías y marcas simultáneamente
-    if (!empty($this->categoriasFiltradas) && !empty($this->marcasFiltradas)) {
-        $query->whereIn('categoria_id', $this->categoriasFiltradas)
-              ->whereIn('marca_id', $this->marcasFiltradas);
+    public function updatedOrden()
+    {
+        $this->resetPage();
     }
 
-    // Obtener los productos filtrados
-    $this->productos = $query->get();
-    
+    public function filtromarcas()
+    {
+        $this->resetPage();
     }
-    
-    public function precio(){
-        if ($this->orden === 'barato') {
-            $this->productos = Producto::orderBy('precio', 'asc')->get();
-        }
-        else if($this->orden === 'caro'){
-            $this->productos = Producto::orderBy('precio', 'desc')->get();
-        } 
-        else if($this->orden === 'tiempo'){
-            $this->productos = Producto::orderBy('created_at', 'desc')->get();
-        } 
-        
+
+    public function precio()
+    {
+        $this->resetPage();
     }
 
     public function toggleCategorias()
@@ -78,20 +62,43 @@ class ProductosPage extends Component
         $this->mostrarTodasMarcas = !$this->mostrarTodasMarcas;
     }
 
-    public function mount() {
-    $this->orden = '';
-    $this->productos = Producto::inRandomOrder()->get();
-    //$this->producto = Producto::paginate($this->perPage);
-    
-    $this->categorias = Categoria::all();
-    $this->marcas = Marca::all();
-}
+    public function mount() 
+    {
+        $this->categorias = Categoria::all();
+        $this->marcas = Marca::all();
+    }
+
     public function render()
     {
-        return view('livewire.productos-page',[
-            'productos' => $this->productos,
+        $query = Producto::query();
+
+        if (!empty($this->categoriasFiltradas)) {
+            $query->whereIn('categoria_id', $this->categoriasFiltradas);
+        }
+        if (!empty($this->marcasFiltradas)) {
+            $query->whereIn('marca_id', $this->marcasFiltradas);
+        }
+
+        switch ($this->orden) {
+            case 'barato':
+                $query->orderBy('precio', 'asc');
+                break;
+            case 'caro':
+                $query->orderBy('precio', 'desc');
+                break;
+            case 'tiempo':
+                $query->orderBy('created_at', 'desc');
+                break;
+            default:
+                $query->inRandomOrder();
+                break;
+        }
+
+        $productos = $query->paginate($this->perPage);
+
+        return view('livewire.productos-page', [
+            'productos' => $productos,
             'categorias' => $this->categorias,
-            'productos' => $this->productos,
         ]);
     }
 }

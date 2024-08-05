@@ -30,7 +30,7 @@
             @if(isset($producto->imagenes) && count($producto->imagenes) > 0)
                 <img src="{{ url('storage/' , $producto->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard"  alt="{{$producto->imagenes[0]}}">
             @endif
-            <a href="#" class="text-lg font-semibold mb-2">{{$producto->nombre}}</a>
+            <a href="#" class="text-lg font-semibold mb-2 hover:text-cyan-500 hover:underline">{{$producto->nombre}}</a>
             <div class="flex items-center mb-4">
                 <span class="text-lg font-bold text-primary">{{$producto->precio - $producto->en_oferta}}</span>
                 <span class="text-sm line-through ml-2">{{$producto->precio}}</span>
@@ -44,7 +44,7 @@
             @if(isset($producto->imagenes) && count($producto->imagenes) > 0)
                 <img src="{{ url('storage/' , $producto->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard"  alt="{{$producto->imagenes[0]}}">
             @endif
-            <a href="{{ route('producto', ['enlace' => $producto->enlace]) }}" class="text-lg font-semibold mb-2">{{$producto->nombre}}</a>
+            <a href="{{ route('producto', ['enlace' => $producto->enlace]) }}" class="text-lg font-semibold mb-2 hover:text-cyan-500 hover:underline">{{$producto->nombre}}</a>
             <div class="flex items-center mb-4">
                 <span class="text-lg font-bold text-primary">{{$producto->precio }}</span>
             </div>
@@ -80,7 +80,7 @@
 
 
                                     <img src="{{url('storage' , $categoria->imagen)}}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$categoria->imagen}}">
-                                    <a href="{{ route('productos', ['categoria' => $categoria->id]) }}" class="text-lg font-semibold mb-2">{{$categoria->nombre}}</a>
+                                    <a href="{{ route('productos', ['categoria' => $categoria->id]) }}" class="text-lg font-semibold mb-2 hover:text-cyan-500 hover:underline text-centre">{{$categoria->nombre}}</a>
                                 </div>
 
 
@@ -106,7 +106,7 @@
                                 <div class="bg-white p-3 rounded-lg shadow-lg">
 
                                         <img src="{{ url('storage' , $marca->imagen) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$marca->imagen}}">
-                                    <a href="{{ route('productos', ['categoria' => $marca->id]) }}" class="text-lg font-semibold mb-2">{{$marca -> nombre}}</a>
+                                    <a href="{{ route('productos', ['categoria' => $marca->id]) }}" class="text-lg font-semibold mb-2 hover:text-cyan-500 hover:underline">{{$marca -> nombre}}</a>
                                 </div>
                             </div>
                         @endif
@@ -135,7 +135,7 @@
                         <div class="flex flex-col p-6 bg-white rounded-xl shadow-lg">
                             <h1 class="mb-4 text-2xl font-semibold leading-none tracking-tighter text-gray-dark lg:text-3xl text-center">Recibe tu producto</h1>
                             <p class="flex-grow text-base font-medium leading-relaxed text-gray-txt">Coordina la entrega de tu compra directamente con el vendedor. Tienes la opción de recibirlo cómodamente en tu domicilio, en la oficina o elegir recogerlo personalmente. ¡Tú tienes la libertad de decidir lo que más te convenga!.</p>
-                            <img class="w-full object-cover mb-4 rounded-lg tamanoCard2" src="imagen/enviado.svg" alt="blog">
+                            <img class="w-full object-cover mb-4 rounded-lg tamanoCard2" src="imagen/envio.svg" alt="blog">
 
                         </div>
                     </div>

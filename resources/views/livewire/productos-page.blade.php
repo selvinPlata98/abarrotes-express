@@ -126,7 +126,11 @@
              @endforelse
 </div>
             </div>
-         
+            @if ($productos->isNotEmpty())
+        <div class="text-center mt-4">
+                {{ $productos->links() }}
+        </div>
+    @endif
     </section>
 
     <!-- Shop category description -->
