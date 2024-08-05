@@ -77,9 +77,9 @@
             </ul>
                             @endforelse
                         </div>
-                        @if($marcas->count() > $marcasVisibles && $marcas->count() > 3)
-        <button wire:click.prevent="toggleMarcas" class="mt-4 text-primary">
-            {{ $mostrarTodasMarcas ? 'Ver menos' : 'Ver más' }}
+                        @if($categorias->count() > $categoriasVisibles && $categorias->count() > 3)
+        <button wire:click.prevent="toggleCategorias" class="mt-4 text-primary">
+            {{ $mostrarTodasCategorias ? 'Ver menos' : 'Ver más' }}
         </button>
     @endif
                     </div>
