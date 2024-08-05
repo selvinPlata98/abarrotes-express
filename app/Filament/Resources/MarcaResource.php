@@ -88,10 +88,10 @@ class MarcaResource extends Resource
                         'redo',
                         'undo',
                     ])
-                    ->maxLength(182)
+                    ->maxLength(200)
                     ->validationMessages([
                         'required' => 'La descripción es obligatoria.',
-                        'maxLength' => 'La descripción no puede exceder los 182 caracteres.',
+                        'maxLength' => 'La descripción no puede exceder los 200 caracteres.',
                     ])
                     ->columnSpan(2),
             ]);

@@ -38,7 +38,7 @@
                                                     class="text-lg font-bold text-primary">{{$productos->precio - $productos->en_oferta}}</span>
                                                 <span class="text-sm line-through ml-2">{{$productos->precio}}</span>
                                             </div>
-                                            <button
+                                            <button wire:click.prevent='agregarCarrito({{$productos ->id }})'
                                                 class="bg-primary text-white border border-primary hover:bg-transparent hover:text-primary py-2 px-3 rounded-full w-full">
                                                 Añadir al carrito
                                             </button>
@@ -163,7 +163,6 @@
                                             convenga!.</p>
                                         <img class="object-cover object-center w-full mb-8 rounded-xl"
                                              src="imagen/envioo.png" alt="blog">
-
                                     </div>
                                 </div>
                             </div>

@@ -82,6 +82,7 @@ class EditMarca extends EditRecord
                 Forms\Components\MarkdownEditor::make('descripcion')
                     ->required()
                     ->label('Descripción')
+                    ->maxLength(182)
                     ->toolbarButtons([
                         'bold',
                         'bulletList',
@@ -91,7 +92,7 @@ class EditMarca extends EditRecord
                         'redo',
                         'undo',
                     ])
-                    ->maxLength(182)
+
                     ->validationMessages([
                         'required' => 'La descripción es obligatoria.',
                         'maxLength' => 'La descripción no puede exceder los 182 caracteres.',

@@ -2,8 +2,8 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "vite && npx tailwindcss -i assets/css/tailwind.css -o assets/css/styles.css --watch",
-        "build": "npx tailwindcss -i assets/css/tailwind.css -o assets/css/styles.css --minify && vite build"
+        "dev": "vite",
+        "build": "vite build"
     },
     "devDependencies": {
         "@egoist/tailwindcss-icons": "^1.8.0",
@@ -20,6 +20,7 @@
         "@preline/carousel": "^2.3.0",
         "@preline/dropdown": "^2.4.1",
         "preline": "^2.4.1",
-        "swiper": "^11.0.7"
+        "swiper": "^11.0.7",
+        "tailwindcss": "^3.4.1"
     }
 }

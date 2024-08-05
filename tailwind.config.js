@@ -1,17 +1,17 @@
 /** @type {import('tailwindcss').Config} */
-const { iconsPlugin, dynamicIconsPlugin } = require('@egoist/tailwindcss-icons')
+const { iconsPlugin, dynamicIconsPlugin } = require('@egoist/tailwindcss-icons');
 
 module.exports = {
-    plugins: [iconsPlugin(), dynamicIconsPlugin()],
-}
-
-export default {
     content: [
-        "./resources/**/*.blade.php",
-        "./resources/**/*.js",
-        "./resources/**/*.vue",
-        'node_modules/preline/dist/*.js'
+        "./src/**/*.{html,js}",
+        './pages/**/*.{html,js}',
+        './components/**/*.{html,js}',
+        './resources/**/*.blade.php',
+        './resources/**/*.js',
+        './resources/**/*.vue',
+        'node_modules/preline/dist/*.js',
     ],
+    darkMode: 'class',
     theme: {
         container: {
             center: true,
@@ -41,9 +41,9 @@ export default {
             },
         },
     },
-
     plugins: [
-        require('preline/plugin')
+        iconsPlugin(),
+        dynamicIconsPlugin(),
+        require('preline/plugin'),
     ],
-
-}
+};
