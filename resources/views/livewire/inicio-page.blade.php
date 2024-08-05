@@ -30,7 +30,7 @@
             @if(isset($producto->imagenes) && count($producto->imagenes) > 0)
                 <img src="{{ url('storage/' , $producto->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard"  alt="{{$producto->imagenes[0]}}">
             @endif
-            <a href="#" class="text-lg font-semibold mb-2 hover:text-cyan-500 hover:underline">{{$producto->nombre}}</a>
+            <a href="{{ route('producto', ['enlace' => $producto->enlace]) }}" class="text-lg font-semibold mb-2 hover:text-cyan-500 hover:underline">{{$producto->nombre}}</a>
             <div class="flex items-center mb-4">
                 <span class="text-lg font-bold text-primary">{{$producto->precio - $producto->en_oferta}}</span>
                 <span class="text-sm line-through ml-2">{{$producto->precio}}</span>
