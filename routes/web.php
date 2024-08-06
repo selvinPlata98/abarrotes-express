@@ -15,10 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', \App\Livewire\InicioPage::class)->name('inicio');
-
+Route::get('/inicio', function (){
+    return redirect()->route('inicio');
+});
 Route::get('/home', function (){
     return redirect()->route('inicio');
-} );
+});
 
 
 Route::get('/categorias', \App\Livewire\MostrarCategoriaPage::class);
@@ -31,5 +33,3 @@ Route::middleware('guest')->group(function (){
     Route::get('/registro', \App\Livewire\Auth\RegistroPage::class)->name('registro');
     Route::get('/login', \App\Livewire\Auth\LoginPage::class)->name('login');
 });
-
-

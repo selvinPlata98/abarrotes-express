@@ -22,6 +22,7 @@
 @livewire('complementos.navbar')
 {{--Contenido--}}
 <div>
+
         <main>
             {{ $slot }}
         </main>
