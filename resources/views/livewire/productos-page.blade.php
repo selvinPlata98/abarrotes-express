@@ -54,11 +54,11 @@
             </ul>
                             @endforelse
                         </div>
-                        @if($categorias->count() > $categoriasVisibles)
-    <button wire:click.prevent="toggleCategorias" class="mt-4 text-primary">
-        {{ $mostrarTodasCategorias ? 'Ver menos' : 'Ver más' }}
-    </button>
-@endif
+                        @if($categorias->count() > $categoriasVisibles && $categorias->count() > 5)
+        <button wire:click.prevent="toggleCategorias" class="mt-4 text-primary">
+            {{ $mostrarTodasCategorias ? 'Ver menos' : 'Ver más' }}
+        </button>
+    @endif
                     </div>
                     <!-- Marcas -->
                     <div class="mb-6 pb-8 border-b border-gray-line">
@@ -77,8 +77,8 @@
             </ul>
                             @endforelse
                         </div>
-                        @if($categorias->count() > $categoriasVisibles && $categorias->count() > 3)
-        <button wire:click.prevent="toggleCategorias" class="mt-4 text-primary">
+                        @if($marcas->count() > $marcasVisibles && $marcas->count() > 5)
+        <button wire:click.prevent="toggleMarcas" class="mt-4 text-primary">
             {{ $mostrarTodasCategorias ? 'Ver menos' : 'Ver más' }}
         </button>
     @endif
@@ -108,7 +108,7 @@
             <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 px-4 mb-8">
                 <div class="bg-white p-3 rounded-lg shadow-lg text-center">
                     @if(isset($producto->imagenes) && count($producto->imagenes) > 0)
-                        <img src="{{ url('storage/' . $producto->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$producto->imagenes[0]}}">
+                        <img src="{{ url('storage/' , $producto->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$producto->imagenes[0]}}">
                     @endif              
                     <a href="{{ route('producto', ['enlace' => $producto->enlace]) }}" class="text-lg font-semibold mb-2">{{$producto->nombre}}</a>
                     <div class="flex items-center mb-4">

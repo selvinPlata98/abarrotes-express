@@ -17,11 +17,11 @@ class ProductosPage extends Component
     public $categorias;
     public $orden = '';
     public $marcas;
-    public $perPage = 4;
+    public $perPage = 5;
     public $mostrarTodasCategorias = false;
-    public $categoriasVisibles = 3;
+    public $categoriasVisibles = 5;
     public $mostrarTodasMarcas = false;
-    public $marcasVisibles = 3;
+    public $marcasVisibles = 5;
     public $categoriasFiltradas = [];
     public $marcasFiltradas = [];
 
@@ -99,6 +99,7 @@ public function toggleMarcas()
         return view('livewire.productos-page', [
             'productos' => $productos,
             'categorias' => $this->categorias,
+            'marcas' => $this->marcas,
         ]);
     }
 }
