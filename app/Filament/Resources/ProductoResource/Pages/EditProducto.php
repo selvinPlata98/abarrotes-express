@@ -42,7 +42,7 @@ class EditProducto extends EditRecord
                             ->maxLength(80)
                             ->unique(Producto::class, ignoreRecord: true)
                             ->validationMessages([
-                                'maxLength' => 'El nombre debe  contener un maximo de 80 carácteres.',
+                                'max' => 'El nombre debe  contener un maximo de 80 carácteres.',
                                 'required' => 'Debe introducir un nombre del producto',
                                 'unique' => 'Este producto ya existe.'
                             ])
@@ -95,7 +95,7 @@ class EditProducto extends EditRecord
                             ->maxlength(300)
                             ->validationMessages([
                                 'required' => 'La descripción es obligatoria.',
-                                'maxlength' => 'La descripción no puede exceder los 300 caracteres.'
+                                'max' => 'La descripción no puede exceder los 300 caracteres.'
                             ])
                             ->columnSpan(2),
 

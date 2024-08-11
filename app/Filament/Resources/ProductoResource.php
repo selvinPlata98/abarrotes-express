@@ -25,7 +25,6 @@ class ProductoResource extends Resource
     protected static ?string $activeNavigationIcon = 'heroicon-s-shopping-cart';
     protected static ?int $navigationSort = 2;
 
-
     public static function form(Form $form): Form
     {
         return $form
@@ -35,12 +34,13 @@ class ProductoResource extends Resource
                         Forms\Components\TextInput::make('nombre')
                             ->required()
                             ->label('Nombre del Producto')
-                            ->maxLength(80)
+                            ->maxLength(70)
+                            ->regex('/^[A-Za-zÀ-ÿ0-9\s\-\'\.]+$/')
                             ->unique(Producto::class, ignoreRecord: true)
                             ->validationMessages([
-                                'maxLength' => 'El nombre debe  contener un maximo de 80 carácteres.',
+                                'max' => 'El nombre debe contener un máximo de :max caracteres.',
                                 'required' => 'Debe introducir un nombre del producto',
-                                'unique' => 'Este producto ya existe.'
+                                'unique' => 'Este producto ya existe.',
                             ])
                             ->afterStateUpdated(fn(string $operation, $state, Set $set) => $operation
                             === 'create' ? $set('enlace', Str::slug($state)) : null)
@@ -56,7 +56,6 @@ class ProductoResource extends Resource
                             ->validationMessages([
                                 'unique' => 'Este enlace ya existe.'
                             ]),
-
 
                         Forms\Components\FileUpload::make('imagenes')
                             ->required()
@@ -80,9 +79,10 @@ class ProductoResource extends Resource
 
                         Forms\Components\MarkdownEditor::make('descripcion')
                             ->required()
+                            ->unique()
                             ->label('Descripción')
-                            ->toolbarButtons(
-                                [
+                            ->placeholder('Escribe una breve descripción...')
+                            ->toolbarButtons([
                                 'bold',
                                 'bulletList',
                                 'heading',
@@ -94,7 +94,7 @@ class ProductoResource extends Resource
                             ->maxlength(300)
                             ->validationMessages([
                                 'required' => 'La descripción es obligatoria.',
-                                'maxlength' => 'La descripción no puede exceder los 300 caracteres.'
+                                'max' => 'La descripción no puede exceder los 300 caracteres.'
                             ])
                             ->columnSpan(2),
 
@@ -103,24 +103,29 @@ class ProductoResource extends Resource
                             ->inputMode('decimal')
                             ->numeric()
                             ->label('Precio')
+                            ->regex('/^\d{1,8}(\.\d{1,2})?$/')
+                            ->default(0.00)
+                            ->autocomplete('off')
                             ->step(0.01)
                             ->minValue(0)
                             ->validationMessages([
                                 'required' => 'El precio es obligatorio.',
                                 'numeric' => 'El precio debe ser un valor numérico.',
-                                'regex' => 'El precio debe tener hasta 10 dígitos y 2 decimales.'
+                                'regex' => 'El precio debe tener hasta 8 dígitos enteros y 2 decimales.'
                             ]),
 
                         Forms\Components\TextInput::make('cantidad_disponible')
                             ->required()
                             ->numeric()
                             ->integer()
+                            ->inputMode('numeric') // para experiencia en móviles
                             ->label('Cantidad Disponible')
+                            ->default(0) // Valor predeterminado entero
                             ->step('1')
                             ->minValue(0),
 
                     ])->columns(2)
-                        ->columnSpan(2), /*Fin de la seccion*/
+                        ->columnSpan(2), /*Fin de la sección*/
 
 
                     Section::make([
@@ -128,58 +133,48 @@ class ProductoResource extends Resource
                             ->label('Disponible')
                             ->default(false),
 
-
                         Forms\Components\Toggle::make('en_oferta')
                             ->label('En Oferta')
                             ->default(false)
                             ->live(),
 
-                        Group::make([
+                        Group::make([]),
 
-                        ]),
                         Forms\Components\TextInput::make('porcentaje_oferta')->prefix('%')
                             ->required()
                             ->numeric()
                             ->inputMode('decimal')
                             ->label('Porcentaje de Oferta')
                             ->nullable()
-                            ->step('0.01')
+                            ->step('1')
                             ->default(0)
                             ->minValue(0)
-                            ->maxValue(1)
+                            ->maxValue(100)
                             ->validationMessages([
                                 'required' => 'El porcentaje de oferta debe ser un valor numérico.',
                                 'numeric' => 'El porcentaje de oferta debe ser un número.',
-                                'minValue' => 'El porcentaje de oferta debe ser al menos 1.',
+                                'minValue' => 'El porcentaje de oferta debe ser al menos 0.',
                                 'maxValue' => 'El porcentaje de oferta no debe ser mayor a 100.',
                             ])
                             ->visible(fn(\Filament\Forms\Get $get): bool => $get('en_oferta'))
                             ->columns(2),
 
-
-                        #Se cambió una librería antigua que marcaba como obsoleta.
-
                         Forms\Components\Select::make('marca_id')
                             ->relationship('marca', 'nombre')
                             ->required()
                             ->searchable()
-                            #Precarga todas las marcas.
                             ->preload()
                             ->label('Marca')
                             ->validationMessages([
                                 'required' => 'Debe seleccionar una marca.'
                             ]),
 
-
                         Forms\Components\Select::make('categoria_id')
                             ->relationship('categoria', 'nombre')
                             ->required()
                             ->searchable()
                             ->preload()
-                            ->label('Categoría')
-                            ->validationMessages([
-                                'required' => 'Debe seleccionar una categoría.'
-                            ]),
+                            ->label('Categoría'),
                     ])->columnSpan(1)
                 ])->columns(3)
             ])->columns(1);
@@ -201,6 +196,4 @@ class ProductoResource extends Resource
             'view' => ProductoResource\Pages\ViewProducto::route('/{record}/view')
         ];
     }
-
-
 }

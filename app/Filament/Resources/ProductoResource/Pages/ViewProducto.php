@@ -79,7 +79,7 @@ class ViewProducto extends ViewRecord
                             ->regex('/^[A-Za-zÀ-ÿ0-9.,!?()"\s-]+$/')
                             ->validationMessages([
                                 'required' => 'La descripción es obligatoria.',
-                                'maxlength' => 'La descripción no puede exceder los 800 caracteres.',
+                                'max' => 'La descripción no puede exceder los 800 caracteres.',
                                 'regex' => 'La descripción solo puede contener letras, números y caracteres de puntuación comunes.'
                             ])
                             ->columnSpan(2),
