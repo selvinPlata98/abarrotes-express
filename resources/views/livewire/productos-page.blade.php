@@ -84,6 +84,11 @@
     @endif
                     </div>
 
+                    <div>
+    <label for="precio">Rango de Precio: </label>
+    <input type="range" id="precio" min="0" max="{{ $precioMaximo }}" step="1" wire:model.live="precio" />
+    <span>${{ $precio }}</span>
+</div>
 
                 </div>
                 <!-- Products List -->

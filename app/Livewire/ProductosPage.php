@@ -14,6 +14,9 @@ class ProductosPage extends Component
 
     #[Title('Nuestro producto')]
     #[Url]
+    public $precio = 0;
+    public $precioMaximo;
+    //public $precioMinimo = 0;
     public $categorias;
     public $orden = '';
     public $marcas;
@@ -51,6 +54,10 @@ class ProductosPage extends Component
     {
         $this->resetPage();
     }
+    public function updatedPrecio()
+    {
+        $this->resetPage();
+    }
 
     public function toggleCategorias()
 {
@@ -67,6 +74,8 @@ public function toggleMarcas()
         $this->categorias = Categoria::all();
         $this->marcas = Marca::all();
         $this->mostrarTodasCategorias = false; // Asegúrate de inicializar esto
+        $this->precioMaximo = Producto::max('precio');
+        $this->precio = $this->precioMaximo;
         $this->mostrarTodasMarcas = false;
     }
 
@@ -79,6 +88,10 @@ public function toggleMarcas()
         }
         if (!empty($this->marcasFiltradas)) {
             $query->whereIn('marca_id', $this->marcasFiltradas);
+        }
+
+        if ($this->precio > 0) {
+            $query->where('precio', '<=', $this->precio); // Ajusta el límite inferior
         }
 
         switch ($this->orden) {
