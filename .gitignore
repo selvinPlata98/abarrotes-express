@@ -7,5 +7,5 @@
 .storage
 .env
 .storage
-.public
+public
 vendor

@@ -84,10 +84,10 @@
     @endif
                     </div>
 
-                    <div>
-    <label for="precio">Rango de Precio: </label>
-    <input type="range" id="precio" min="0" max="{{ $precioMaximo }}" step="1" wire:model.live="precio" />
-    <span>${{ $precio }}</span>
+                    <div class="flex flex-col items-center mb-6">
+    <label for="precio" class="mb-2 text-sm font-medium text-gray-900" >Rango de Precio: </label>
+    <input type="range" id="precio" min="0" max="{{ $precioMaximo }}" step="1" wire:model.live="precio">
+    <span class="mt-2 text-lg font-semibold">${{ $precio }}</span>
 </div>
 
                 </div>
@@ -115,9 +115,9 @@
                     @if(isset($producto->imagenes) && count($producto->imagenes) > 0)
                         <img src="{{ url('storage/' , $producto->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$producto->imagenes[0]}}">
                     @endif              
-                    <a href="{{ route('producto', ['enlace' => $producto->enlace]) }}" class="text-lg font-semibold mb-2">{{$producto->nombre}}</a>
+                    <a href="{{ route('producto', ['enlace' => $producto->enlace]) }}" class="text-lg font-semibold mb-2 hover:text-cyan-500 hover:underline">{{$producto->nombre}}</a>
                     <div class="flex items-center mb-4">
-                        <span class="text-lg font-bold text-primary">{{$producto->precio }}</span>
+                        <span class="text-lg font-bold text-primary"> $ {{$producto->precio }}</span>
                     </div>
                     <button class="bg-primary text-white border border-primary hover:bg-transparent hover:text-primary py-2 px-3 rounded-full w-full">Añadir al carrito</button>
                 </div>

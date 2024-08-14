@@ -3904,13 +3904,15 @@ p, h1 {
 .tamanoCard{
   object-fit: cover;
   width: 10em;
-  height: 10em;
+  height: 15em;
 }
+
+
 
 .tamanoCard2{
   object-fit: cover;
-  width: 10rem;
-  height: 19rem;
+  width: 10em;
+  height: 19em;
 }
 
 
