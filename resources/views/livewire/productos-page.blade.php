@@ -8,8 +8,8 @@
 
                 </div>
                 <div class="flex mt-5 md:mt-0 space-x-4">
-    <div class="relative">
-        <select class="block appearance-none w-full bg-white border hover:border-primary px-4 py-2 pr-8 rounded-full shadow leading-tight focus:outline-none focus:shadow-outline" wire:model="orden" wire:click="precio">
+    <div class="relative" wire:ignore>
+        <select class="block appearance-none w-full bg-white border hover:border-primary px-4 py-2 pr-8 rounded-full shadow leading-tight focus:outline-none focus:shadow-outline" wire:model="orden" wire:click="precios" >
         <option value="">filtro</option>
         <option value="tiempo">Producto reciente</option>
         <option value="caro">Orden precio más alto</option>

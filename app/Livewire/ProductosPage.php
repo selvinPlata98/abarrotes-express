@@ -14,9 +14,9 @@ class ProductosPage extends Component
 
     #[Title('Nuestro producto')]
     #[Url]
-    public $precio = 0;
+    public $precio =0;
     public $precioMaximo;
-    //public $precioMinimo = 0;
+    public $precioMinimo = 0;
     public $categorias;
     public $orden = '';
     public $marcas;
@@ -50,7 +50,7 @@ class ProductosPage extends Component
         $this->resetPage();
     }
 
-    public function precio()
+    public function precios()
     {
         $this->resetPage();
     }
