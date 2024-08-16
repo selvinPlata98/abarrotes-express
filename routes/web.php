@@ -29,6 +29,11 @@ Route::get('/productos/{categoria?}/{marca?}', \App\Livewire\ProductosPage::clas
 Route::get('/producto/{enlace}', \App\Livewire\ProductoPage::class)->name('producto');
 Route::get('/carrito', \App\Livewire\CarritoPage::class)->name('carrito');
 
+Route::get('/categorias', \App\Livewire\MostrarCategoriaPage::class);
+Route::get('/marcas', \App\Livewire\MostrarMarcaPage::class);
+Route::get('/productoshop/{categoria?}/{marca?}', \App\Livewire\ProductoShop::class)->name('productoshop');
+Route::get('/producto/{enlace}', \App\Livewire\ProductoPage::class);
+Route::get('/cupon', \App\Livewire\CuponPage::class);
 Route::middleware('guest')->group(function (){
     Route::get('/registro', \App\Livewire\Auth\RegistroPage::class)->name('registro');
     Route::get('/login', \App\Livewire\Auth\LoginPage::class)->name('login');

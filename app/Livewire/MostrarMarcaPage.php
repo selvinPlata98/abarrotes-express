@@ -13,13 +13,13 @@ class MostrarMarcaPage extends Component
     public $search = '';
 
     public function render()
+    
     {
-        $marcas = Marca::where('nombre', 'like', '%' . $this->search . '%')
-            ->where('disponible', 1)
-            ->paginate($this->perPage);
+        $marcas = Marca::paginate($this->perPage);
 
-        return view('livewire.mostrar-marca-page', [
+        return view('livewire.mostrar-marca-page',[
             'marcas' => $marcas,
         ]);
+
     }
 }

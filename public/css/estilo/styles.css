@@ -3486,6 +3486,7 @@ video {
 /* ESTILOS PARA CATEGORIAS Y MARCAS */
 .categories .title-container {
     margin-top: 80px;
+    margin-top: 80px;
 }
 
 body {
@@ -3514,6 +3515,9 @@ p, h1 {
 }
 
 .card-description {
+    text-align: justify;
+    margin: 0;
+    padding: 0;
     text-align: justify;
     margin: 0;
     padding: 0;
@@ -3548,7 +3552,11 @@ p, h1 {
 }
 
 
+
 .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 1rem;
     max-width: 1140px;
     margin: 0 auto;
     padding: 0 1rem;
@@ -3558,10 +3566,13 @@ p, h1 {
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;
+    gap: 1.5rem;
 }
 
 
+
 .card-wrapper {
+    width: 300px;
     width: 300px;
     margin: 1rem auto;
 }
@@ -3589,15 +3600,20 @@ p, h1 {
 }
 
 
+
 .card {
+    background-color: #003d7a;
+    border-radius: 0.5rem;
     background-color: #003d7a;
     border-radius: 0.5rem;
     overflow: hidden;
 }
 
 
+
 .card-bg {
     width: 100%;
+    height: 180px;
     height: 180px;
     background-size: cover;
     background-position: center;
@@ -3624,11 +3640,14 @@ p, h1 {
 }
 
 .card-description p {
+    margin-bottom: 1rem; 
     margin-bottom: 1rem;
 }
 
 
+
 .card-description p + p {
+    margin-top: 1rem;
     margin-top: 1rem;
 }
 
@@ -3676,6 +3695,11 @@ p, h1 {
     font-family: 'Roboto', sans-serif;
     font-weight: normal;
     margin-left: 1rem;
+    font-size: 2rem;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+    margin-left: 1rem;
 }
 
 .mb-1 {
@@ -3693,9 +3717,12 @@ p, h1 {
 }
 
 
+
 .styled-link {
     text-decoration: none;
     outline: none;
+    color: #fff;
+    background-color: #002d72;
     color: #fff;
     background-color: #002d72;
     transition: all 0.3s ease;
@@ -3705,6 +3732,7 @@ p, h1 {
     font-weight: 500;
     text-align: center;
     text-transform: uppercase;
+    margin-top: 1.5rem;
     margin-top: 1rem;
 
 }
@@ -3713,7 +3741,9 @@ p, h1 {
 .styled-link:focus,
 .styled-link:active {
     background-color: #001f3f;
+    background-color: #001f3f;
 }
+
 
 
 .text-center {
@@ -4071,9 +4101,331 @@ p, h1 {
 /*FIN ESTILOS PARA ERROR404*/
 
 
+/*ESTILOS PARA ERROR403*/
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+}
+
+section {
+  text-align: center;
+}
+
+.fondo-blanco {
+  background-color: #fff;
+}
+
+.py-16 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.max-w-screen-lg {
+  max-width: 1024px;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.md\\:px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.grid {
+  display: grid;
+}
+
+.gap-8 {
+  gap: 2rem;
+}
+
+.sm\\:grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.texto-4xl {
+  font-size: 2.25rem;
+}
+
+.fuente-negrita {
+  font-weight: 700;
+}
+
+.color-principal {
+  color: #007bff;
+}
+
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
+
+.texto-gris {
+  color: #6c757d;
+}
+
+.botones-contenedor {
+  margin-top: 1.5rem;
+}
+
+.boton-regresar {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  margin: 0.5rem;
+  color: #fff;
+  background-color: #007bff;
+  text-decoration: none;
+  border-radius: 0.25rem;
+}
+
+.boton-regresar:hover {
+  background-color: #0056b3;
+}
+
+.relativo {
+  position: relative;
+}
+
+.h-80 {
+  height: 20rem;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.redondear-lg {
+  border-radius: 0.5rem;
+}
+
+.fondo-gris-sombreado {
+  background-color: #e9ecef;
+}
+
+.md\\:h-auto {
+  height: auto;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-auto {
+  height: auto;
+}
+/*FIN ESTILOS PARA ERROR403*/
+
+/*ESTILOS PARA ERROR500*/
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+}
+
+section {
+  text-align: center;
+}
+
+.fondo-blanco {
+  background-color: #fff;
+}
+
+.py-16 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.max-w-screen-lg {
+  max-width: 1024px;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.md\\:px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.grid {
+  display: grid;
+}
+
+.gap-8 {
+  gap: 2rem;
+}
+
+.sm\\:grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.texto-4xl {
+  font-size: 2.25rem;
+}
+
+.fuente-negrita {
+  font-weight: 700;
+}
+
+.color-principal {
+  color: #007bff;
+}
+
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
+
+.texto-gris {
+  color: #6c757d;
+}
+
+.botones-contenedor {
+  margin-top: 1.5rem;
+}
+
+.boton-regresar {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  margin: 0.5rem;
+  color: #fff;
+  background-color: #007bff;
+  text-decoration: none;
+  border-radius: 0.25rem;
+}
+
+.boton-regresar:hover {
+  background-color: #0056b3;
+}
+
+.relativo {
+  position: relative;
+}
+
+.h-80 {
+  height: 20rem;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.redondear-lg {
+  border-radius: 0.5rem;
+}
+
+.fondo-gris-sombreado {
+  background-color: #e9ecef;
+}
+
+.md\\:h-auto {
+  height: auto;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-auto {
+  height: auto;
+}
+.redondear-lg {
+  border-radius: 0.5rem;
+}
+
+.fondo-gris-sombreado {
+  background-color: #f3f4f6;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.md\:h-auto {
+  height: auto;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-auto {
+  height: auto;
+}
+/*FIN ESTILOS PARA ERROR500*/
 
 
+/*ESTILOS PARA CUPON*/
+    .coupon-list {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+    
+    .coupon-list h2 {
+        margin-bottom: 15px;
+        color: #333;
+    }
 
+    .coupon-item {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #f9f9f9;
+        display: flex;
+        justify-content: space-between;
+    }
 
+    .coupon-code {
+        font-weight: bold;
+        color: #2a9d8f;
+    }
 
-
+    .coupon-description {
+        color: #555;
+    }
+/*FIN ESTILOS PARA CUPON*/
