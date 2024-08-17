@@ -1,4 +1,3 @@
-/** @type {import('tailwindcss').Config} */
 const { iconsPlugin, dynamicIconsPlugin } = require('@egoist/tailwindcss-icons');
 
 module.exports = {
@@ -47,3 +46,5 @@ module.exports = {
         require('preline/plugin'),
     ],
 };
+
+
