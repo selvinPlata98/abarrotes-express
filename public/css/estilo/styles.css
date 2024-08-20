@@ -3137,7 +3137,7 @@ video {
 
 .hover\:text-primary:hover {
   --tw-text-opacity: 1;
-  color: rgb(255 0 66 / var(--tw-text-opacity));
+  color: rgb(29 78 216 / var(--tw-text-opacity));
 }
 
 .hover\:text-white:hover {
@@ -4073,6 +4073,101 @@ p, h1 {
 
 
 
+/*Estilos para los cupones*/
+
+.container-cupones {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center; /* Centra el contenido dentro del contenedor */
+}
+
+.cupon-titulo {
+    font-size: 36px;
+    font-weight: bold;
+    color: #1e3a5f; /* Azul oscuro */
+    margin-bottom: 30px;
+}
+
+.cupones-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.cupon-card {
+    background-color: #1e3a5f; /* Azul oscuro */
+    color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 300px; /* Fija el ancho de las tarjetas */
+}
+
+.cupon-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.cupon-header {
+    background-color: #16324F; /* Azul más oscuro */
+    padding: 15px;
+    text-align: center;
+}
+
+.cupon-descuento {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.cupon-expiracion {
+    font-size: 14px;
+    margin-top: 5px;
+    color: #a3c4f3; /* Azul claro */
+}
+
+.cupon-body {
+    padding: 15px;
+    text-align: left; /* Alinea el contenido a la izquierda */
+    position: relative; /* Necesario para posicionar el botón */
+    display: flex; /* Utilizamos flexbox para alinear los elementos horizontalmente */
+    align-items: center; /* Alinea verticalmente en el centro */
+    justify-content: space-between; /* Distribuye el espacio entre el código y el botón */
+}
+
+.cupon-codigo {
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #3b5998; /* Azul medio */
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+    margin-right: 10px; /* Ajusta la distancia entre el código y el botón */
+}
+
+.cupon-usar-btn {
+    background-color: #3b5998; /* Azul medio */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cupon-usar-btn:hover {
+    background-color: #2a4271; /* Azul un poco más oscuro */
+}
+
+.cupon-paginacion {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
 
 
 

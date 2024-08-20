@@ -27,16 +27,16 @@
                                 <td class="py-4">{{Number::currency($item['monto_unitario'],'LPS')}}</td>
                                 <td class="py-4">
                                     <div class="flex items-center">
-                                        <button wire:click="decreaseQty({{$item['producto_id']}})" class="border rounded-md py-2 px-4 mr-2">-</button>
+                                        <button wire:click="decrementarCantidad({{$item['producto_id']}})" class="border rounded-md py-2 px-4 mr-2">-</button>
                                         <span class="text-center w-8">{{$item['cantidad']}}</span>
-                                        <button wire:click="increaseQty({{$item['producto_id']}})" class="border rounded-md py-2 px-4 ml-2">+</button>
+                                        <button wire:click="incrementarCantidad({{$item['producto_id']}})" class="border rounded-md py-2 px-4 ml-2">+</button>
                                     </div>
                                 </td>
                                 <td class="py-4">{{Number::currency($item['monto_total'], 'lps')}}</td>
                                 <td>
-                                    <button wire:click="removeItem({{$item['producto_id']}})" class="bg-slate-300 border-2 border-slate-400 rounded-lg px-3 py-1 hover:bg-red-500 hover:text-white hover:border-red-700">
-                                        <span wire:loading.remove wire:target='removeItem({{$item['producto_id']}})'>Eliminar</span>
-                                        <span wire:target="removeItem({{$item['producto_id']}})" wire:loading>Eliminando...</span>
+                                    <button wire:click="eliminarElemento({{$item['producto_id']}})" class="bg-slate-300 border-2 border-slate-400 rounded-lg px-3 py-1 hover:bg-red-500 hover:text-white hover:border-red-700">
+                                        <span wire:loading.remove wire:target='eliminarElemento({{$item['producto_id']}})'>Eliminar</span>
+                                        <span wire:target="eliminarElemento({{$item['producto_id']}})" wire:loading>Eliminando...</span>
                                     </button>
                                 </td>
                             </tr>

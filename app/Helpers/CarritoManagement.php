@@ -20,33 +20,59 @@ class CarritoManagement
             }
         }
 
-        if ($elemento_existente !== null) {
-            // Incrementar la cantidad del producto existente
-            $decimal = isset($elementos_carrito[$elemento_existente]['porcentaje_oferta']) ?
-                ($elementos_carrito[$elemento_existente]['porcentaje_oferta'] / 100) : 0;
-            $resta = ($elementos_carrito[$elemento_existente]['cantidad'] * $decimal);
-            $elementos_carrito[$elemento_existente]['cantidad']++;
-            $elementos_carrito[$elemento_existente]['monto_total'] = $elementos_carrito[$elemento_existente]['cantidad'] * $elementos_carrito[$elemento_existente]['monto_unitario'] - $resta;
-        } else {
-            // Agregar nuevo producto al carrito
-            $producto = Producto::where('id', $producto_id)->first(['id', 'nombre', 'precio', 'imagenes', 'porcentaje_oferta']);
-            if ($producto) {
-                $imagenes = is_array($producto->imagenes) ? $producto->imagenes : ['default_image.jpg'];
-                $imagen = $imagenes[0];
-                $elementos_carrito[] = [
-                    'producto_id' => $producto_id,
-                    'nombre' => $producto->nombre,
-                    'imagen' => $imagen,
-                    'cantidad' => 1,
-                    'porcentaje_oferta' => $producto->porcentaje_oferta ?? 0,
-                    'monto_unitario' => $producto->precio,
-                    'monto_total' => $producto->precio
-                ];
+        $producto = Producto::where('id', $producto_id)->first(['id', 'nombre', 'precio', 'imagenes', 'cantidad_disponible', 'porcentaje_oferta']);
+
+        if ($producto) {
+            if ($elemento_existente !== null) {
+                if ($elementos_carrito[$elemento_existente]['cantidad'] < $producto->cantidad_disponible) {
+                    $elementos_carrito[$elemento_existente]['cantidad']++;
+                    $elementos_carrito[$elemento_existente]['monto_total'] = self::calcularMontoTotal(
+                        $elementos_carrito[$elemento_existente]['monto_unitario'],
+                        $elementos_carrito[$elemento_existente]['porcentaje_oferta'],
+                        $elementos_carrito[$elemento_existente]['cantidad']
+                    );
+                } else {
+                    return 'Cantidad excede la disponible';
+                }
+            } else {
+                if ($producto->cantidad_disponible > 0) {
+                    $precio_con_descuento = self::calcularPrecioConDescuento($producto->precio, $producto->porcentaje_oferta);
+                    $elementos_carrito[] = [
+                        'producto_id' => $producto_id,
+                        'nombre' => $producto->nombre,
+                        'imagen' => $producto->imagenes[0] ?? 'default_image.jpg',
+                        'cantidad_disponible' => $producto->cantidad_disponible,
+                        'cantidad' => 1,
+                        'porcentaje_oferta' => $producto->porcentaje_oferta ?? 0,
+                        'monto_unitario' => $precio_con_descuento,
+                        'monto_total' => $precio_con_descuento
+                    ];
+                } else {
+                    // Aquí también puedes lanzar una excepción o devolver un mensaje de error
+                    return 'No hay suficiente stock';
+                }
             }
+
+            self::agregarElementoCookies($elementos_carrito);
+            return count($elementos_carrito);
         }
 
-        self::agregarElementoCookies($elementos_carrito);
-        return count($elementos_carrito);
+        return 'Producto no encontrado';
+    }
+
+
+    static public function calcularPrecioConDescuento($precio, $porcentaje_oferta)
+    {
+        if (!is_null($porcentaje_oferta) && $porcentaje_oferta > 0) {
+            return $precio - ($precio * ($porcentaje_oferta / 100));
+        }
+        return $precio;
+    }
+
+    static public function calcularMontoTotal($precio_unitario, $porcentaje_oferta, $cantidad)
+    {
+        $precio_con_descuento = self::calcularPrecioConDescuento($precio_unitario, $porcentaje_oferta);
+        return $cantidad * $precio_con_descuento;
     }
 
     /*Quitar elemenos del carrito*/
@@ -88,16 +114,26 @@ class CarritoManagement
     static public function incrementarCantidadElementosCarrito($producto_id)
     {
         $elementos_carrito = self::obtenerElementosDeCookies();
+
         foreach ($elementos_carrito as $key => $item) {
             if ($item['producto_id'] == $producto_id) {
-                $elementos_carrito[$key]['cantidad']++;
-                $elementos_carrito[$key]['monto_total'] = $elementos_carrito[$key]['cantidad'] *
-                    $elementos_carrito[$key]['monto_unitario'];
+                $producto = Producto::find($producto_id);
+
+                if ($producto && $elementos_carrito[$key]['cantidad'] < $producto->cantidad_disponible) {
+                    $elementos_carrito[$key]['cantidad']++;
+                    $elementos_carrito[$key]['cantidad_disponible']--;
+                    $elementos_carrito[$key]['monto_total'] = $elementos_carrito[$key]['cantidad'] *
+                        $elementos_carrito[$key]['monto_unitario'];
+                } else {
+                    return 'Cantidad excede la disponible';
+                }
             }
         }
+
         self::agregarElementoCookies($elementos_carrito);
         return $elementos_carrito;
     }
+
 
     static public function decrementarCantidadElementosCarrito($producto_id)
     {
@@ -106,6 +142,7 @@ class CarritoManagement
             if ($item['producto_id'] == $producto_id) {
                 if ($elementos_carrito[$key]['cantidad'] > 1) {
                     $elementos_carrito[$key]['cantidad']--;
+                    $elementos_carrito[$key]['cantidad_disponible']++;
                     $elementos_carrito[$key]['monto_total'] = $elementos_carrito[$key]['cantidad'] *
                         $elementos_carrito[$key]['monto_unitario'];
                 }

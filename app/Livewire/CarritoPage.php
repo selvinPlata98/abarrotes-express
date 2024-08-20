@@ -4,11 +4,14 @@ namespace App\Livewire;
 
 use App\Helpers\CarritoManagement;
 use App\Livewire\Complementos\Navbar;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
+
 class CarritoPage extends Component
 {
+    use LivewireAlert;
     #[Title('Carrito')]
     public $elementos_carrito;
     public $total_final;
@@ -22,20 +25,36 @@ class CarritoPage extends Component
     {
         $this->elementos_carrito = CarritoManagement::quitarElementosCarrito($producto_id);
         $this->total_final = CarritoManagement::calcularTotalFinal($this->elementos_carrito);
-        $this->dispatch('update-cart-count', total_count: count($this->elementos_carrito))->to(Navbar::class);
+        $this->dispatch('update-cart-count', conteo_total: count($this->elementos_carrito))->to(Navbar::class);
     }
 
-    function increaseQty($producto_id)
+
+    public function incrementarCantidad($producto_id)
     {
-        $this->elementos_carrito = CarritoManagement::incrementarCantidadElementosCarrito($producto_id);
-        $this->total_final = CarritoManagement::calcularTotalFinal($this->elementos_carrito);
+        $resultado = CarritoManagement::incrementarCantidadElementosCarrito($producto_id);
+
+        if (is_array($resultado)) {
+            $this->elementos_carrito = $resultado;
+            $this->total_final = CarritoManagement::calcularTotalFinal($this->elementos_carrito);
+        } else {
+            // Muestra una alerta si hay un error, por ejemplo, si se excede la cantidad disponible
+            $this->alert('error', $resultado, [
+                'position' => 'bottom-end',
+                'timer' => 3000,
+                'toast' => true,
+                'timerProgressBar' => true,
+                $this->skipRender()
+            ]);
+        }
     }
 
-    function decreaseQty($producto_id)
+
+    public function decrementarCantidad($producto_id)
     {
         $this->elementos_carrito = CarritoManagement::decrementarCantidadElementosCarrito($producto_id);
         $this->total_final = CarritoManagement::calcularTotalFinal($this->elementos_carrito);
     }
+
 
     public function render()
     {

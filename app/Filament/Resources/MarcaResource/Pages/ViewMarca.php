@@ -53,14 +53,8 @@ class ViewMarca extends ViewRecord
                     ->afterStateUpdated(fn(string $operation, $state, Set $set) => $operation
                     === 'create' ? $set('enlace', Str::slug($state)) : null)
                     ->reactive()
-                    ->live(onBlur: true),
-
-                Forms\Components\TextInput::make('enlace')
-                    ->required()
-                    ->label('Enlace')
-                    ->disabled()
-                    ->dehydrated()
-                    ->unique(Marca::class, ignoreRecord: true),
+                    ->live(onBlur: true)
+                    ->columnSpanFull(),
 
                 Forms\Components\FileUpload::make('imagen')
                     ->required()

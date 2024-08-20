@@ -9,6 +9,7 @@ class CreateUsuarios extends CreateRecord
 {
     protected static string $resource = UsuariosResource::class;
     protected ?string $heading = 'Crear Usuario';
+    protected static ?string $title = 'Crear Usuario';
     public function getRedirectUrl(): string
     {
         $url = $this->getResource()::getUrl('index') . '?sort=-created_at&tableSortColumn=id&tableSortDirection=desc';

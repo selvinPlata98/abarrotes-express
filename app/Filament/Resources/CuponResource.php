@@ -33,6 +33,7 @@ class CuponResource extends Resource
                     Section::make([
                         Forms\Components\TextInput::make('codigo')
                             ->required()
+                            ->numeric()
                             ->maxLength(8)
                             ->label('Código del Cupón')
                             ->unique(Cupon::class, ignoreRecord: true)
@@ -47,8 +48,8 @@ class CuponResource extends Resource
                             ->numeric()
                             ->step('0.01')
                             ->default(0)
-                            ->minValue(0)
-                            ->maxValue(1)
+                            ->minValue(1)
+                            ->maxValue(100)
                             ->validationMessages([
                                 'required' => 'El descuento es obligatorio.',
                             ]),
@@ -72,32 +73,33 @@ class CuponResource extends Resource
                         Forms\Components\Select::make('usuario_id')
                             ->relationship('usuario', 'name')
                             ->nullable()
+                            ->searchable()
+                            ->preload()
                             ->native(false)
                             ->label('Usuario'),
 
-                        Forms\Components\Select::make('orden_id')
-                            ->relationship('orden', 'id')
-                            ->nullable()
-                            ->native(false)
-                            ->label('Orden'),
 
                         Forms\Components\Select::make('producto_id')
                             ->relationship('producto', 'nombre')
                             ->nullable()
+                            ->searchable()
+                            ->preload()
                             ->native(false)
                             ->label('Producto'),
 
                         Forms\Components\Select::make('categoria_id')
                             ->relationship('categoria', 'nombre')
                             ->nullable()
+                            ->searchable()
+                            ->preload()
                             ->native(false)
-
                             ->label('Categoría'),
 
                         Forms\Components\Select::make('marca_id')
                             ->relationship('marca', 'nombre')
                             ->nullable()
-
+                            ->searchable()
+                            ->preload()
                             ->native(false)
                             ->label('Marca'),
 

@@ -17,10 +17,17 @@ class EditOrden extends EditRecord
         ];
     }
 
-    public function getRedirectUrl(): string
+    public function getRedirectUrl(): ?string
     {
-        $url = $this->getResource()::getUrl('index') . '?sort=-created_at&tableSortColumn=id&tableSortDirection=desc';
 
-        return $url;
+        $recordId = $this->record?->id;
+
+
+        if ($recordId) {
+            $url = $this->getResource()::getUrl('view', ['record' => $recordId]) . '?sort=-created_at&tableSortColumn=id&tableSortDirection=desc';
+            return $url;
+        }
+
+        return null;
     }
 }

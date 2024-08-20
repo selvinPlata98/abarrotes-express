@@ -34,55 +34,55 @@ class EditMarca extends EditRecord
         ];
     }
 
-    public function form(Form $form): Form
+    public  function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('nombre')
                     ->required()
                     ->label('Nombre De la Marca')
-                    ->maxLength(80)
-                    ->regex('/^[A-Za-z ]+$/')
+                    ->maxLength(70)
+                    ->regex('/^[A-Za-zÀ-ÿ0-9\s\-\'\.]+$/')
                     ->unique(Marca::class, ignoreRecord: true)
+                    ->autocomplete('off')
                     ->validationMessages([
-                        'maxLength' => 'El nombre debe contener un máximo de 80 caracteres.',
-                        'required' => 'Debe introducir un nombre de la marca',
-                        'unique' => 'Esta Marca ya existe',
-                    ])
-                    ->afterStateUpdated(fn(string $operation, $state, Set $set) => $operation
-                    === 'create' ? $set('enlace', Str::slug($state)) : null)
-                    ->reactive()
-                    ->live(onBlur: true),
-
-                Forms\Components\TextInput::make('enlace')
-                    ->required()
-                    ->label('Enlace')
-                    ->disabled()
-                    ->dehydrated()
-                    ->unique(Marca::class, ignoreRecord: true),
+                        'maxLength' => 'El nombre debe contener un máximo de :max caracteres.',
+                        'required' => 'Debe introducir un nombre para la marca.',
+                        'regex' => 'El nombre solo puede contener letras, números y los caracteres especiales permitidos.',
+                        'unique' => 'Esta marca ya existe.',
+                    ]),
 
                 Forms\Components\FileUpload::make('imagen')
                     ->required()
                     ->label('Imagen')
                     ->image()
-                    ->disk('public')
                     ->directory('marcas')
+                    ->imageEditor()
+                    ->imageResizeMode('cover')
+                    ->imageCropAspectRatio('1:1')
+                    ->maxFiles(1)
+                    ->maxSize(5190)
+                    ->preserveFilenames()
                     ->validationMessages([
                         'maxFiles' => 'Se permite un máximo de 1 imagen.',
                         'required' => 'Debe seleccionar al menos una imagen.',
                         'image' => 'El archivo debe ser una imagen válida.',
+                        'max' => 'El tamaño de la imagen no debe exceder los 5MB.',
                     ])
-                    ->maxFiles(1)
                     ->columnSpan(2),
 
                 Forms\Components\Toggle::make('disponible')
                     ->label('Disponible')
-                    ->default(true),
+                    ->default(true)
+                    ->rules(['boolean'])
+                    ->validationMessages([
+                        'boolean' => 'El valor debe ser verdadero o falso.',
+                    ]),
 
                 Forms\Components\MarkdownEditor::make('descripcion')
                     ->required()
                     ->label('Descripción')
-                    ->maxLength(182)
+                    ->placeholder('Escribe una breve descripción...')
                     ->toolbarButtons([
                         'bold',
                         'bulletList',
@@ -92,18 +92,29 @@ class EditMarca extends EditRecord
                         'redo',
                         'undo',
                     ])
-
+                    ->minLength(10)
+                    ->maxLength(200)
                     ->validationMessages([
                         'required' => 'La descripción es obligatoria.',
-                        'maxLength' => 'La descripción no puede exceder los 182 caracteres.',
+                        'minLength' => 'La descripción debe tener al menos :min caracteres.',
+                        'maxLength' => 'La descripción no puede exceder los :max caracteres.',
                     ])
                     ->columnSpan(2),
             ]);
     }
 
-    public function getRedirectUrl(): string
+
+    public function getRedirectUrl(): ?string
     {
-        $url = $this->getResource()::getUrl('index') . '?sort=-created_at&tableSortColumn=id&tableSortDirection=desc';
-        return $url;
+
+        $recordId = $this->record?->id;
+
+
+        if ($recordId) {
+            $url = $this->getResource()::getUrl('view', ['record' => $recordId]) . '?sort=-created_at&tableSortColumn=id&tableSortDirection=desc';
+            return $url;
+        }
+
+        return null;
     }
 }

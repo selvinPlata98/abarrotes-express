@@ -24,6 +24,12 @@ class Cupon extends Model
         'marca_id'
     ];
 
+    // En App\Models\Cupon.php
+    protected $casts = [
+        'fecha_expiracion' => 'datetime',
+    ];
+
+
     protected $table = 'cupones';
 
     public function usuario()

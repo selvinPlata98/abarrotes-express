@@ -35,7 +35,6 @@ class UsuariosResource extends Resource
     protected static ?string $slug = 'usuarios';
     protected static ?int $navigationSort = 1;
     protected static ?string $navigationGroup = 'Usuarios';
-
     protected static ?string $navigationIcon = 'heroicon-o-users';
     protected static ?string $activeNavigationIcon = 'heroicon-s-users';
     protected static ?string $pluralModelLabel = 'Usuarios';
@@ -49,45 +48,59 @@ class UsuariosResource extends Resource
                     ->required()
                     ->label('Nombre de Usuario')
                     ->maxLength(100)
-                    ->regex('/^[A-Za-z ]+$/')
+                    ->regex('/^[A-Za-zÀ-ÿñÑ ]+$/')
                     ->validationMessages([
-                        'maxLenght' => 'El nombre no debe contener más de 100 carácteres.',
                         'required' => 'Debe introducir un nombre de usuario.',
-                        'regex' => 'El nombre solo debe contener letras y espacios.',
+                        'max' => 'El nombre no debe contener más de 100 carácteres.',
+                        'regex' => 'El nombre de usuario no debe contener símbolos',
                     ]),
 
                 TextInput::make('email')
                     ->required()
-                    ->email()
+                    ->rules(['regex:/^[^\s@]+@[^\s@]+\.[^\s@]+$/'])->email()
                     ->unique(ignoreRecord: true)
                     ->maxLength(100)->label('Correo Electrónico')
                     ->validationMessages([
                         'required' => 'Debe introducir un correo electrónico.',
                         'email' => 'Debe introducir un correo electrónico válido.',
-                        'unique' => 'El correo ingresado se encuentra en uso, introduzca uno nuevo.'
-                    ]),
+                        'unique' => 'El correo ingresado se encuentra en uso, introduzca uno nuevo.',
+                        'max' => 'El correo debe contener menos de 100 carácteres.',
+                        'regex' => 'Debe introducir un correo electrónico válido.'
+                        ]),
 
                 CheckboxList::make('roles')
-                    ->helperText('Seleccionar solo uno')
                     ->relationship('roles', 'name')
                     ->columns(2)
-                    ->required(),
+                    ->required()
+                    ->maxItems(1)
+                    ->exists('roles', 'id')
+                    ->hint('Solo se debe seleccionar un Rol')
+                    ->validationMessages([
+                        'required' => 'Debe seleccionar un rol.',
+                        'max' => 'Debe seleccionar solamente un rol.',
+                        'exists' => 'El Rol seleccionado no es válido'
+                    ]),
 
                 DateTimePicker::make('email_verified_at')
                     ->label('Fecha de verificación de Correo'),
 
                 TextInput::make('password')
                     ->label('Contraseña')
-                    ->password()
                     ->revealable()
+                    ->password()
                     ->required()
+                    ->minLength(8)
+                    ->maxLength(18)
                     ->dehydrated(static fn(null|string $state):
                     null|string => filled($state ? \Hash::make($state) : null))
                     ->required(fn(Page $livewire): bool => $livewire instanceof Pages\CreateUsuarios)
                     ->dehydrated(static fn(null|string $state):
                     bool => filled($state))
                     ->validationMessages([
+                        'password' => 'Debe introducir una contraseña valida',
                         'required' => 'Debe introducir una contraseña',
+                        'min' => 'La contraseña no debe tener menos de 8 carácteres.',
+                        'max' => 'La contraseña no debe tener más de 18 carácteres.'
                     ]),
 
 
@@ -113,8 +126,8 @@ class UsuariosResource extends Resource
 
     public static function getRelations(): array
     {
-        return[
-          RolesRelationManager::class
+        return [
+            RolesRelationManager::class
         ];
     }
 

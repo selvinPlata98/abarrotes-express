@@ -14,14 +14,15 @@ class ProductoPage extends Component
 
     public $cantidad;
     public $enlace;
+    public $id;
 
-    public function mount($enlace){
-            $this->enlace = $enlace;
+    public function mount($id){
+            $this->enlace = $id;
     }
 
     public function render()
     {
         return view('livewire.producto-page',
-        ['producto' => Producto::where('enlace', $this->enlace)->firstOrFail()]);
+        ['producto' => Producto::where('id', $this->id)->firstOrFail()]);
     }
 }

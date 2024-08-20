@@ -46,52 +46,48 @@ class ViewCategoria extends ViewRecord
                 Forms\Components\TextInput::make('nombre')
                     ->required()
                     ->label('Nombre De la Categoria')
-                    ->maxLength(80)
-                    ->regex('/^[A-Za-z ]+$/')
+                    ->maxLength(70)
+                    ->regex('/^[A-Za-zÀ-ÿ0-9\s\-\'\.]+$/')
+                    ->unique(Categoria::class, ignoreRecord: true)
+                    ->autocomplete('off')
                     ->validationMessages([
-                        'maxLength' => 'El nombre debe contener un máximo de 80 caracteres.',
-                        'required' => 'Debe introducir un para la categoria.',
+                        'maxLength' => 'El nombre debe contener un máximo de :max caracteres.',
+                        'required' => 'Debe introducir un nombre para la categoría.',
                         'regex' => 'El nombre solo debe contener letras y espacios.',
                         'unique' => 'Esta categoría ya existe.',
-                    ])
-                    ->afterStateUpdated(fn(string $operation, $state, Set $set) => $operation
-                    === 'create' ? $set('enlace', Str::slug($state)) : null)
-                    ->reactive()
-                    ->live(onBlur: true)
-                    ->unique(Categoria::class, ignoreRecord: true),
-
-                TextInput::make('enlace')
-                    ->required()
-                    ->label('Enlace')
-                    ->disabled()
-                    ->dehydrated()
-                    ->unique(Categoria::class, ignoreRecord: true)
-                    ->validationMessages([
-                        'unique' => 'Este enlace ya existe',
-                    ]),
+                    ])->columnSpanFull(),
 
                 FileUpload::make('imagen')
                     ->required()
                     ->label('Imagen')
                     ->image()
-                    ->disk('public')
                     ->directory('categorias')
+                    ->imageEditor()
+                    ->imageResizeMode('cover')
+                    ->imageCropAspectRatio('1:1')
+                    ->maxFiles(1)
+                    ->maxSize(5190)
+                    ->preserveFilenames()
+                    ->columnSpanFull()
                     ->validationMessages([
                         'maxFiles' => 'Se permite un máximo de 1 imagen.',
                         'required' => 'Debe seleccionar al menos una imagen.',
                         'image' => 'El archivo debe ser una imagen válida.',
-                    ])
-                    ->maxFiles(1)
-                    ->columnSpan(2)
-                    ->preserveFilenames(),
+                        'max' => 'El tamaño de la imagen no debe exceder los 5MB.',
+                    ]),
 
                 Forms\Components\Toggle::make('disponible')
                     ->label('Disponible')
-                    ->default(true),
+                    ->default(true)
+                    ->rules(['boolean'])
+                    ->validationMessages([
+                        'boolean' => 'El valor debe ser verdadero o falso.',
+                    ]),
 
                 Forms\Components\MarkdownEditor::make('descripcion')
                     ->required()
                     ->label('Descripción')
+                    ->placeholder('Escribe una breve descripción...')
                     ->toolbarButtons([
                         'bold',
                         'bulletList',
@@ -101,10 +97,12 @@ class ViewCategoria extends ViewRecord
                         'redo',
                         'undo',
                     ])
-                    ->maxLength(182)
+                    ->minLength(10)
+                    ->maxLength(200)
                     ->validationMessages([
                         'required' => 'La descripción es obligatoria.',
-                        'maxLength' => 'La descripción no puede exceder los 182 caracteres.',
+                        'minLength' => 'La descripción debe tener al menos :min caracteres.',
+                        'maxLength' => 'La descripción no puede exceder los :max caracteres.',
                     ])
                     ->columnSpan(2),
             ]);

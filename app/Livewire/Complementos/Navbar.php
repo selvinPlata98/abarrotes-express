@@ -16,9 +16,11 @@ class Navbar extends Component
     }
 
     #[On('update-cart-count')]
-    public function updateCartCount($conteo_total){
-        $this->conteo_total = $conteo_total;
+    public function updateCartCount($conteo_total)
+    {
+        $this->conteo_total = $conteo_total['conteo_total'] ?? 0; // Asigna 0 si el valor no está presente
     }
+
 
     public function logout()
     {

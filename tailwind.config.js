@@ -1,6 +1,5 @@
-const { iconsPlugin, dynamicIconsPlugin } = require('@egoist/tailwindcss-icons');
-
-module.exports = {
+/** @type {import('tailwindcss').Config} */
+export default {
     content: [
         "./src/**/*.{html,js}",
         './pages/**/*.{html,js}',
@@ -10,7 +9,6 @@ module.exports = {
         './resources/**/*.vue',
         'node_modules/preline/dist/*.js',
     ],
-    darkMode: 'class',
     theme: {
         container: {
             center: true,
@@ -30,7 +28,7 @@ module.exports = {
             current: 'currentColor',
             white: '#ffffff',
             black: '#010717',
-            primary: '#ff0042',
+            primary: '#ffff00',
             gray: {
                 lighter: '#FAF7F3',
                 light: '#323232',
@@ -41,8 +39,6 @@ module.exports = {
         },
     },
     plugins: [
-        iconsPlugin(),
-        dynamicIconsPlugin(),
         require('preline/plugin'),
     ],
 };

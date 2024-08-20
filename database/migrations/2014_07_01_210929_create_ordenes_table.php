@@ -15,8 +15,8 @@ return new class extends Migration {
             $table->string('metodo_pago');
                 $table->enum('estado_pago', ['pagado', 'procesando', 'error'])->nullable();
             $table->enum('estado_entrega', ['nuevo', 'procesado', 'enviado', 'entregado', 'cancelado']);
-            $table->string('costos_envio');
-            $table->longText('notas');
+            $table->string('costos_envio')->default(0);
+            $table->longText('notas')->nullable();
             $table->timestamps();
         });
     }

@@ -26,12 +26,14 @@
                 <div class="w-full sm:w-1/6 px-4 mb-8">
                     <h3 class="text-lg font-semibold mb-4">Cuenta</h3>
                     <ul>
-                        <li><a href="{{ url('/carrito') }}" class="hover:text-cyan-500 hover:underline"
-                               style="transition: color 0.3s ease;">Carrito</a></li>
-                        <li><a href="{{ url('/registro') }}" class="hover:text-cyan-500 hover:underline"
-                               style="transition: color 0.3s ease;">Registrarse</a></li>
-                        <li><a href="{{ url('/login') }}" class="hover:text-cyan-500 hover:underline"
-                               style="transition: color 0.3s ease;">Iniciar Sesión</a></li>
+                        <li>
+                            <a href="{{ url('/carrito') }}" class="hover:text-cyan-500 hover:underline"
+                               style="transition: color 0.3s ease;">Carrito</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/login') }}" class="hover:text-cyan-500 hover:underline"
+                               style="transition: color 0.3s ease;">Iniciar Sesión</a>
+                        </li>
                     </ul>
                 </div>
                 <!-- Social Media -->

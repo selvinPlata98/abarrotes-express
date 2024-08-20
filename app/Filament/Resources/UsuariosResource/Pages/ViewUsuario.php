@@ -5,6 +5,7 @@ namespace App\Filament\Resources\UsuariosResource\Pages;
 use App\Filament\Resources\UsuariosResource;
 use App\Models\User;
 use Filament\Actions;
+use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\TextInput;
@@ -18,33 +19,35 @@ use Filament\Tables\Table;
 class ViewUsuario extends ViewRecord
 {
     protected static string $resource = UsuariosResource::class;
+    protected static ?string $title = 'Detalles de Usuario';
     protected ?string $heading = 'Detalles de Usuario';
 
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
+            ->schema([
                 TextInput::make('name')
                     ->required()
                     ->label('Nombre de Usuario')
                     ->maxLength(100)
-                    ->regex('/^[A-Za-z ]+$/')
+                    ->regex('/^[A-Za-zÀ-ÿñÑ ]+$/')
                     ->validationMessages([
-                        'maxLenght' => 'El nombre no debe contener más de 100 carácteres.',
                         'required' => 'Debe introducir un nombre de usuario.',
-                        'regex' => 'El nombre solo debe contener letras y espacios.'
+                        'max' => 'El nombre no debe contener más de 100 carácteres.',
+                        'regex' => 'El nombre de usuario no debe contener símbolos',
                     ]),
 
                 TextInput::make('email')
                     ->required()
-                    ->email()
+                    ->rules(['regex:/^[^\s@]+@[^\s@]+\.[^\s@]+$/'])->email()
                     ->unique(ignoreRecord: true)
-                    ->maxLength(100)
-                    ->label('Correo Electrónico')
+                    ->maxLength(100)->label('Correo Electrónico')
                     ->validationMessages([
                         'required' => 'Debe introducir un correo electrónico.',
                         'email' => 'Debe introducir un correo electrónico válido.',
-                        'unique' => 'El correo ingresado se encuentra en uso, introduzca uno nuevo.'
+                        'unique' => 'El correo ingresado se encuentra en uso, introduzca uno nuevo.',
+                        'max' => 'El correo debe contener menos de 100 carácteres.',
+                        'regex' => 'Debe introducir un correo electrónico válido.'
                     ]),
 
                 DateTimePicker::make('email_verified_at')
@@ -52,14 +55,12 @@ class ViewUsuario extends ViewRecord
 
                 TextInput::make('password')
                     ->label('Contraseña')
-                    ->password()
                     ->revealable()
+                    ->password()
                     ->required()
-                    ->dehydrated(fn($state) => filled($state))
-                    ->required(fn(Page $livewire): bool => $livewire instanceof CreateRecord)
-                    ->validationMessages([
-                        'required' => 'Debe introducir una contraseña',
-                    ]),
+                    ->minLength(8)
+                    ->maxLength(18)
+                    ->hint(''),
 
 
                 Placeholder::make('created_at')
@@ -78,5 +79,11 @@ class ViewUsuario extends ViewRecord
             Actions\EditAction::make(),
             Actions\DeleteAction::make(),
         ];
+    }
+
+    public function handle(): void
+    {
+        // Redirect to UsuariosList
+        redirect(ListUsuarios::getUrl());
     }
 }
