@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('marcas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre')->unique();
-            $table->string('enlace')->unique();
             $table->longText('imagen')->nullable();
             $table->longText('descripcion')->nullable();
             $table->boolean('disponible');

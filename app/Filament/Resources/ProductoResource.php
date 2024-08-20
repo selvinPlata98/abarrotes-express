@@ -47,16 +47,6 @@ class ProductoResource extends Resource
                             ->reactive()
                             ->live(onBlur: true),
 
-                        Forms\Components\TextInput::make('enlace')
-                            ->required()
-                            ->label('Enlace')
-                            ->disabled()
-                            ->dehydrated()
-                            ->unique(Producto::class, ignoreRecord: true)
-                            ->validationMessages([
-                                'unique' => 'Este enlace ya existe.'
-                            ]),
-
 
                         Forms\Components\FileUpload::make('imagenes')
                             ->required()
@@ -143,7 +133,7 @@ class ProductoResource extends Resource
          ->inputMode('decimal')
         ->label('Porcentaje de Oferta')
          ->nullable()
-         ->step('0.01')
+         ->step('0.10')
         ->default(0)
         ->minValue(0)
         ->maxValue(100) // Cambiado a 100 para permitir hasta 100%

@@ -97,7 +97,7 @@
                 <div class="flex flex-wrap -mx-3 w-7/10 dim">
     @forelse ($productos ?? [] as $producto)
     @if($producto->disponible == true)
-        @if($producto->en_oferta > 0)
+        @if($producto->porcentaje_oferta > 0)
             <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 px-4 mb-8">
                 <div class="bg-white p-3 rounded-lg shadow-lg text-center">
                     @if(isset($producto->imagenes) && count($producto->imagenes) > 0)
@@ -105,7 +105,7 @@
                     @endif              
                     <a href="{{ route('producto', ['id' => $producto->id]) }}" class="text-lg font-semibold mb-2 hover:text-cyan-500 hover:underline">{{$producto->nombre}}</a>
                     <div class="flex items-center mb-4">
-                        <span class="text-lg font-bold text-primary">{{$producto->precio - ($producto->precio * $producto->en_oferta)}}</span>
+                        <span class="text-lg font-bold text-primary">{{$producto->precio - ($producto->precio * ($producto->porcentaje_oferta/ 100))}}</span>
                         <span class="text-sm line-through ml-2">{{$producto->precio}}</span>
                     </div>
                     <button class="bg-primary text-white border border-primary hover:bg-transparent hover:text-primary py-2 px-3 rounded-full w-full">Añadir al carrito</button>

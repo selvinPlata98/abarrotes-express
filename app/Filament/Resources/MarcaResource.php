@@ -49,13 +49,6 @@ class MarcaResource extends Resource
                     ->reactive()
                     ->live(onBlur: true),
 
-                Forms\Components\TextInput::make('enlace')
-                    ->required()
-                    ->label('Enlace')
-                    ->disabled()
-                    ->dehydrated()
-                    ->unique(Marca::class, ignoreRecord: true),
-
                 Forms\Components\FileUpload::make('imagen')
                     ->required()
                     ->label('Imagen')

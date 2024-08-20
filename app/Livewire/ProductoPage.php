@@ -13,15 +13,15 @@ class ProductoPage extends Component
     #[Url]
 
     public $cantidad;
-    public $enlace;
+    public $id;
 
-    public function mount($enlace){
-            $this->enlace = $enlace;
+    public function mount($id){
+            $this->id = $id;
     }
 
     public function render()
     {
         return view('livewire.producto-page',
-        ['producto' => Producto::where('enlace', $this->enlace)->firstOrFail()]);
+        ['producto' => Producto::where('id', $this->id)->firstOrFail()]);
     }
 }
