@@ -58,15 +58,6 @@ class EditCategoria extends EditRecord
                     ->live(onBlur: true)
                     ->unique(Categoria::class, ignoreRecord: true),
 
-                TextInput::make('enlace')
-                    ->required()
-                    ->label('Enlace')
-                    ->disabled()
-                    ->dehydrated()
-                    ->unique(Categoria::class, ignoreRecord: true)
-                    ->validationMessages([
-                        'unique' => 'Este enlace ya existe',
-                    ]),
 
                 FileUpload::make('imagen')
                     ->required()

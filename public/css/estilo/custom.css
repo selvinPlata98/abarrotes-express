@@ -190,20 +190,20 @@ img.cursor-pointer:hover {
 /* single product tabs */
 .tab {
     padding: 0.5rem 1rem;
-    color: #010717; 
+    color: #010717;
     border-bottom-width: 2px;
     border-color: transparent;
     font-size: 1rem;
-    font-weight: 500; 
+    font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 .tab:hover {
-    color: #323232; 
-    border-color: #ff0042; 
+    color: #323232;
+    border-color: #ff0042;
 }
 .tab.active {
-    color: #ff0042; 
+    color: #ff0042;
     border-color: #ff0042;
 }
 .tab-content {
@@ -233,3 +233,63 @@ img.cursor-pointer:hover {
     border-color: #ff0042;
 }
 
+
+
+/*Estilos de las fuentes*/
+
+/* manrope-200 - cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 200;
+    src: url('../fonts/manrope-v15-cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese-200.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* manrope-300 - cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 300;
+    src: url('../fonts/manrope-v15-cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese-300.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* manrope-regular - cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/manrope-v15-cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* manrope-500 - cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
+    src: url('../fonts/manrope-v15-cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese-500.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* manrope-600 - cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 600;
+    src: url('../fonts/manrope-v15-cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese-600.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* manrope-700 - cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/manrope-v15-cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* manrope-800 - cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 800;
+    src: url('../fonts/manrope-v15-cyrillic_cyrillic-ext_greek_latin_latin-ext_vietnamese-800.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}

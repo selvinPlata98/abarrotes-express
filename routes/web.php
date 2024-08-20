@@ -28,7 +28,7 @@ Route::get('/inicio', function (){
 Route::get('/categorias', \App\Livewire\MostrarCategoriaPage::class)->name('categorias');
 Route::get('/marcas', \App\Livewire\MostrarMarcaPage::class)->name('marcas');
 Route::get('/productos/{categoria?}/{marca?}', \App\Livewire\ProductosPage::class)->name('productos');
-Route::get('/producto/{enlace}', \App\Livewire\ProductoPage::class)->name('producto');
+Route::get('/producto/{id}', \App\Livewire\ProductoPage::class)->name('producto');
 Route::get('/error', \App\Livewire\ErrorPage::class);
 Route::get('/carrito', \App\Livewire\CarritoPage::class)->name('carrito');
 

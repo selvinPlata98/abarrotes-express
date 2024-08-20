@@ -38,7 +38,7 @@ class CategoriaResource extends Resource
                     ->required()
                     ->label('Nombre De la Categoria')
                     ->maxLength(40)
-                    ->regex('/^[A-Za-z ]+$/')
+                    ->regex('/^[A-Za-z áÁéÉíÍóÓúÚñÑ]+$/')
                     ->validationMessages([
                         'maxLength' => 'El nombre debe contener un máximo de 80 caracteres.',
                         'required' => 'Debe introducir un nombre para la categoria.',
@@ -51,15 +51,6 @@ class CategoriaResource extends Resource
                     ->live(onBlur: true)
                     ->unique(Categoria::class, ignoreRecord: true),
 
-                TextInput::make('enlace')
-                    ->required()
-                    ->label('Enlace')
-                    ->disabled()
-                    ->dehydrated()
-                    ->unique(Categoria::class, ignoreRecord: true)
-                    ->validationMessages([
-                        'unique' => 'Este enlace ya existe',
-                    ]),
 
                 FileUpload::make('imagen')
                     ->required()

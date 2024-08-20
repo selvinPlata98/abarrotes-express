@@ -6,6 +6,7 @@
 /.vscode
 .storage
 .env
-.storage
-public
-vendor
+/storage/app/public
+/public/storage
+/vendor
+/node_modules

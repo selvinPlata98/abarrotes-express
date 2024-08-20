@@ -8,8 +8,8 @@
 
                 </div>
                 <div class="flex mt-5 md:mt-0 space-x-4">
-    <div class="relative" wire:ignore>
-        <select class="block appearance-none w-full bg-white border hover:border-primary px-4 py-2 pr-8 rounded-full shadow leading-tight focus:outline-none focus:shadow-outline" wire:model="orden" wire:click="precios" >
+    <div class="relative">
+        <select class="block appearance-none w-full bg-white border hover:border-primary px-4 py-2 pr-8 rounded-full shadow leading-tight focus:outline-none focus:shadow-outline" wire:model="orden" wire:click="precios">
         <option value="">filtro</option>
         <option value="tiempo">Producto reciente</option>
         <option value="caro">Orden precio más alto</option>
@@ -42,7 +42,9 @@
                     <div class="mb-6 pb-8 border-b border-gray-line">
                         <h3 class="text-lg font-semibold mb-6">Categorías</h3>
                         <div class="space-y-2">
-                        @forelse($categorias->take($mostrarTodasCategorias ? $categorias->count() : $categoriasVisibles) as $categoria)                            @if($categoria->disponible == true)
+                            
+                            @forelse($categorias->take($mostrarTodasCategorias ? $categorias->count() : $categoriasVisibles) as $categoria)
+                            @if($categoria->disponible == true)
                             <label class="flex items-center">
                                 <input type="checkbox" class="form-checkbox custom-checkbox" 
                        value="{{ $categoria->id }} "  wire:model="categoriasFiltradas" wire:click="filtromarcas">
@@ -52,13 +54,14 @@
                             @empty
         <li>No se encontraron categorías.</li>
             </ul>
+            
                             @endforelse
                         </div>
-                        @if($categorias->count() > $categoriasVisibles && $categorias->count() > 5)
-        <button wire:click.prevent="toggleCategorias" class="mt-4 text-primary">
-            {{ $mostrarTodasCategorias ? 'Ver menos' : 'Ver más' }}
-        </button>
-    @endif
+                        @if($categorias->count() > $categoriasVisibles)
+    <button wire:click.prevent="toggleCategorias" class="mt-4 text-primary">
+        {{ $mostrarTodasCategorias ? 'Ver menos' : 'Ver más' }}
+    </button>
+@endif
                     </div>
                     <!-- Marcas -->
                     <div class="mb-6 pb-8 border-b border-gray-line">
@@ -77,17 +80,16 @@
             </ul>
                             @endforelse
                         </div>
-                        @if($marcas->count() > $marcasVisibles && $marcas->count() > 5)
+                        @if($marcas->count() > $marcasVisibles && $marcas->count() > 3)
         <button wire:click.prevent="toggleMarcas" class="mt-4 text-primary">
-            {{ $mostrarTodasCategorias ? 'Ver menos' : 'Ver más' }}
+            {{ $mostrarTodasMarcas ? 'Ver menos' : 'Ver más' }}
         </button>
     @endif
                     </div>
-
-                    <div class="flex flex-col items-center mb-6">
-    <label for="precio" class="mb-2 text-sm font-medium text-gray-900" >Rango de Precio: </label>
-    <input type="range" id="precio" min="0" max="{{ $precioMaximo }}" step="1" wire:model.live="precio">
-    <span class="mt-2 text-lg font-semibold">${{ $precio }}</span>
+                    <div>
+    <label for="precio">Rango de Precio de los productos: </label>
+    <input type="range" id="precio" min="0" max="{{ $precioMaximo }}" step="1" wire:model.live="precio" />
+    <span>${{ $precio }}</span>
 </div>
 
                 </div>
@@ -101,9 +103,9 @@
                     @if(isset($producto->imagenes) && count($producto->imagenes) > 0)
                         <img src="{{ url('storage/' . $producto->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$producto->imagenes[0]}}">
                     @endif              
-                    <a href="{{ route('producto', ['enlace' => $producto->enlace]) }}" class="text-lg font-semibold mb-2">{{$producto->nombre}}</a>
+                    <a href="{{ route('producto', ['id' => $producto->id]) }}" class="text-lg font-semibold mb-2 hover:text-cyan-500 hover:underline">{{$producto->nombre}}</a>
                     <div class="flex items-center mb-4">
-                        <span class="text-lg font-bold text-primary">{{$producto->precio - $producto->en_oferta}}</span>
+                        <span class="text-lg font-bold text-primary">{{$producto->precio - ($producto->precio * $producto->en_oferta)}}</span>
                         <span class="text-sm line-through ml-2">{{$producto->precio}}</span>
                     </div>
                     <button class="bg-primary text-white border border-primary hover:bg-transparent hover:text-primary py-2 px-3 rounded-full w-full">Añadir al carrito</button>
@@ -113,21 +115,23 @@
             <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 px-4 mb-8">
                 <div class="bg-white p-3 rounded-lg shadow-lg text-center">
                     @if(isset($producto->imagenes) && count($producto->imagenes) > 0)
-                        <img src="{{ url('storage/' , $producto->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$producto->imagenes[0]}}">
+                        <img src="{{ url('storage/' . $producto->imagenes[0]) }}" class="w-full object-cover mb-4 rounded-lg tamanoCard" alt="{{$producto->imagenes[0]}}">
                     @endif              
-                    <a href="{{ route('producto', ['enlace' => $producto->enlace]) }}" class="text-lg font-semibold mb-2 hover:text-cyan-500 hover:underline">{{$producto->nombre}}</a>
+                    <a href="{{ route('producto', ['id' => $producto->id]) }}" class="text-lg font-semibold mb-2 hover:text-cyan-500 hover:underline">{{$producto->nombre}}</a>
                     <div class="flex items-center mb-4">
-                        <span class="text-lg font-bold text-primary"> $ {{$producto->precio }}</span>
+                        <span class="text-lg font-bold text-primary">{{$producto->precio }}</span>
                     </div>
                     <button class="bg-primary text-white border border-primary hover:bg-transparent hover:text-primary py-2 px-3 rounded-full w-full">Añadir al carrito</button>
                 </div>
             </div>
             
         @endif 
-        @endif 
+        @endif
         @empty
              <p>No se encontraron productos.</p>
+              
              @endforelse
+            
 </div>
             </div>
             @if ($productos->isNotEmpty())
@@ -135,6 +139,7 @@
                 {{ $productos->links() }}
         </div>
     @endif
+         
     </section>
 
     <!-- Shop category description -->
@@ -155,4 +160,3 @@
         </div>
     </section>
 </div>
-

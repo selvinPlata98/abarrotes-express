@@ -27,6 +27,8 @@ class ProductosPage extends Component
     public $marcasVisibles = 5;
     public $categoriasFiltradas = [];
     public $marcasFiltradas = [];
+    public $categoriaSeleccionada = null;
+    public $MarcaSeleccionada = null;
 
     protected $queryString = ['categoriasFiltradas', 'marcasFiltradas', 'orden'];
 
@@ -69,7 +71,26 @@ public function toggleMarcas()
     $this->mostrarTodasMarcas = !$this->mostrarTodasMarcas;
 }
 
-    public function mount() 
+
+
+
+
+
+
+public function seleccionarCategoria($categoriaId)
+{
+    // Aquí puedes agregar la lógica para seleccionar la categoría
+    $this->categoriasFiltradas = [$categoriaId]; // Asigna la categoría seleccionada
+    $this->resetPage(); // Resetea la paginación
+}
+
+    public function seleccionarMarcas($marcaId)
+{
+    // Aquí puedes agregar la lógica para seleccionar la categoría
+    $this->marcasFiltradas = [$marcaId]; // Asigna la categoría seleccionada
+    $this->resetPage(); // Resetea la paginación
+}
+    public function mount($categoria = null, $marca = null) 
     {
         $this->categorias = Categoria::all();
         $this->marcas = Marca::all();
@@ -77,21 +98,32 @@ public function toggleMarcas()
         $this->precioMaximo = Producto::max('precio');
         $this->precio = $this->precioMaximo;
         $this->mostrarTodasMarcas = false;
+
+        
+        // valida las categoria que se selecciona por el id si es true
+        if ($categoria) {
+            $this->categoriasFiltradas = [$categoria];
+        } 
+        // valida las marcas que se selecciona por el id si es true
+        if ($marca) {
+            $this->marcasFiltradas = [$marca];
+        }
     }
 
     public function render()
     {
         $query = Producto::query();
-
-        if (!empty($this->categoriasFiltradas)) {
-            $query->whereIn('categoria_id', $this->categoriasFiltradas);
-        }
+        // seleciona los productos relacionado con el id de las marcas
         if (!empty($this->marcasFiltradas)) {
             $query->whereIn('marca_id', $this->marcasFiltradas);
         }
-
+        
         if ($this->precio > 0) {
             $query->where('precio', '<=', $this->precio); // Ajusta el límite inferior
+        }
+        // seleciona los productos relacionado con el id de las categorias
+         if (!empty($this->categoriasFiltradas)) {
+            $query->whereIn('categoria_id', $this->categoriasFiltradas);
         }
 
         switch ($this->orden) {

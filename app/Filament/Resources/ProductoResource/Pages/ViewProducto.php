@@ -124,7 +124,7 @@ class ViewProducto extends ViewRecord
                             ->label('Porcentaje de Oferta')
                             ->nullable()
                             ->step('0.01')
-                            ->maxValue(1)
+                            ->maxValue(100)
                             ->minValue(0)
                             ->regex('/^(0\.00|1\.00|0\.[0-9]{1,2}|1\.0{1,2})$/')
                             ->validationMessages([

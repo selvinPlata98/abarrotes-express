@@ -138,24 +138,23 @@ class ProductoResource extends Resource
 
                         ]),
                         Forms\Components\TextInput::make('porcentaje_oferta')->prefix('%')
-                            ->required()
-                            ->numeric()
-                            ->inputMode('decimal')
-                            ->label('Porcentaje de Oferta')
-                            ->nullable()
-                            ->step('0.01')
-                            ->default(0)
-                            ->minValue(0)
-                            ->maxValue(1)
-                            ->validationMessages([
-                                'required' => 'El porcentaje de oferta debe ser un valor numérico.',
-                                'numeric' => 'El porcentaje de oferta debe ser un número.',
-                                'minValue' => 'El porcentaje de oferta debe ser al menos 1.',
-                                'maxValue' => 'El porcentaje de oferta no debe ser mayor a 100.',
-                            ])
-                            ->visible(fn(\Filament\Forms\Get $get): bool => $get('en_oferta'))
-                            ->columns(2),
-
+         ->required()
+            ->numeric()
+         ->inputMode('decimal')
+        ->label('Porcentaje de Oferta')
+         ->nullable()
+         ->step('0.01')
+        ->default(0)
+        ->minValue(0)
+        ->maxValue(100) // Cambiado a 100 para permitir hasta 100%
+        ->validationMessages([
+        'required' => 'El porcentaje de oferta debe ser un valor numérico.',
+        'numeric' => 'El porcentaje de oferta debe ser un número.',
+        'minValue' => 'El porcentaje de oferta debe ser al menos 0.', // Cambiado a 0
+        'maxValue' => 'El porcentaje de oferta no debe ser mayor a 100.',
+         ])
+     ->visible(fn(\Filament\Forms\Get $get): bool => $get('en_oferta'))
+     ->columns(2),
 
                         #Se cambió una librería antigua que marcaba como obsoleta.
 
