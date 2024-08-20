@@ -2,6 +2,9 @@
 
 namespace App\Livewire;
 
+use App\Helpers\CarritoManagement;
+use App\Livewire\Complementos\Navbar;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use App\Models\Producto;
 use App\Models\Categoria;
@@ -11,8 +14,9 @@ use Livewire\WithPagination;
 class ProductosPage extends Component
 {
     use WithPagination;
+    use LivewireAlert;
 
-    #[Title('Nuestro producto')]
+    #[Title('Productos')]
     #[Url]
     public $precio =0;
     public $precioMaximo;
@@ -27,10 +31,34 @@ class ProductosPage extends Component
     public $marcasVisibles = 5;
     public $categoriasFiltradas = [];
     public $marcasFiltradas = [];
-    public $categoriaSeleccionada = null;
-    public $MarcaSeleccionada = null;
 
     protected $queryString = ['categoriasFiltradas', 'marcasFiltradas', 'orden'];
+
+    public function agregarCarrito($producto_id)
+    {
+        $conteo_total = CarritoManagement::agregarElmentoAlCarrito($producto_id);
+
+        if (is_numeric($conteo_total)) {
+            // Si la operación fue exitosa y se devuelve el conteo total
+            $this->dispatch('update-cart-count', ['conteo_total' => $conteo_total])->to(Navbar::class);
+            $this->alert('success', 'El producto fue agregado al carrito', [
+                'position' => 'bottom-end',
+                'timer' => 2000,
+                'toast' => true,
+                'timerProgressBar' => true,
+                $this->skipRender()
+            ]);
+        } else {
+            // Si se devuelve un mensaje de error
+            $this->alert('error', $conteo_total, [
+                'position' => 'bottom-end',
+                'timer' => 3000,
+                'toast' => true,
+                'timerProgressBar' => true,
+                $this->skipRender()
+            ]);
+        }
+    }
 
     public function updatedCategoriasFiltradas()
     {
@@ -71,26 +99,20 @@ public function toggleMarcas()
     $this->mostrarTodasMarcas = !$this->mostrarTodasMarcas;
 }
 
-
-
-
-
-
-
-public function seleccionarCategoria($categoriaId)
-{
-    // Aquí puedes agregar la lógica para seleccionar la categoría
-    $this->categoriasFiltradas = [$categoriaId]; // Asigna la categoría seleccionada
-    $this->resetPage(); // Resetea la paginación
-}
+    public function seleccionarCategoria($categoriaId)
+    {
+        // Aquí puedes agregar la lógica para seleccionar la categoría
+        $this->categoriasFiltradas = [$categoriaId]; // Asigna la categoría seleccionada
+        $this->resetPage(); // Resetea la paginación
+    }
 
     public function seleccionarMarcas($marcaId)
-{
-    // Aquí puedes agregar la lógica para seleccionar la categoría
-    $this->marcasFiltradas = [$marcaId]; // Asigna la categoría seleccionada
-    $this->resetPage(); // Resetea la paginación
-}
-    public function mount($categoria = null, $marca = null) 
+    {
+        // Aquí puedes agregar la lógica para seleccionar la categoría
+        $this->marcasFiltradas = [$marcaId]; // Asigna la categoría seleccionada
+        $this->resetPage(); // Resetea la paginación
+    }
+    public function mount($categoria = null, $marca = null)
     {
         $this->categorias = Categoria::all();
         $this->marcas = Marca::all();
@@ -99,11 +121,10 @@ public function seleccionarCategoria($categoriaId)
         $this->precio = $this->precioMaximo;
         $this->mostrarTodasMarcas = false;
 
-        
         // valida las categoria que se selecciona por el id si es true
         if ($categoria) {
             $this->categoriasFiltradas = [$categoria];
-        } 
+        }
         // valida las marcas que se selecciona por el id si es true
         if ($marca) {
             $this->marcasFiltradas = [$marca];
@@ -113,17 +134,16 @@ public function seleccionarCategoria($categoriaId)
     public function render()
     {
         $query = Producto::query();
-        // seleciona los productos relacionado con el id de las marcas
+
+        if (!empty($this->categoriasFiltradas)) {
+            $query->whereIn('categoria_id', $this->categoriasFiltradas);
+        }
         if (!empty($this->marcasFiltradas)) {
             $query->whereIn('marca_id', $this->marcasFiltradas);
         }
-        
+
         if ($this->precio > 0) {
             $query->where('precio', '<=', $this->precio); // Ajusta el límite inferior
-        }
-        // seleciona los productos relacionado con el id de las categorias
-         if (!empty($this->categoriasFiltradas)) {
-            $query->whereIn('categoria_id', $this->categoriasFiltradas);
         }
 
         switch ($this->orden) {
@@ -136,7 +156,7 @@ public function seleccionarCategoria($categoriaId)
             case 'tiempo':
                 $query->orderBy('created_at', 'desc');
                 break;
-            
+
         }
 
         $productos = $query->paginate($this->perPage);
