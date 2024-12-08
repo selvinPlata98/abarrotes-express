@@ -4,6 +4,7 @@ namespace App\Filament\Resources\UsuariosResource\Pages;
 
 use App\Filament\Resources\UsuariosResource;
 use Filament\Actions\DeleteAction;
+use Filament\Actions\EditAction;
 use Filament\Resources\Pages\EditRecord;
 
 class EditUsuarios extends EditRecord

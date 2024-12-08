@@ -1,6 +1,8 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -12,9 +14,27 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', \App\Livewire\InicioPage::class)->name('inicio');
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/home', function (){
+    return redirect()->route('inicio');
+} );
+Route::get('/inicio', function (){
+    return redirect()->route('inicio');
 });
 
-Route::get('/login')->name('login');
+Route::get('/categorias', \App\Livewire\MostrarCategoriaPage::class)->name('categorias');
+Route::get('/marcas', \App\Livewire\MostrarMarcaPage::class)->name('marcas');
+Route::get('/productos/{categoria?}/{marca?}', \App\Livewire\ProductosPage::class)->name('productos');
+Route::get('/producto/{enlace}', \App\Livewire\ProductoPage::class)->name('producto');
+Route::get('/carrito', \App\Livewire\CarritoPage::class)->name('carrito');
+
+Route::get('/categorias', \App\Livewire\MostrarCategoriaPage::class);
+Route::get('/marcas', \App\Livewire\MostrarMarcaPage::class);
+Route::get('/productoshop/{categoria?}/{marca?}', \App\Livewire\ProductoShop::class)->name('productoshop');
+Route::get('/producto/{enlace}', \App\Livewire\ProductoPage::class);
+Route::get('/cupon', \App\Livewire\CuponPage::class);
+Route::middleware('guest')->group(function (){
+    Route::get('/registro', \App\Livewire\Auth\RegistroPage::class)->name('registro');
+    Route::get('/login', \App\Livewire\Auth\LoginPage::class)->name('login');
+});

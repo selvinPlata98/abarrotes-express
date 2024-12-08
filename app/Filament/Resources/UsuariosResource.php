@@ -2,11 +2,15 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\UserResource\Pages\ViewUser;
 use App\Filament\Resources\UsuariosResource\Pages;
+use App\Filament\Resources\UsuariosResource\RelationManagers\RolesRelationManager;
 use App\Models\User;
+use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\Page;
@@ -30,10 +34,12 @@ class UsuariosResource extends Resource
 
     protected static ?string $slug = 'usuarios';
     protected static ?int $navigationSort = 1;
+    protected static ?string $navigationGroup = 'Usuarios';
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
     protected static ?string $activeNavigationIcon = 'heroicon-s-users';
     protected static ?string $pluralModelLabel = 'Usuarios';
+
 
     public static function form(Form $form): Form
     {
@@ -46,20 +52,26 @@ class UsuariosResource extends Resource
                     ->regex('/^[A-Za-z ]+$/')
                     ->validationMessages([
                         'maxLenght' => 'El nombre no debe contener más de 100 carácteres.',
-                       'required' => 'Debe introducir un nombre de usuario.',
-                        'regex' => 'El nombre solo debe contener letras y espacios.'
+                        'required' => 'Debe introducir un nombre de usuario.',
+                        'regex' => 'El nombre solo debe contener letras y espacios.',
                     ]),
 
                 TextInput::make('email')
                     ->required()
                     ->email()
                     ->unique(ignoreRecord: true)
-                    ->maxLength(100)                    ->label('Correo Electrónico')
+                    ->maxLength(100)->label('Correo Electrónico')
                     ->validationMessages([
                         'required' => 'Debe introducir un correo electrónico.',
                         'email' => 'Debe introducir un correo electrónico válido.',
                         'unique' => 'El correo ingresado se encuentra en uso, introduzca uno nuevo.'
                     ]),
+
+                CheckboxList::make('roles')
+                    ->helperText('Seleccionar solo uno')
+                    ->relationship('roles', 'name')
+                    ->columns(2)
+                    ->required(),
 
                 DateTimePicker::make('email_verified_at')
                     ->label('Fecha de verificación de Correo'),
@@ -69,8 +81,11 @@ class UsuariosResource extends Resource
                     ->password()
                     ->revealable()
                     ->required()
-                    ->dehydrated(fn($state) => filled($state))
-                    ->required(fn(Page $livewire): bool => $livewire instanceof CreateRecord)
+                    ->dehydrated(static fn(null|string $state):
+                    null|string => filled($state ? \Hash::make($state) : null))
+                    ->required(fn(Page $livewire): bool => $livewire instanceof Pages\CreateUsuarios)
+                    ->dehydrated(static fn(null|string $state):
+                    bool => filled($state))
                     ->validationMessages([
                         'required' => 'Debe introducir una contraseña',
                     ]),
@@ -86,47 +101,20 @@ class UsuariosResource extends Resource
             ]);
     }
 
-    public static function table(Table $table): Table
-    {
-        return $table
-            ->columns([
-                TextColumn::make('name')
-                    ->searchable()
-                    ->sortable()
-                    ->label('Nombre de Usuario'),
-
-                TextColumn::make('email')
-                    ->searchable()
-                    ->sortable()
-                    ->label('Correo Electrónico'),
-
-                TextColumn::make('email_verified_at')
-                    ->label('Fecha de Verificación de Correo')
-                    ->date(),
-            ])
-            ->filters([
-                //
-            ])
-            ->actions([
-                ViewAction::make(),
-                ActionGroup::make([
-                    EditAction::make(),
-                    DeleteAction::make(),
-                ])
-            ])
-            ->bulkActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
-            ]);
-    }
-
     public static function getPages(): array
     {
         return [
             'index' => Pages\ListUsuarios::route('/'),
             'create' => Pages\CreateUsuarios::route('/create'),
             'edit' => Pages\EditUsuarios::route('/{record}/edit'),
+            'view' => Pages\ViewUsuario::route('/{record}/view')
+        ];
+    }
+
+    public static function getRelations(): array
+    {
+        return[
+          RolesRelationManager::class
         ];
     }
 
